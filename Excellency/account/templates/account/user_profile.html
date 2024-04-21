@@ -1,0 +1,92 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}
+  User Profile
+{% endblock title %}
+{% block content %}
+  <div class="d-flex flex-column">
+    {% if msg %}
+      <h2 class="align-self-center">{{ msg }}</h2>
+    {% else %}
+      <div class="update-profile">
+        {% if request.user == user %}
+          <div class="d-flex justify-self-center justify-content-end mx-5 mt-3 h-80 gap-2">
+            <a href="{% url 'account:update_profile_view' user.username %}"
+               class="btn btn-dark shadow px-3">تعديل</a>
+          </div>
+        {% endif %}
+      </div>
+      <div class="ms-5 d-flex align-items-start justify-content-around my-5">
+        <img src="{{ user.profile.avatar.url }}"
+             width="250px"
+             height="200px"
+             alt="">
+        <div class="card ms-5 w-50">
+          <div class="card-body bg-dark">
+            <div class="row">
+              <div class="col-3">
+                <p class="mb-0">الاسم الكامل</p>
+              </div>
+              <div class="col-7">
+                <p class=" mb-0">{{ user.first_name }} {{ user.last_name }}</p>
+              </div>
+            </div>
+            <hr class="border-light">
+            <div class="row">
+              <div class="col-3">
+                <p class="mb-0">اسم المستخدم</p>
+              </div>
+              <div class="col-7">
+                <p class="mb-0">{{ user.username }}</p>
+              </div>
+            </div>
+            <hr class="border-light">
+            <div class="row">
+              <div class="col-3">
+                <p class="mb-0">البريد الالكتروني</p>
+              </div>
+              <div class="col-7">
+                <p class="mb-0">{{ user.email }}</p>
+              </div>
+            </div>
+            <hr class="border-light">
+            <div class="row">
+              <div class="col-3">
+                <p class="mb-0">الجوال</p>
+              </div>
+              <div class="col-7">
+                <p class="mb-0">{{ user.profile.phone }}</p>
+              </div>
+            </div>
+            <hr class="border-light">
+            <div class="row ">
+              <div class="col-3 my-0">
+                <p class="mb-0">الجنسية</p>
+              </div>
+              <div class="col-7 my-0">
+                <p class="mb-0">{{ user.profile.nationality }}</p>
+              </div>
+            </div>
+            <hr class="border-light">
+            <div class="row ">
+              <div class="col-3 my-0">
+                <p class="mb-0">الجنس</p>
+              </div>
+              <div class="col-7 my-0">
+                <p class="mb-0">{{ request.user.profile.gender }}</p>
+              </div>
+            </div>
+            <hr class="border-light">
+            <div class="profile-about">
+              <p class="mb-0">نبذة عنك</p>
+              <div>
+                <p class="ps-2 pt-1 mb-0">{{ user.profile.about }}</p>
+              </div>
+            </div>
+            <hr class="border-light">
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock content %}

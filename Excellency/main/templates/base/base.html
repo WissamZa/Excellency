@@ -1,0 +1,40 @@
+{# djlint:off H030,H031 H020 D018 #}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      {% block title %}
+      {% endblock title %}
+    </title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet" />
+    <link href="{% static "css/stayle.css" %}" rel="stylesheet" />
+    {% block css %}
+    {% endblock css %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="{% static "js/index.js" %}"></script>
+    {% block js %}
+    {% endblock js %}
+    <link rel="icon" href="{% static "icons/libra-icon.svg" %}" sizes="any" type="image/svg+xml">
+  </head>
+  <body>
+    <main>
+      <header>
+        {% include "base/navbar.html" %}
+      </header>
+      <section>
+        {% block content %}
+        {% endblock content %}
+      </section>
+      {% include "base/footer.html" %}
+    </main>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static "js/index.js" %}"></script>
+  </body>
+</html>

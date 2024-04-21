@@ -1,0 +1,81 @@
+{% extends "main/base.html" %}
+{% block title %}
+   انشاء حساب
+{% endblock title %}
+{% block content %}
+   <div class="d-flex mb-5 justify-content-center">
+      <div class="row w-50">
+         <h1 class="text-center text-end pt-4">انشاء حساب</h1>
+         {% if msg %}
+            <svg xmlns="http://www.w3.org/2000/svg" class="d-none h-100">
+               <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+               <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+               </symbol>
+            </svg>
+            <div class="d-flex w-100 justify-content-center myalart">
+               <div class="alert alert-danger d-flex align-items-center w-75"
+                    role="alert">
+                  <svg class="bi flex-shrink-0 me-2 danger-svg"
+                       role="img"
+                       aria-label="Danger:">
+                     <use xlink:href="#exclamation-triangle-fill" />
+                  </svg>
+                  <span class="px-3 text-danger-emphasis">{{ msg }}</span>
+               </div>
+            </div>
+         {% endif %}
+         <div class="form-grid">
+            <form action="{% url 'account:sign_up_view' %}"
+                  method="post"
+                  class="d-flex flex-column gap-2 w-75"
+                  enctype="multipart/form-data">
+               {% csrf_token %}
+               <label class="form-label mb-0 ms-1 mt-2">اسم المستخدم</label>
+               <input name="username"
+                      class="form-control"
+                      type="text"
+                      minlength="3"
+                      required
+                      placeholder="ahmad" />
+               <label class="form-label mb-0 ms-1 mt-2">البريد الالكتروني</label>
+               <input name="email"
+                      class="form-control"
+                      type="email"
+                      required
+                      placeholder="example@example.com" />
+               <label class="form-label mb-0 ms-1 mt-2">الجوال</label>
+               <input name="phone"
+                      class="form-control"
+                      type="text"
+                      {% comment %}
+                      pattern="^05[0-9]{4}[0-9]{4}$"
+                      {% endcomment %}
+                      required
+                      placeholder="05XXXXXXXX" />
+               <label class="form-label mb-0 ms-1 mt-2">كلمة السر</label>
+               <input name="password"
+                      id="password"
+                      class="form-control"
+                      type="password"
+                      minlength="6"
+                      onkeyup='check();'
+                      required
+                      placeholder="كلمة السر" />
+               <span id="message" class="text-end"></span>
+               <label class="form-label mb-0 ms-1 mt-2">تأكيد كلمة السر</label>
+               <input name="confirm_password"
+                      id="confirm_password"
+                      class="form-control"
+                      type="password"
+                      minlength="6"
+                      onkeyup='check();'
+                      required
+                      placeholder="تأكيد كلمة السر" />
+               <span id="message" class="text-end"></span>
+               <input type="submit" class="btn btn-dark my-2" value="Sign Up" />
+            </form>
+            <span>لديك بالفعل حساب؟ <a href="{% url "account:login_view" %}">تسجيل الدخول هنا</a> </span>
+         </div>
+      </div>
+   </div>
+{% endblock content %}

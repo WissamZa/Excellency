@@ -1,0 +1,38 @@
+{# djlint:off H006#}
+{% load static %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-sm navbar-light bg-body-tertiary">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <a class="navbar-brand me-2" href="{% url "main:index_view" %}">
+      <i class="fa-regular fa-scale-balanced"></i>
+    </a>
+    <!-- Toggle button -->
+    <button class="navbar-toggler me-2"
+            type="button"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse justify-content-between"
+         id="navbarButtonsExample">
+      <!-- Left links -->
+      <ul class="navbar-nav flex-row-reverse">
+        <li class="nav-item">
+          <a class="nav-link" href="#">الرئيسية</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+      <div class="d-flex gap-2 align-items-center">
+        <button type="button" class="btn btn-link px-3 me-2">تسجيل الدخول / تسجيل</button>
+      </div>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
