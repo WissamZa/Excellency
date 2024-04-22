@@ -1,13 +1,11 @@
+from click import File
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
-from django.contrib.auth.models import User
+from account.models import User, LawyerProfile, CustomarProfile
 from django.contrib.auth import authenticate, login, logout
 
-from product.models import Product
-from .models import Cart, Profile
 from main.validator import validat
 from django.core.exceptions import ValidationError
-
 from django.db import transaction, IntegrityError
 
 
@@ -22,15 +20,28 @@ def sign_up_view(request: HttpRequest):
             if request.POST.get("password") != request.POST.get("confirm_password"):
                msg = "Invalid password"
                raise IntegrityError(msg)
-            new_user = User.objects.create_user(
-                username=validat(username=request.POST.get("username")),
+            new_user = User.objects.create(
+                national_id=validat(
+                   national_id=request.POST.get("national_id")),
                 email=validat(email=request.POST.get("email")),
                 password=validat(password=request.POST.get("password"))
             )
+            if request.POST["user_type"] == "lawyer":
+               LawyerProfile.objects.create(
+                  user=new_user,
+                  image=request.POST["image"],
+                  gender=request.POST["gender"],
+                  phone=validat(phone=request.POST.get("phone")),
+                  licence=request.FILES.get("licence"),
+                  Qualification=request.FILES.get("qualification"))
 
-            Profile.objects.create(
-               user=new_user,
-               phone=validat(phone=request.POST.get("phone")))
+            if request.POST["user_type"] == "customar":
+               CustomarProfile.objects.create(
+                  user=new_user,
+                  image=request.POST["image"],
+                  gender=request.POST["gender"],
+                  phone=validat(phone=request.POST.get("phone")),
+               )
 
          return redirect("account:login_view")
 
@@ -56,11 +67,20 @@ def login_view(request: HttpRequest):
 
    if request.method == "POST":
       # authenticat user
-      user = authenticate(
+      user_name = None
+      if validat(national_id=request.POST["username"]):
+         user = authenticate(
           request,
-          username=request.POST.get("username"),
+          national_id=request.POST["username"],
           password=request.POST.get("password")
-      )
+             )
+      if validat(email=request.POST["username"]):
+         user = authenticate(
+          request,
+          email=request.POST["username"],
+          password=request.POST.get("password")
+             )
+
       if user:
          # login user
          login(request, user)
@@ -109,40 +129,4 @@ def update_profile_view(request: HttpRequest, user_name):
       user.save()
       return redirect("account:user_profile_view", user_name=user.username)
 
-   return render(request, "account/update_profile.html", {"user": user,
-                                                          "nationality": Profile.nationality_choices.choices,
-                                                          "genders": Profile.gender_choices.choices, })
-
-
-def cart_view(request: HttpRequest, username):
-   try:
-      if not request.user.username == username:
-         return render(request, "main/no_permission.html")
-      total: float = 0.0
-      user = request.user
-      cart = Cart.objects.filter(user=user).order_by('-added_date')
-      for item in cart:
-         total = total + (item.product.price * item.quantity)
-      if request.method == 'POST':
-         product = Product.objects.get(id=request.POST.get('product_id'))
-         item = cart.get(product=product)
-         item.quantity = request.POST.get('quantity')
-         item.save()
-
-   except Exception as e:
-      print(e)
-   return render(request, "account/cart.html", {"cart": cart, "total": total})
-
-
-def delete_product_view(request: HttpRequest, username, cart_id):
-
-   try:
-      cart = Cart.objects.get(id=cart_id)
-      if request.user.is_authenticated and cart.user.username == request.user.username:
-         cart.delete()
-         return redirect("account:cart_view", username=request.user.username)
-      else:
-         return render(request, "main/no_permission.html")
-
-   except Exception as e:
-      print(e)
+   return render(request, "account/update_profile.html", {"user": user})
