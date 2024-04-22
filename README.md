@@ -56,7 +56,6 @@
 <hr>
 
 1. &nbsp;[وسام حسن الزايدي](https://github.com/WissamZa)
-<br>
 
 2. &nbsp;[محمد عبدالله ال يحي](https://github.com/Mohammed9090909)
 3. &nbsp;[ريان اسماعيل الشهري](https://github.com/Rayan-glitchw)
