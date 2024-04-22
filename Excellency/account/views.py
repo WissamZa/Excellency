@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from main.validator import validat
 from django.core.exceptions import ValidationError
 from django.db import transaction, IntegrityError
-
+from django.urls import reverse
 
 def sign_up_view(request: HttpRequest):
    try:
