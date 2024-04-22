@@ -4,15 +4,95 @@
   index
 {% endblock title %}
 {% block content %}
-  <div class="logo">
-    <img src="https://pbs.twimg.com/card_img/1779040227560132608/kNKnaAAe?format=jpg&name=small"
-         alt="">
+<div class="container-fluid">
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://cdn.discordapp.com/attachments/1229704465569943563/1231573297066410016/GALARY.png?ex=66377303&is=6624fe03&hm=618fc4706747f69813dd679b25ceec599d5fc017e75a04e89e9824c1a015a999&" class="d-block w-100  justify-content-center" style="max-height: 500px; object-fit: cover; justify-content: center;" alt="Image 1">
+        </div>
+        <div class="carousel-item">
+            <img src="https://cdn.discordapp.com/attachments/1229704465569943563/1231573297066410016/GALARY.png?ex=66377303&is=6624fe03&hm=618fc4706747f69813dd679b25ceec599d5fc017e75a04e89e9824c1a015a999&" class="d-block w-100  justify-content-center" style="max-height: 500px; object-fit: cover; justify-content: center;" alt="Image 2">
+        </div>
+        <div class="carousel-item">
+            <img src="https://cdn.discordapp.com/attachments/1229704465569943563/1231573297066410016/GALARY.png?ex=66377303&is=6624fe03&hm=618fc4706747f69813dd679b25ceec599d5fc017e75a04e89e9824c1a015a999&" class="d-block w-100  justify-content-center" style="max-height: 500px; object-fit: cover; justify-content: center;" alt="Image 3">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <i class="fas fa-chevron-left"></i>
+      <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <i class="fas fa-chevron-right"></i>
+      <span class="visually-hidden">Next</span>
+  </button>
   </div>
-  <div class="whous">
-    <h3 class="py-2">من نحن</h3>
-    <p class="py-2 fs-4">
-      فاهم هي منصة إلكترونية تعنى بالوساطه لتقديم الاستشارات والخدمات القانونية من خلال ربط نخبة من المحامين المرخصين
-    </p>
+</div>
+<div class="row card-home-page">
+  <div class="col-md-3">
+      <div class="card">
+          <div class="circle-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <div class="card-body">
+              <h5 class="card-title">استشارة</h5>
+              <a href="#" class="btn btn-outline-info">آطلب</a>
+          </div>
+      </div>
   </div>
-  
+  <div class="col-md-3">
+      <div class="card">
+          <div class="circle-icon">
+              <i class="fas fa-file-contract"></i>
+          </div>
+          <div class="card-body">
+              <h5 class="card-title">صياغة عقود</h5>
+              <a href="#" class="btn btn-outline-info">آطلب</a>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-3">
+      <div class="card">
+          <div class="circle-icon">
+              <i class="fas fa-book"></i>
+          </div>
+          <div class="card-body">
+              <h5 class="card-title">المذكرات</h5>
+              <a href="#" class="btn btn-outline-info">آطلب</a>
+          </div>
+      </div>
+  </div>
+</div>
+
+<section class="number-section mb-3">
+  <h1 class="text-center custom-color">آرقامنا</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card-section ">
+          <div class="card-body">
+            <i class="fas fa-handshake" style="color: #ca9e67;"></i>
+            <h5 class="custom-color">استشارات</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-section">
+          <div class="card-body">
+            <i class="fas fa-user" style="color: #ca9e67;"></i>
+            <h5 class="custom-color">محامي</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-section">
+          <div class="card-body">
+            <i class="fa fa-users" style="color: #ca9e67;"></i>
+            <h5 class="custom-color">عملاء</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% endblock content %}
