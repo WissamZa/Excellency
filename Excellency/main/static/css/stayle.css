@@ -1,5 +1,14 @@
 @import url("base.css");
-@import url("index_style.css")
+@import url("index_style.css");
+
+.active {
+  color: var(--text-gold) !important;
+}
+
+*:focus {
+  color: grey !important;
+}
+
 .myalart {
   margin-top: 3rem;
   align-items: center;
@@ -7,6 +16,8 @@
   .alert {
     --bs-alert-padding-y: 10px
   }
+
+
 
   .danger-svg {
     height: 2rem !important;
@@ -26,22 +37,23 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 100px;
-  margin-bottom: 50px;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  row-gap: 45px;
 }
 
 .card {
   position: relative;
-  width: 100%;
-  height: 250px;
   background-color: #113344;
   border-radius: 10px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
-  border-color: #ca9e67;
-  border-style: solid;
-  border-width: 2px;
+  border: 2px solid #ca9e67;
+  width: 100%;
+  height: 300px;
+  max-width: 500px;
 }
+
 
 .card:hover {
   transform: translateY(-5px);
@@ -72,8 +84,7 @@
 }
 
 .card-body {
-  padding: 60px 40px 40px;
-  text-align: center;
+
 
   >i {
     font-size: 2rem;
@@ -82,7 +93,6 @@
 }
 
 .card-title {
-  margin-bottom: 10px;
   color: #ffffff;
   font-weight: bold;
   padding-top: 50px;
@@ -90,8 +100,8 @@
 
 .btn-primary {
   display: inline-block;
-  padding: 10px 20px;
-  background-color: #007bff;
+
+  background-color: rgb(255, 255, 255);
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
@@ -105,7 +115,7 @@
 .number-section {
   background-color: #113344;
   color: #fff;
-  padding: 50px 200px;
+  padding: 20px 0;
   width: 100%;
 }
 
@@ -116,13 +126,24 @@
 .card-section {
   margin-top: 20px;
   height: 200px;
-  background-color: #fff;
+  background-color: #ca9d6729;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.card-body {
+.card-body-2 {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+
+
+  >* {
+    font-size: 2rem;
+  }
+
+  >* {
+    margin: .5rem;
+  }
 }
 
 .card-title {

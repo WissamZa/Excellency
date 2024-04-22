@@ -5,37 +5,50 @@
   <!-- Container wrapper -->
   <div class="container">
     <!-- Navbar brand -->
-    <a class="navbar-brand me-2" href="{% url "main:index_view" %}">
-      <i class="fa-regular fa-scale-balanced"></i>
+    <a class="navbar-brand ps-5" href="{% url "main:index_view" %}">
+      <img src="{% static "icons/gold-icon.png" %}" alt="Brand Image" height="60px">
     </a>
     <!-- Toggle button -->
     <button class="navbar-toggler me-2"
             type="button"
-            data-bs-target="#navbarNavDropdown"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
             aria-controls="navbarNavDropdown"
             aria-expanded="false"
             aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="material-symbols-outlined opacity-50">menu</span>
     </button>
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse justify-content-between"
-         id="navbarButtonsExample">
+         id="navbarNav">
+      {% url "main:index_view" as home_page %}
+      {% url "main:contactus_view" as contactus_page %}
+      {% url "main:lawyers_view" as lawyers_page %}
       <!-- Left links -->
-      <ul class="navbar-nav flex-row-reverse">
+      <ul class="navbar-nav justify-content-between p-0 align-items-center flex-row-reverse">
         <li class="nav-item">
-          <a class="nav-link" href="#">تواصل</a>
+          <a class="nav-link
+                    {% if request.path == contactus_page %}active{% endif %}"
+             href="{{ contactus_page }}">تواصل</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">المحامين</a>
+          <a class="nav-link
+                    {% if request.path == lawyers_page %}active{% endif %}"
+             href="{{ lawyers_page }}">المحامين</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">الرئيسية</a>
+          <a class="nav-link
+                    {% if request.path == home_page %}active{% endif %}"
+             href="{{ home_page }}">الرئيسية</a>
         </li>
       </ul>
-      
       <!-- Left links -->
-      <div class="d-flex gap-2 align-items-center">
-        <button type="button" class="btn nav-link btn-link px-3 me-2">تسجيل الدخول / تسجيل</button>
+      <div class="d-flex gap-2 justify-content-center">
+        {% if not request.user.is_authenticated %}
+          <button type="button" class="btn nav-link btn-link px-3 me-2">تسجيل الدخول / تسجيل</button>
+        {% else %}
+          <button type="button" class="btn nav-link btn-link px-3 me-2">مرحبا {{ request.user.first_name }}</button>
+        {% endif %}
       </div>
     </div>
     <!-- Collapsible wrapper -->
