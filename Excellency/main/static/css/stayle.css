@@ -170,3 +170,16 @@
 .nav-link:hover {
   color: #ca9e67;
 }
+.card-10 {
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+
+.card-10 img {
+  width: 180px;
+}
+
+.card-title {
+  color: #333333;
+  font-size: 24px;
+}

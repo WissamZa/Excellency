@@ -1,1 +1,36 @@
 {% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+  المحامين
+{% endblock title %}
+{% block content %}
+
+<div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-8">
+            <div class="card-10 shadow-lg p-4" style="border-radius: 15px;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                            alt="Profile Picture" class="img-fluid rounded-circle" style="width: 180px;">
+                    </div>
+                    <div class="col-md-8">
+                        <h3 class="mb-3">عبدالله أحمد</h3>
+                        <p class="mb-2 text-muted">محامي متخصص في </p>
+                        <div class="d-flex mb-4">
+                            <div>
+                                <p class="mb-1 text-muted">Rating</p>
+                                <p class="mb-0">4.8</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-dark flex-grow-5">آطلب الخدمة</button>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}  
