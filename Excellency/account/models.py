@@ -9,12 +9,23 @@ def group_based_upload_to(instance, filename):
 
 
 class User(AbstractUser):
+   SUPERVISOR = 1
+   Lawyer = 2
+   Customar = 3
+   ROLE_CHOICES = (
+       (SUPERVISOR, 'Supervisor'),
+       (Lawyer, 'Lawyer'),
+       (Customar, 'Customar'),
+    )
    national_id = models.CharField(max_length=10, unique=True, validators=[
                                   validator.validate_national_id])
    email = models.EmailField(max_length=100, unique=True, validators=[
     validator.validate_email])
    full_name = models.CharField(max_length=50, blank=False)
-   USERNAME_FIELD = "email"
+   role = models.PositiveSmallIntegerField(
+      choices=ROLE_CHOICES, null=True, blank=True)
+
+   USERNAME_FIELD = "email" or 'national_id'
    REQUIRED_FIELDS = ['username', 'full_name']
 
    def __str__(self):
@@ -22,7 +33,6 @@ class User(AbstractUser):
 
 
 class gender_choices(models.TextChoices):
-   null = ""
    Male = "ذكر"
    Female = "انثى"
 
@@ -35,7 +45,7 @@ class CustomarProfile(models.Model):
        upload_to=group_based_upload_to, default="profiles/images/user-defualt.svg")
    gender = models.CharField(max_length=22,
                              choices=gender_choices.choices,
-                             default=gender_choices.null)
+                             null=True, blank=True)
 
    def __str__(self) -> str:
       return f"{self.user.full_name}"
@@ -49,13 +59,10 @@ class LawyerProfile(models.Model):
       upload_to=group_based_upload_to, blank=False)
    gender = models.CharField(max_length=22,
                              choices=gender_choices.choices,
-                             default=gender_choices.null)
+                             null=True, blank=True)
    licence = models.FileField(blank=False)
    Qualification = models.FileField(blank=False)
 
 
 def __str__(self) -> str:
    return f"{self.user.full_name}"
-
-
-
