@@ -4,32 +4,43 @@
   اتصل بنا
 {% endblock title %}
 {% block content %}
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-md-5">
-      <h2 class="mb-4 text-center">دعنا نبقى على تواصل</h2>
-      <form>
-        <div class="mb-3">
-          <label for="name" class="form-label">الاسم</label>
-          <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">البريد الإلكتروني</label>
-          <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="mb-3">
-          <label for="subject" class="form-label">عنوان الموضوع</label>
-          <input type="text" class="form-control" id="subject" name="subject" required>
-        </div>
-        <div class="mb-3">
-          <label for="message" class="form-label">الرسالة</label>
-          <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-        </div>
-        <div class="d-grid">
-            <button type="submit" class="btn btn-primary btn-block" style="color: white; background-color: black;">إرسال</button>
-        </div>        
-      </form>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <h2 class="mb-4 text-center">دعنا نبقى على تواصل</h2>
+        <form action="{% url "main:contactus_view" %}" method='post'>
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="name" class="form-label">الاسم الثلاثي</label>
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   name="full_name"
+                   {% if request.user.is_authenticated %}value="{{ request.user.full_name }}" disabled{% endif %}
+                   required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">البريد الإلكتروني</label>
+            <input type="email"
+                   class="form-control"
+                   id="email"
+                   name="email"
+                   {% if request.user.is_authenticated %}value="{{ request.user.email }}" disabled{% endif %}
+                   required>
+          </div>
+          <div class="mb-3">
+            <label for="subject" class="form-label">عنوان الموضوع</label>
+            <input type="text" class="form-control" id="subject" name="subject" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">الرسالة</label>
+            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-dark btn-block">إرسال</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-{% endblock %}
+{% endblock content %}
