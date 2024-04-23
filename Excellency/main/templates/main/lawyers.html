@@ -4,30 +4,114 @@
   المحامين
 {% endblock title %}
 {% block content %}
+<div class="container py-3">
+    <div class="row">
+        <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="بحث بالأسم">
+        </div>
+        <div class="col-md-4 checkbox-container">
+            <div>
+                <input type="checkbox" id="consultation" name="service" value="consultation">
+                <label class="custom-checkbox" for="consultation">استشارة</label>
+            </div>
+            <div>
+                <input type="checkbox" id="contractDrafting" name="service" value="contractDrafting">
+                <label class="custom-checkbox" for="contractDrafting">صياغة عقود</label>
+            </div>
+            <div>
+                <input type="checkbox" id="memos" name="service" value="memos">
+                <label class="custom-checkbox" for="memos">مذكرات</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <select class="form-select">
+                <option value="Highest rating">الاكثر طلباً</option>
+                <option value="Highest rating">ًالأعلى تقيما</option>
+            </select>
+        </div>
+        <div class="col-md-1 p">
+            <button type="button" class="btn btn-outline-dark">بحث</button>
+        </div>
+    </div>
+</div>
 
-<div class="container py-5 h-100">
-    <div class="row justify-content-center align-items-center h-50">
-        <div class="col-md-12">
-            <div class="card-10 shadow-lg p-4" >
+<div class="container py-5  g-5 p-1 g-col-6">
+    <div class="row justify-content-start align-items-center g-4">
+        <div class="col-md-4">
+            <div class="law-card card-10 shadow-lg p-4">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                            alt="Profile Picture" class="img-fluid " style="width: 180px;">
+                            alt="Profile Picture" class="img-fluid" style="width: 180px;">
                     </div>
                     <div class="col-md-8">
-                        <h3 class="mb-2">عبدالله أحمد</h3>
-        
-                        <div class="d-flex justify-content-end">
-                        <button type="button" class="law-btn btn btn-outline-dark flex-grow-5 align-items-end">آطلب الخدمة</button>
+                        <h3 class="mb-2" >عبدالله أحمد </h3>
+                        <div class="d-flex justify-content-start">
+                            <p class="text-muted">اسشارة | صيغة عقود </p>
                         </div>
                         <div class="d-flex mb-1">
                             <div>
                                 <p class="mb-0 text-muted">محامي متخصص في </p>
-                                <p class="mb-1 text-muted">Rating</p>
+                                <p class="mb-1 text-muted">التقييم</p>
                                 <p class="mb-0">4.8</p>
                             </div>
                         </div>
-                        </div>                        
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="law-btn btn btn-outline-dark flex-grow-5 align-items-end">آطلب الخدمة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="law-card card-10 shadow-lg p-4">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                            alt="Profile Picture" class="img-fluid" style="width: 180px;">
+                    </div>
+                    <div class="col-md-8">
+                        <h3 class="mb-2">محمد فهد</h3>
+                        <div class="d-flex justify-content-start">
+                            <p class="text-muted">اسشارة | صيغة عقود</p>
+                        </div>
+                        <div class="d-flex mb-1">
+                            <div>
+                                <p class="mb-0 text-muted">محامي متخصص في </p>
+                                <p class="mb-1 text-muted">التقييم</p>
+                                <p class="mb-0">4.5</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="law-btn btn btn-outline-dark flex-grow-5 align-items-end">آطلب الخدمة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="law-card card-10 shadow-lg p-4">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                            alt="Profile Picture" class="img-fluid" style="width: 180px;">
+                    </div>
+                    <div class="col-md-8">
+                        <h3 class="mb-2">علي خالد</h3>
+                       
+                        <div class="d-flex justify-content-start">
+                            <p class="text-muted">اسشارة | صيغة عقود | مذكرات</p>
+                        </div>
+                        <div class="d-flex mb-1">
+                            <div>
+                                <p class="mb-0 text-muted">محامي متخصص في </p>
+                                <p class="mb-1 text-muted">التقييم</p>
+                                <p class="mb-0">4.2</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="law-btn btn btn-outline-dark flex-grow-5 align-items-end">آطلب الخدمة</button>
+                        </div>
                     </div>
                 </div>
             </div>
