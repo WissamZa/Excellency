@@ -5,8 +5,8 @@
   <!-- Container wrapper -->
   <div class="container">
     <!-- Navbar brand -->
-    <a class="navbar-brand ps-5" href="{% url "main:index_view" %}">
-      <img src="{% static "icons/gold-icon.png" %}" alt="Brand Image" height="60px">
+    <a class="navbar-brand ps-5" href="{% url 'main:index_view' %}">
+      <img src="{% static 'icons/gold-icon.png' %}" alt="Brand Image" height="60px">
     </a>
     <!-- Toggle button -->
     <button class="navbar-toggler me-2"
@@ -45,7 +45,9 @@
       <!-- Left links -->
       <div class="d-flex gap-2 justify-content-center">
         {% if not request.user.is_authenticated %}
-          <button type="button" class="btn nav-link btn-link px-3 me-2">تسجيل الدخول / تسجيل</button>
+          <a href="{% url 'account:sign_up_view' %}" type="button" class="btn nav-link btn-link px-3 me-2">تسجيل</a>
+          <a type="button" class="btn nav-link btn-link px-3 me-2">تسجيل الدخول</a>
+
         {% else %}
           <button type="button" class="btn nav-link btn-link px-3 me-2">مرحبا {{ request.user.first_name }}</button>
         {% endif %}
