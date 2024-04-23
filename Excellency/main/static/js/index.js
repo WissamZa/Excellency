@@ -43,3 +43,11 @@ product_thumbnail.forEach((product) => {
         }, 500);
     });
 });
+
+
+
+
+
+
+// drag and drop
+

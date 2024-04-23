@@ -1,6 +1,6 @@
 @import url("base.css");
 @import url("index_style.css");
-
+@import url("sign_up.css");
 .active {
   color: var(--text-gold) !important;
 }
