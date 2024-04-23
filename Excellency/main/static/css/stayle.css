@@ -2,7 +2,7 @@
 @import url("index_style.css");
 @import url("sign_up.css");
 @import url('profile.css');
-
+@import url('service.css');
 .active {
   color: var(--text-gold) !important;
 }
@@ -102,7 +102,6 @@
 
 .btn-primary {
   display: inline-block;
-
   background-color: rgb(255, 255, 255);
   color: #fff;
   text-decoration: none;

@@ -1,0 +1,18 @@
+.custom-container {
+    background-color: #113344; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    border: 4px solid;
+    border-color: #ca9e67;
+}
+.service-order{
+    color: #ca9e67;
+    font-weight: bold;
+}
+.file-order {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
