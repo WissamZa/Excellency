@@ -24,8 +24,7 @@ class User(AbstractUser):
    full_name = models.CharField(max_length=50, blank=False)
    role = models.PositiveSmallIntegerField(
       choices=ROLE_CHOICES, null=True, blank=True)
-
-   USERNAME_FIELD = "email" or 'national_id'
+   USERNAME_FIELD = "email"
    REQUIRED_FIELDS = ['username', 'full_name']
 
    def __str__(self):
@@ -60,6 +59,7 @@ class LawyerProfile(models.Model):
    gender = models.CharField(max_length=22,
                              choices=gender_choices.choices,
                              null=True, blank=True)
+   certified = models.BooleanField(default=False)
    licence = models.FileField(blank=False)
    Qualification = models.FileField(blank=False)
 
