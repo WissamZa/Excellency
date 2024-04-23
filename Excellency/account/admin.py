@@ -4,24 +4,24 @@ from account.models import CustomarProfile, LawyerProfile, User
 from django.utils.translation import gettext_lazy as _
 
 
-# class LawyerProfileInline(admin.StackedInline):
-#    model = LawyerProfile
-#    can_delete = False
-#    verbose_name_plural = 'Profile'
-#    fk_name = 'user'
-
-
-class ProfileInline(admin.StackedInline):
+class CProfileInline(admin.StackedInline):
    model = CustomarProfile
-   if User.role == User.Lawyer:
-      model = LawyerProfile
    can_delete = False
    verbose_name_plural = 'Profile'
    fk_name = 'user'
 
 
+class LProfileInline(admin.StackedInline):
+   model = LawyerProfile
+   can_delete = False
+   verbose_name_plural = 'Profile'
+   fk_name = 'user'
+
+
+UserAdmin.list_display = 'full_name', 'email', 'role'
+
 UserAdmin.inlines = (
-    ProfileInline,
+    CProfileInline, LProfileInline,
 )
 UserAdmin.add_fieldsets = (
     (
@@ -35,9 +35,9 @@ UserAdmin.add_fieldsets = (
 )
 
 UserAdmin.fieldsets = (
-    (None, {"fields": ("username", "password")}),
+    (None, {"fields": ("password",)}),
     (_("Personal info"), {
-     "fields": ("full_name", "email")}),
+     "fields": ("full_name", 'national_id', 'role', "email")}),
     (
         _("Permissions"),
         {
@@ -52,5 +52,4 @@ UserAdmin.fieldsets = (
     ),
     (_("Important dates"), {"fields": ("last_login", "date_joined")}),
 )
-
 admin.site.register(User, UserAdmin)
