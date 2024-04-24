@@ -11,13 +11,21 @@ var submitForms = function () {
 }
 
 var check = function () {
-    if (document.getElementById('password').value ==
-        document.getElementById('confirm_password').value) {
-        document.getElementById('message').style.color = 'green';
-        document.getElementById('message').innerHTML = 'متطابقة';
+    if (document.getElementById('password_1').value ==
+        document.getElementById('confirm_password_1').value) {
+        document.getElementsByClassName('message')[0].style.color = 'green';
+        document.getElementsByClassName('message')[0].innerHTML = 'متطابقة';
     } else {
-        document.getElementById('message').style.color = 'red';
-        document.getElementById('message').innerHTML = 'غير متطابقة';
+        document.getElementsByClassName('message')[0].style.color = 'red';
+        document.getElementsByClassName('message')[0].innerHTML = 'غير متطابقة';
+    }
+    if (document.getElementById('password_2').value ==
+        document.getElementById('confirm_password_2').value) {
+        document.getElementsByClassName('message')[1].style.color = 'green';
+        document.getElementsByClassName('message')[1].innerHTML = 'متطابقة';
+    } else {
+        document.getElementsByClassName('message')[1].style.color = 'red';
+        document.getElementsByClassName('message')[1].innerHTML = 'غير متطابقة';
     }
 }
 

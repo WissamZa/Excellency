@@ -1,0 +1,43 @@
+
+.chat-message {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.message-content {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+}
+
+.message-text {
+    margin-top: 5px;
+}
+
+.left .message-content {
+    text-align: left;
+    
+}
+
+.right .message-content {
+    justify-content: start;
+    width: auto;
+}
+.chat-sum{
+    border: 3px solid #ca9e67;
+    background-color: #fff;
+    border-radius: 20px;
+}
+.input-chat{
+   border: none;
+    width: 20px;
+}
+.ico-chat{
+    border: #fff;
+}
+
