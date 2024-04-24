@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from service.models import Specialty, Specialty_choice
 
 from main import validator
 
@@ -59,10 +60,11 @@ class LawyerProfile(models.Model):
    gender = models.CharField(max_length=22,
                              choices=gender_choices.choices,
                              null=True, blank=True)
+   specialty = models.ManyToManyField(Specialty)
    certified = models.BooleanField(default=False)
    licence = models.FileField(blank=False)
    Qualification = models.FileField(blank=False)
 
 
-def __str__(self) -> str:
-   return f"{self.user.full_name}"
+   def __str__(self) -> str:
+      return f"{self.user.full_name}"
