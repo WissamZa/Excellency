@@ -50,9 +50,8 @@
                      <input name="national_id"
                             class="form-control"
                             type="text"
-                            {% comment %}
-                            pattern="^05[0-9]{4}[0-9]{4}$"
-                            {% endcomment %}
+                            maxlength="10"
+                            pattern="^1[0-9]{9}$"
                             required
                             placeholder="1XXXXXXXXX" />
                      <div class="d-flex gap-2">
@@ -108,9 +107,8 @@
                            <input name="phone"
                                   class="form-control"
                                   type="text"
-                                  {% comment %}
+                                  maxlength="10"
                                   pattern="^05[0-9]{4}[0-9]{4}$"
-                                  {% endcomment %}
                                   required
                                   placeholder="05XXXXXXXX" />
                         </div>
@@ -143,7 +141,7 @@
                            <label for="Qualification">المؤهل العلمي:</label>
                            <input type="file"
                                   class="form-control mt-1"
-                                  name="Qualification"
+                                  name="qualification"
                                   id="Qualification">
                         </div>
                         <div>

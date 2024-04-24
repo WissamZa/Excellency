@@ -39,19 +39,18 @@
                    minlength="3"
                    required
                    placeholder="قم بكاتبة اسمك هنا" />
-            <label class="form-label mb-0  mt-2">البريد الالكتروني</label>
+            <label class="form-label mb-0 mt-2">البريد الالكتروني</label>
             <input name="email"
                    class="form-control"
                    type="email"
                    required
                    placeholder="قم بوضع بريدك الالكتروني هنا" />
-            <label class="form-label mb-0  mt-2">الجوال</label>
+            <label class="form-label mb-0 mt-2">الجوال</label>
             <input name="phone"
                    class="form-control"
                    type="text"
-                   {% comment %}
+                   maxlength="10"
                    pattern="^05[0-9]{4}[0-9]{4}$"
-                   {% endcomment %}
                    required
                    placeholder="05XXXXXXXX" />
             <label class="form-label mb-0  mt-2">كلمة السر</label>
@@ -75,7 +74,7 @@
                    placeholder="تأكيد كلمة السر" />
             <span class="text-end message"></span>
             <input type="submit"
-                   class="btn  my-2 text-white"
+                   class="btn my-2 text-white"
                    style="background-color:#113345"
                    value="سجل" />
          </form>
