@@ -1,6 +1,7 @@
 {% extends "base/base.html" %}
 {% load static %}
 {% block css %}
+
    <link rel="stylesheet" href="{% static "css/sign_up.css" %}">
    <style>
        .container-bady::before {
@@ -47,6 +48,7 @@
       </ul>
    </div>
    <div class="tab-content" id="myTabContent">
+
       {% include "account/sign_up_lawyer.html" %}
       <!-- client tab -->
       {% include "account/sign_up_client.html" %}

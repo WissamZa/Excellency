@@ -105,14 +105,18 @@ def logout_view(request: HttpRequest):
    return redirect('main:index_view')
 
 
-def user_profile_view(request: HttpRequest, user_name):
-   try:
-      msg = None
-      user = User.objects.get(username=user_name)
-   except User.DoesNotExist:
-      msg = "User Not Found"
-      return render(request, "account/user_profile.html", {"msg": msg})
-   return render(request, "account/user_profile.html", {"user": user})
+# def user_profile_view(request: HttpRequest, user_name):
+#    try:
+#       msg = None
+#       user = User.objects.get(username=user_name)
+#    except User.DoesNotExist:
+#       msg = "User Not Found"
+#       return render(request, "account/user_profile.html", {"msg": msg})
+#    return render(request, "account/user_profile.html", {"user": user})
+def user_profile_view(request:HttpRequest):
+
+   return render(request, "account/user_profile.html")
+
 
 
 def update_profile_view(request: HttpRequest, user_name):
