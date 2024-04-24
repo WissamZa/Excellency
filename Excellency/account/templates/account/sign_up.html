@@ -1,181 +1,55 @@
 {% extends "base/base.html" %}
+{% load static %}
 {% block css %}
-<style>
-   .container-body::before{
-      background-image: url("images/sign_up_background.jpg");
-   }
-</style>
+   <link rel="stylesheet" href="{% static "css/sign_up.css" %}">
+   <style>
+       .container-bady::before {
+           content: "";
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           opacity: .7;
+           background: url("/static/images/sign_up_background.jpg");
+           background-position: center;
+           background-size: cover;
+           background-attachment: fixed;
+       }
+   </style>
 {% endblock css %}
 {% block title %}
    انشاء حساب
 {% endblock title %}
 {% block content %}
-
    <div class="container d-flex justify-content-center background">
       <ul class="nav nav-underline mt-4">
          <li class="nav-item ms-2" role="presentation">
-            <button class="nav-link active text-dark"  id="profile-tab"  data-bs-toggle="tab"  data-bs-target="#profile"  type="button"  role="tab"  aria-controls="profile"  aria-selected="false">حساب جديد للعميل</button>
+            <button class="nav-link active text-dark"
+                    id="profile-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#profile"
+                    type="button"
+                    role="tab"
+                    aria-controls="profile"
+                    aria-selected="false">حساب جديد للعميل</button>
          </li>
          <li class="nav-item" role="presentation">
-            <button class="nav-link  text-dark"  id="home-tab"  data-bs-toggle="tab"  data-bs-target="#home"  type="button"  role="tab"  aria-controls="home"  aria-selected="true">حساب جديد للمحامي</button>
+            <button class="nav-link  text-dark"
+                    id="home-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#home"
+                    type="button"
+                    role="tab"
+                    aria-controls="home"
+                    aria-selected="true">حساب جديد للمحامي</button>
          </li>
       </ul>
    </div>
    <div class="tab-content" id="myTabContent">
-      <!-- lawyers tab -->
-      <div class="tab-pane fade show" id="home" role="tabpanel" aria-labelledby="home-tab">
-         <div class="container mb-4 active d-flex flex-column justify-content-center align-items-center b=">
-            <h3 class="text-center  mt-4 mb-5">انشاء حساب محامي</h3>
-            {% if msg %}
-               <svg xmlns="http://www.w3.org/2000/svg" class="d-none h-100">
-                  <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
-                  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                  </symbol>
-               </svg>
-               <div class=" d-flex w-100 justify-content-center myalart">
-                  <div class="alert alert-danger d-flex align-items-center w-75"
-                       role="alert">
-                     <svg class="bi flex-shrink-0 me-2 danger-svg"
-                          role="img"
-                          aria-label="Danger:">
-                        <use xlink:href="#exclamation-triangle-fill" />
-                     </svg>
-                     <span class="px-3 text-danger-emphasis">{{ msg }}</span>
-                  </div>
-               </div>
-            {% endif %}
-            <div class="form d-flex flex-column justify-content-center ">
-               <form action="{% url 'account:sign_up_view' %}" method="post" class="d-flex flex-column gap-2  " enctype="multipart/form-data">
-                  {% csrf_token %}
-               <div class="container">
-
-                 
-                  <div class="row gap-4 d-flex ">
-                     <div class="col-6">
-                        <label class="form-label mb-0 mt-2">الاسم الثلاثي:</label>
-                        <input name="username" class="form-control" type="text" minlength="3" required placeholder="قم بكاتبة اسمك هنا" />
-                        <label class="form-label mb-0  mt-2">البريد الالكتروني:</label>
-                        <input name="email" class="form-control" type="email" required placeholder="قم بوضع بريدك الالكتروني هنا" />
-                        <label class="form-label mb-0  mt-2">الهوية:</label>
-                        <input name="national_id" class="form-control" type="text" {% comment %} pattern="^05[0-9]{4}[0-9]{4}$" {% endcomment %} required placeholder="11XXXXXXXX" />
-                        <div class="d-flex gap-2">
-                           <div>
-                              <label class="form-label mb-0  mt-2">كلمة السر:</label>
-                              <input name="password" id="password" class="form-control" type="password" minlength="6" onkeyup='check();' required placeholder="كلمة السر" />
-                           </div>
-                           <div>
-                              <label class="form-label mb-0  mt-2">تأكيد كلمة السر:</label>
-                              <input name="confirm_password" id="confirm_password" class="form-control" type="password" minlength="6" onkeyup='check();' required placeholder="تأكيد كلمة السر" />
-                           </div>
-                        </div>
-                        <div class="d-flex gap-3 align-items-center justify-content-between ">
-                           <div class="d-flex flex-column  align-items-center column-gap-2">
-                              <label class="form-label mb-1">الجنس:</label>
-                              <div class="d-flex gap-1">
-                                 
-                                 <input type="radio" id="male" name="gander" value="male" checked>
-                                 <label for="male">ذكر</label><br>
-                                 <input type="radio" id="female" name="gander" value="female">
-                                 <label for="female">انثى</label><br>
-                              </div>
-
-                           </div>
-                           <div>
-                              <label class="form-label mb-0  mt-2">الجوال</label>
-                              <input name="phone" class="form-control" type="text" {% comment %} pattern="^05[0-9]{4}[0-9]{4}$" {% endcomment %} required placeholder="05XXXXXXXX" />
-                           </div>
-                        </div>
-                     </div>
-
-
-
-                     <div class="col-4  gap-2">
-                        <div class="d-flex flex-column gap-3">
-                           <div>
-                              <label for="category">التخصصات:</label>
-                              <div class="dropdown  mt-2">
-                                 <button class="btn-style-1">اختر تخصصاتك</button>
-                                 <div class="dropdown-content ">
-                                   <label><input type="checkbox" name="option" value="option1" class="dropdown-input">استشارة</label>
-                                   <label><input type="checkbox" name="option" value="option2">صياغة عقود</label>
-                                   <label><input type="checkbox" name="option" value="option3">مذكرات</label>
-                                 </div>
-                               </div>
-
-                           </div>
-                           <div>
-                              <label for="image" >الصورة الشخصية:</label>
-                              <input type="file" name="image" class="form-control mt-1">
-                           </div>
-
-                           <div>
-                              <label for="Qualification">المؤهل العلمي:</label>
-                               <input type="file" class="form-control  mt-1" name="Qualification" id="Qualification">
-                           </div>
-                           <div>
-                              <label>الرخصة:</label>
-                              <input type="file" class="form-control mt-1" name="licence" id="licence">
-                           </div>
-                       
-                        </div>
-                     </div>
-                  </div>
-               </div> 
-                  <span id="message" class="text-end"></span>
-                  <span id="message" class="text-end"></span>
-                  <input type="submit" class="btn  my-2 text-white" style="background-color:#113345" value="سجل" />
-               </form>
-               <span>ليس لديك حساب؟<a href="{% url 'account:login_view' %}">سجل من هنا</a> </span>
-            </div>
-         </div>
-      </div>
-      <!-- end lawyers tab -->
+      {% include "account/sign_up_lawyer.html" %}
+      <!-- client tab -->
+      {% include "account/sign_up_client.html" %}
+      <!-- end client tab -->
    </div>
-   <!-- client tab -->
-   <div class="tab-pane show active fade  d-flex justify-content-center"
-        id="profile"
-        role="tabpanel"
-        aria-labelledby="profile-tab">
-      <div class=" mb-4 active">
-         <h3 class="text-center  mt-4">انشاء حساب عميل</h3>
-         {% if msg %}
-            <svg xmlns="http://www.w3.org/2000/svg" class="d-none h-100">
-               <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
-               <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-               </symbol>
-            </svg>
-            <div class="d-flex w-100 justify-content-center myalart">
-               <div class="alert alert-danger d-flex align-items-center w-75"
-                    role="alert">
-                  <svg class="bi flex-shrink-0 me-2 danger-svg"  role="img" aria-label="Danger:">
-                     <use xlink:href="#exclamation-triangle-fill" />
-                  </svg>
-                  <span class="px-3 text-danger-emphasis">{{ msg }}</span>
-               </div>
-            </div>
-         {% endif %}
-         <div class="form d-flex flex-column justify-content-center">
-            <form action="{% url 'account:sign_up_view' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data">
-               {% csrf_token %}
-               <label class="form-label mb-0 mt-2">الاسم الثلاثي:</label>
-               <input name="username" class="form-control" style="width: 100%" type="text" minlength="3" required placeholder="قم بكاتبة اسمك هنا" />
-               <label class="form-label mb-0  mt-2">البريد الالكتروني</label>
-               <input name="email" class="form-control" type="email" required placeholder="قم بوضع بريدك الالكتروني هنا" />
-               <label class="form-label mb-0  mt-2">الجوال</label>
-               <input name="phone" class="form-control" type="text" {% comment %} pattern="^05[0-9]{4}[0-9]{4}$" {% endcomment %} required placeholder="05XXXXXXXX" />
-               <label class="form-label mb-0  mt-2">كلمة السر</label>
-               <input name="password" id="password" class="form-control" type="password" minlength="6" onkeyup='check();' required placeholder="كلمة السر" />
-               <span id="message" class="text-end"></span>
-               <label class="form-label mb-0  mt-2">تأكيد كلمة السر</label>
-               <input name="confirm_password" id="confirm_password" class="form-control" type="password" minlength="6" onkeyup='check();' required placeholder="تأكيد كلمة السر" />
-               <span id="message" class="text-end"></span>
-               <input type="submit" class="btn  my-2 text-white" style="background-color:#113345" value="سجل" />
-            </form>
-            <span>لديك بالفعل حساب؟ <a href="{% url 'account:login_view' %}">تسجيل الدخول هنا</a> </span>
-         </div>
-      </div>
-   </div>
-   
-   <!-- end client tab -->
-   
 {% endblock content %}

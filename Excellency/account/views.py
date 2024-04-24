@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from account.models import User, LawyerProfile, CustomarProfile
 from django.contrib.auth import authenticate, login, logout
-
+from service.models import Specialty_CHOICES
 from main.validator import validat
 from django.core.exceptions import ValidationError
 from django.db import transaction, IntegrityError
@@ -29,13 +29,16 @@ def sign_up_view(request: HttpRequest):
                 password=validat(password=request.POST.get("password"))
             )
             if request.POST["role"] == "Lawyer":
-               LawyerProfile.objects.create(
+
+               user_profile = LawyerProfile.objects.create(
                   user=new_user,
-                  image=request.POST["image"],
+                  image=request.FILES["image"],
                   gender=request.POST["gender"],
                   phone=validat(phone=request.POST.get("phone")),
                   licence=request.FILES.get("licence"),
                   Qualification=request.FILES.get("qualification"))
+               S
+               user_profile.specialty.add(name=request.POST["specialty"])
 
             if request.POST["role"] == "Customar":
                CustomarProfile.objects.create(
@@ -57,7 +60,7 @@ def sign_up_view(request: HttpRequest):
    #    msg = "Something went wrong. Please try again."
    #    print(e.with_traceback())
 
-   return render(request, "account/sign_up.html", {"msg": msg})
+   return render(request, "account/sign_up.html", {"msg": msg, "Specialty": Specialty_CHOICES})
 
 
 def login_view(request: HttpRequest):
