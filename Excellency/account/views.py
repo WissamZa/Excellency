@@ -37,7 +37,7 @@ def sign_up_view(request: HttpRequest):
                   phone=validat(phone=request.POST.get("phone")),
                   licence=request.FILES.get("licence"),
                   Qualification=request.FILES.get("qualification"))
-               S
+               
                user_profile.specialty.add(name=request.POST["specialty"])
 
             if request.POST["role"] == "Customar":
