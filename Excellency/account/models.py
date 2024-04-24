@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from service.models import Specialty, Specialty_choice
+from service.models import Specialty
 
 from main import validator
 
@@ -10,13 +10,13 @@ def group_based_upload_to(instance, filename):
 
 
 class User(AbstractUser):
-   SUPERVISOR = 1
-   Lawyer = 2
-   Customar = 3
+   SUPERVISOR = "ادارة"
+   Lawyer = "محامي"
+   Customar = "عميل"
    ROLE_CHOICES = (
-       (SUPERVISOR, 'Supervisor'),
-       (Lawyer, 'Lawyer'),
-       (Customar, 'Customar'),
+       ('Supervisor', SUPERVISOR),
+       ('Lawyer', Lawyer),
+       ('Customar', Customar),
     )
    national_id = models.CharField(max_length=10, unique=True, validators=[
                                   validator.validate_national_id])
@@ -64,7 +64,6 @@ class LawyerProfile(models.Model):
    certified = models.BooleanField(default=False)
    licence = models.FileField(blank=False)
    Qualification = models.FileField(blank=False)
-
 
    def __str__(self) -> str:
       return f"{self.user.full_name}"

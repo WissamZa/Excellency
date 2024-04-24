@@ -50,7 +50,8 @@
           <a href="{% url 'account:sign_up_view' %}"
              type="button"
              class="btn nav-link btn-link px-3 me-2">تسجيل</a>
-          <a type="button" class="btn nav-link btn-link px-3 me-2">تسجيل الدخول</a>
+          <a href="{% url 'account:login_view' %}"
+             class="btn nav-link btn-link px-3 me-2">تسجيل الدخول</a>
         {% else %}
           <a href="#" class="btn nav-link btn-link px-3 me-2">مرحبا {{ request.user.full_name }}</a>
           <a href="{% url "account:logout_view" %}"
