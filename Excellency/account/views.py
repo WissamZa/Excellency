@@ -9,6 +9,7 @@ from django.core.exceptions import ValidationError
 from django.db import transaction, IntegrityError
 from django.urls import reverse
 
+
 def sign_up_view(request: HttpRequest):
    try:
       msg = None
@@ -21,12 +22,13 @@ def sign_up_view(request: HttpRequest):
                msg = "Invalid password"
                raise IntegrityError(msg)
             new_user = User.objects.create(
+               full_name=request.POST.get("full_name"),
                 national_id=validat(
                    national_id=request.POST.get("national_id")),
                 email=validat(email=request.POST.get("email")),
                 password=validat(password=request.POST.get("password"))
             )
-            if request.POST["user_type"] == "lawyer":
+            if request.POST["role"] == "Lawyer":
                LawyerProfile.objects.create(
                   user=new_user,
                   image=request.POST["image"],
@@ -35,10 +37,11 @@ def sign_up_view(request: HttpRequest):
                   licence=request.FILES.get("licence"),
                   Qualification=request.FILES.get("qualification"))
 
-            if request.POST["user_type"] == "customar":
+            if request.POST["role"] == "Customar":
                CustomarProfile.objects.create(
                   user=new_user,
-                  image=request.POST["image"],
+                  image=request.POST.get(
+                     "image", CustomarProfile.image.field.default),
                   gender=request.POST["gender"],
                   phone=validat(phone=request.POST.get("phone")),
                )
