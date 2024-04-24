@@ -1,8 +1,8 @@
 {% extends "base/base.html" %}
 {% block css %}
 <style>
-   .container-body::before{
-      background-image: url("images/sign_up_background.jpg");
+   .container-bady::before{
+      background-image: url("/images/sign_up_background.jpg");
    }
 </style>
 {% endblock css %}
@@ -60,12 +60,12 @@
                         <input name="national_id" class="form-control" type="text" {% comment %} pattern="^05[0-9]{4}[0-9]{4}$" {% endcomment %} required placeholder="11XXXXXXXX" />
                         <div class="d-flex gap-2">
                            <div>
-                              <label class="form-label mb-0  mt-2">كلمة السر:</label>
-                              <input name="password" id="password" class="form-control" type="password" minlength="6" onkeyup='check();' required placeholder="كلمة السر" />
+                              <label class="form-label mb-0  mt-2">كلمة المرور:</label>
+                              <input name="password" id="password" class="form-control" type="password" minlength="6" onkeyup='check();' required placeholder="كلمة المرور" />
                            </div>
                            <div>
-                              <label class="form-label mb-0  mt-2">تأكيد كلمة السر:</label>
-                              <input name="confirm_password" id="confirm_password" class="form-control" type="password" minlength="6" onkeyup='check();' required placeholder="تأكيد كلمة السر" />
+                              <label class="form-label mb-0  mt-2">تأكيد كلمة المرور:</label>
+                              <input name="confirm_password" id="confirm_password" class="form-control" type="password" minlength="6" onkeyup='check();' required placeholder="تأكيد كلمة المرور" />
                            </div>
                         </div>
                         <div class="d-flex gap-3 align-items-center justify-content-between ">
@@ -86,9 +86,6 @@
                            </div>
                         </div>
                      </div>
-
-
-
                      <div class="col-4  gap-2">
                         <div class="d-flex flex-column gap-3">
                            <div>
@@ -105,16 +102,16 @@
                            </div>
                            <div>
                               <label for="image" >الصورة الشخصية:</label>
-                              <input type="file" name="image" class="form-control mt-1">
+                              <input type="file" name="image" class="form-control mt-1 input-width">
                            </div>
 
                            <div>
                               <label for="Qualification">المؤهل العلمي:</label>
-                               <input type="file" class="form-control  mt-1" name="Qualification" id="Qualification">
+                               <input type="file" class="form-control  mt-1 input-width" name="Qualification" id="Qualification">
                            </div>
                            <div>
                               <label>الرخصة:</label>
-                              <input type="file" class="form-control mt-1" name="licence" id="licence">
+                              <input type="file" class="form-control mt-1 input-width" name="licence" id="licence">
                            </div>
                        
                         </div>
@@ -163,11 +160,11 @@
                <input name="email" class="form-control" type="email" required placeholder="قم بوضع بريدك الالكتروني هنا" />
                <label class="form-label mb-0  mt-2">الجوال</label>
                <input name="phone" class="form-control" type="text" {% comment %} pattern="^05[0-9]{4}[0-9]{4}$" {% endcomment %} required placeholder="05XXXXXXXX" />
-               <label class="form-label mb-0  mt-2">كلمة السر</label>
-               <input name="password" id="password" class="form-control" type="password" minlength="6" onkeyup='check();' required placeholder="كلمة السر" />
+               <label class="form-label mb-0  mt-2">كلمة المرور</label>
+               <input name="password" id="password" class="form-control" type="password" minlength="6" onkeyup='check();' required placeholder="كلمة المرور" />
                <span id="message" class="text-end"></span>
-               <label class="form-label mb-0  mt-2">تأكيد كلمة السر</label>
-               <input name="confirm_password" id="confirm_password" class="form-control" type="password" minlength="6" onkeyup='check();' required placeholder="تأكيد كلمة السر" />
+               <label class="form-label mb-0  mt-2">تأكيد كلمة المرور</label>
+               <input name="confirm_password" id="confirm_password" class="form-control" type="password" minlength="6" onkeyup='check();' required placeholder="تأكيد كلمة المرور" />
                <span id="message" class="text-end"></span>
                <input type="submit" class="btn  my-2 text-white" style="background-color:#113345" value="سجل" />
             </form>
