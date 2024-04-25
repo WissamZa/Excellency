@@ -1,0 +1,61 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+    الرصيد
+{% endblock title %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card-account">
+                <div class="card-body-account">
+                    <h5 class="card-title">الرصيد</h5>
+                    <div class="balance-details">
+                        <div class="balance-item">
+                            <h6 class="text-muted">المبلغ الحالي</h6>
+                            <p class="balance-amount">300 ريال</p>
+                        </div>
+                        <div class="balance-item">
+                            <h6 class="text-muted">المعلق</h6>
+                            <p class="balance-amount">200 ريال</p>
+                        </div>
+                        <div class="balance-item">
+                            <h6 class="text-muted">القابل للسحب</h6>
+                            <p class="balance-amount">100 ريال</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-8">
+            <div class="form-container">
+                <form>
+                    <div class="form-group">
+                        <label for="cardholder-name" class="form-label">اسم صاحب البطاقة</label>
+                        <input type="text" class="form-control" id="cardholder-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="bank" class="form-label">البنك</label>
+                        <input type="text" class="form-control" id="bank">
+                    </div>
+                    <div class="form-group">
+                        <label for="iban" class="form-label">الايبان</label>
+                        <input type="text" class="form-control" id="iban">
+                    </div>
+                    <div class="form-group">
+                        <label for="amount" class="form-label">المبلغ</label>
+                        <input type="text" class="form-control" id="amount">
+                    </div>
+                    <button type="submit" class="submit-btn">طلب السحب</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

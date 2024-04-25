@@ -12,4 +12,5 @@ urlpatterns = [
     path("logout/", views.logout_view, name="logout_view"),
 #     path("<username>/cart/", views.cart_view, name="cart_view"),
 #     path(f"<username>/cart/delete/<cart_id>/", views.delete_product_view,name="delete_product_view"),
+    path("account_balance/", views.account_balance, name="account_balance"),
 ]

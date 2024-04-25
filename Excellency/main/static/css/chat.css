@@ -34,10 +34,11 @@
     border-radius: 20px;
 }
 .input-chat{
-   border: none;
-    width: 20px;
+   border: none !important;
+    width: 20px !important;
 }
 .ico-chat{
+    align-items: center;
     border: #fff;
 }
 

@@ -142,3 +142,6 @@ def update_profile_view(request: HttpRequest, user_name):
       return redirect("account:user_profile_view", user_name=user.username)
 
    return render(request, "account/update_profile.html", {"user": user})
+
+def account_balance(request):
+    return render(request, 'account/account_balance.html')

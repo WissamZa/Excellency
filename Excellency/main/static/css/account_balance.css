@@ -1,0 +1,82 @@
+.card-account {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px 100px;
+}
+
+.card-body-account {
+    text-align: center;
+}
+
+.card-title {
+    color: #495057;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.balance-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.balance-item {
+    flex: 1;
+    padding: 10px;
+}
+
+.text-muted {
+    color: #6c757d;
+    font-size: 16px;
+}
+
+.balance-amount {
+    color: #007bff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form-container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-items: end;
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
