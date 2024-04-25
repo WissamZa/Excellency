@@ -4,8 +4,8 @@ import re
 
 
 def validate_national_id(value):
-   if not re.match(r'^1[0-9]{9}$', value):
-      raise ValidationError("رقم الهوية غير صالح")
+
+   return re.match(r'^1[0-9]{9}$', value)
 
 
 def validate_password(value):
@@ -28,7 +28,8 @@ def validat(**keywords):
    for key, value in keywords.items():
       match key:
          case "national_id":
-            validate_national_id(value)
+            if not validate_national_id(value):
+               raise ValidationError("رقم الهوية غير صالح")
 
          case "phone":
             validate_phone(value)

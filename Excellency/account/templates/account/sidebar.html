@@ -1,13 +1,11 @@
 
 
-{% block css %}
-<head>
-  <meta charset="UTF-8">
+
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- </head>
+
 <style>
+
     /* Google Font Link */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
     *{
@@ -18,8 +16,8 @@
     }
     .sidebar{
       position: fixed;
-    
-    
+      top: 0;
+        
       height: 100%;
       width: 78px;
       background: #113345;
@@ -28,13 +26,14 @@
       transition: all 0.5s ease;
     }
     .sidebar.open{
-      width: auto;
+      width: 15vw;
     }
     .sidebar .logo-details{
       height: 60px;
       display: flex;
       align-items: center;
       position: relative;
+      margin-top:75px;
     }
     .sidebar .logo-details .icon{
       opacity: 0;
@@ -248,22 +247,23 @@
       }
     }
 </style>
-{% endblock css %}
+
 
 <div class="sidebar">
   <div class="logo-details">
-    <i class='bx bxl-c-plus-plus icon'></i>
+    <i class='bx bxl-c-plus-plus icon '></i>
       <div class="logo_name">the name here</div>
       <i class='bx bx-menu' id="btn" ></i>
   </div>
   <ul class="nav-list">
 
     <li>
-      <a href="{% url 'account:user_profile_view' %}">
+      <a href="{% url 'account:lawyer_profile_view' %}">
         <i class='bx bx-grid-alt'></i>
         <span class="links_name">الملف الشخصي</span>
       </a>
-       <span class="tooltip">Dashboard</span>
+       <span class="tooltip"><i class="fa fa-user" aria-hidden="true"></i>
+       </span>
 
     </li>
     
