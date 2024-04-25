@@ -20,12 +20,14 @@ def sign_up_view(request: HttpRequest):
             if request.POST.get("password") != request.POST.get("confirm_password"):
                msg = "Invalid password"
                raise IntegrityError(msg)
+            email = validat(email=request.POST.get("email"))
             new_user = User.objects.create(
                full_name=request.POST.get("full_name"),
                role=request.POST["role"],
                 national_id=validat(
                    national_id=request.POST.get("national_id")),
-                email=validat(email=request.POST.get("email")))
+                username=email,
+                email=email)
             new_user.set_password(request.POST.get("password"))
             new_user.save()
             if request.POST["role"] == "Lawyer":
@@ -93,7 +95,7 @@ def login_view(request: HttpRequest):
 
          return redirect(request.POST.get("next") or "main:index_view")
       else:
-         msg = "اسم المستخدم أو الايميل مستخدم خاطئ. حاول مرة اخرى..."
+         msg = "الهوية الوطنية أو الايميل مستخدم خاطئ. حاول مرة اخرى..."
 
    return render(request, "account/login.html", {"msg": msg,
                                                  "next": next})
@@ -145,5 +147,6 @@ def account_balance(request):
    return render(request, 'account/account_balance.html')
 
 
-def lawyer_profile_view(request: HttpRequest):
-   return render(request, "account/lawyer_profile.html")
+def profile_view(request: HttpRequest, user_id):
+
+   return render(request, "account/profile.html", {"user_id": user_id})
