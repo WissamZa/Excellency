@@ -5,7 +5,7 @@
 @import url('chat.css');
 @import url('order_law.css');
 @import url('account_balance.css');
-
+@import url('order_details.css');
 .active {
   color: var(--text-gold) !important;
 }

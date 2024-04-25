@@ -12,33 +12,48 @@
                 <div class="card-body">
                     <h5 class="card-title">رقم الطلب #12345</h5>
                     <p class="card-text">عميل : نورة </p>
-                    <p class="card-text">نوع الخدمة: استشارة</p>
+                    <p class="card-text">نوع الخدمة : استشارة</p>
                     <p class="card-text"></p>
-                    <select class="form-select form-select-sm w-25 mb-5" aria-label=".form-select-sm example">
-                        <option selected>قيد الانتضار</option>
-                        <option value="1">رفض</option>
-                        <option value="3">موافقة</option>
-                      </select>
-                </div>
-                <h3 class="">وصف الطلب</h3>
-                <div class="row justify-content-start">
-                    <div class="col-md-8">
-                        <div class="card-law-order mb-2">
-                            <div class="card-body-law">
-                                <p class="card-text">توفير الحماية القانونية للشركات والمؤسسات أثناء أداء أعمالها، مما يساهم في الحفاظ على نموها واستمراريتها في السوق الحالي.
-                                    تساعد الاستشارة القانونية المتنازعين في القضايا على توفير الوقت والجهد، حيث تقدم لهم المساعدة في معرفة الإجراءات والمتطلبات اللازمة لرفع الدعوى، بدلاً من البحث الطويل عنها. </p>
+                    
+                    
+                    <h3 class="mt-4">وصف الطلب</h3>
+                    <div class="row justify-content-start">
+                        <div class="col-md-8">
+                            <div class="card-law-order mb-2">
+                                <div class="card-body-law">
+                                    <p class="card-text">توفير الحماية القانونية للشركات والمؤسسات أثناء أداء أعمالها، مما يساهم في الحفاظ على نموها واستمراريتها في السوق الحالي.
+                                        تساعد الاستشارة القانونية المتنازعين في القضايا على توفير الوقت والجهد، حيث تقدم لهم المساعدة في معرفة الإجراءات والمتطلبات اللازمة لرفع الدعوى، بدلاً من البحث الطويل عنها. </p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="d-flex mt-5 g-4">
+                        <button  type="button" class="btn btn-outline-dark me-2" data-bs-toggle="modal" data-bs-target="#offerModal">إضافة عرض</button>
+                        <a href="" class="btn btn-danger me-2">غير مهتم</a>
+                    </div>
                 </div>
-                <div class="">
-                <a href="#" class="btn btn-outline-dark me-2">إضافة عرض</a>
-            </div>
-            
             </div>
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="offerModal" tabindex="-1" aria-labelledby="offerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header ">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="d-flex justify-content-center flex-column">
+            <div class=" flex-column mb-3 w-100 ">
+                <label for="offerPrice" class="form-label">السعر</label>
+                <input type="text" class="form-control  " id="offerPrice">ريال
+            </div>
+            <a href="{% url 'service:previous_orders' %}" class="btn btn-outline-dark">تقديم العرض</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

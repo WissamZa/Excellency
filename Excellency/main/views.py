@@ -24,3 +24,6 @@ def contactus_view(request: HttpRequest):
 
 def lawyers_view(request: HttpRequest):
    return render(request, "main/lawyers.html")
+
+def contact_messages(request):
+    return render(request, 'main/contact_messages.html')
