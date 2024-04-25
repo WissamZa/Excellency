@@ -1,3 +1,4 @@
+{# djlint:off H021 D018 #}
 {% extends "base/base.html" %}
 {% block title %}
    تسجيل دخول
@@ -31,7 +32,9 @@
             </svg>
             <div class="d-flex w-100 justify-content-center myalart">
                <div class="alert alert-danger d-flex align-items-center" role="alert">
-                  <svg class="bi flex-shrink-0 me-2 danger-svg" role="img" aria-label="Danger:">
+                  <svg class="bi flex-shrink-0 me-2 danger-svg"
+                       role="img"
+                       aria-label="Danger:">
                      <use xlink:href="#exclamation-triangle-fill" />
                   </svg>
                   <span class="px-3 text-danger-emphasis">{{ msg }}</span>
@@ -40,19 +43,32 @@
          {% endif %}
          <div class="row mt-2">
             <div class="d-flex flex-column rtl">
-               <form action="{% url 'account:login_view' %}" method="post" class="d-flex flex-column gap-2">
+               <form action="{% url 'account:login_view' %}"
+                     method="post"
+                     class="d-flex flex-column gap-2">
                   {% csrf_token %}
-               <div>
-                  <label for="username" style="color:#CA9E67;" >رقم الهوية او البريد الالكتروني</label>
-                  <input name="username" class="form-control mt-2" type="text" minlength="3" required placeholder="رقم الهوية او البريد الالكتروني" />
-               </div>   
-               <div>
-                  <label for="password" style="color:#CA9E67;" >كلمة المرور</label>
-                  <input name="password" class="form-control  mt-2" type="password" minlength="6" required placeholder="كلمة المرور" />
-               </div>
-
+                  <div>
+                     <label for="username" style="color:#CA9E67;">البريد الالكتروني</label>
+                     <input name="username"
+                            class="form-control mt-2"
+                            type="text"
+                            minlength="5"
+                            required
+                            placeholder="البريد الالكتروني" />
+                  </div>
+                  <div>
+                     <label for="password" style="color:#CA9E67;">كلمة المرور</label>
+                     <input name="password"
+                            class="form-control  mt-2"
+                            type="password"
+                            minlength="6"
+                            required
+                            placeholder="كلمة المرور" />
+                  </div>
                   {% if "next" in request.GET %}<input type="hidden" name="next" id="next" value="{{ next }}">{% endif %}
-                  <input type="submit" class=" btn-sign border-bottom my-3 " value="تسجيل الدخول" />
+                  <input type="submit"
+                         class="btn-sign border-bottom my-3"
+                         value="تسجيل الدخول" />
                </form>
                <span class="text-center text-gold">ليس لديك حساب  <a href="{% url "account:sign_up_view" %}">التسجيل من هنا</a> </span>
             </div>

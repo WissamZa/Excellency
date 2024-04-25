@@ -1,10 +1,10 @@
 <!--djlint:off H021-->
 <!-- client tab -->
-<div class="tab-pane show active fade  "
+<div class="tab-pane show active fade"
      id="profile"
      role="tabpanel"
      aria-labelledby="profile-tab">
-   <div class=" mb-4 d-flex flex-column justify-content-center align-items-center">
+   <div class="mb-4 d-flex flex-column justify-content-center align-items-center">
       <h3 class="text-center  mt-4">انشاء حساب عميل</h3>
       {% if msg %}
          <svg xmlns="http://www.w3.org/2000/svg" class="d-none h-100">
@@ -36,6 +36,7 @@
                    class="form-control"
                    style="width: 100%"
                    type="text"
+                   value="{{ post.full_name }}"
                    minlength="3"
                    required
                    placeholder="قم بكاتبة اسمك هنا" />
@@ -45,14 +46,15 @@
                    class="form-control"
                    style="width: 100%"
                    type="text"
-                   minlength="3"
+                   value="{{ post.national_id }}"
+                   maxlength="10"
                    required
                    placeholder="قم بكاتبة هويتك هنا" />
             <label class="form-label mb-0 mt-2">البريد الالكتروني</label>
-
             <input name="email"
                    class="form-control"
                    type="email"
+                   value="{{ post.email }}"
                    required
                    placeholder="قم بوضع بريدك الالكتروني هنا" />
             <label class="form-label mb-0 mt-2">الجوال</label>
@@ -60,6 +62,7 @@
                    class="form-control"
                    type="text"
                    maxlength="10"
+                   value="{{ post.phone }}"
                    pattern="^05[0-9]{4}[0-9]{4}$"
                    required
                    placeholder="05XXXXXXXX" />

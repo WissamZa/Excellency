@@ -27,6 +27,10 @@ def validate_phone(value):
 def validat(**keywords):
    for key, value in keywords.items():
       match key:
+         case "full_name":
+            if not (len(str(value).split(" ")) == 3):
+               raise ValidationError("يرجى كتابة الإسم الثلاثي")
+
          case "national_id":
             if not validate_national_id(value):
                raise ValidationError("رقم الهوية غير صالح")

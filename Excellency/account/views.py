@@ -9,6 +9,10 @@ from django.db import transaction, IntegrityError
 from django.urls import reverse
 
 
+from django.conf import global_settings as settings
+from django.core.mail import send_mail
+
+
 def sign_up_view(request: HttpRequest):
    try:
       msg = None
@@ -22,7 +26,7 @@ def sign_up_view(request: HttpRequest):
                raise IntegrityError(msg)
             email = validat(email=request.POST.get("email"))
             new_user = User.objects.create(
-               full_name=request.POST.get("full_name"),
+               full_name=validat(full_name=request.POST.get("full_name")),
                role=request.POST["role"],
                 national_id=validat(
                    national_id=request.POST.get("national_id")),
@@ -51,14 +55,24 @@ def sign_up_view(request: HttpRequest):
                      "image", CustomarProfile.image.field.default),
                   phone=validat(phone=request.POST.get("phone")),
                )
-
+            subject = 'welcome to GFG world'
+            message = f"مرحبا  {new_user.full_name},\
+              نشكرك على تسجيلك ."
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [new_user.email, ]
+            send_mail(subject, message, email_from, recipient_list)
          return redirect("account:login_view")
 
    except IntegrityError as e:
-      msg = "اسم المستخدم أو البريد الالكتروني مستخدم بالفعل. حاول مرة اخرى..."
+      msg = "الهوية الوطنية أو البريد الالكتروني مستخدم بالفعل. حاول مرة اخرى..."
       print(e)
    except ValidationError as e:
       msg = e.message
+      return render(request, "account/sign_up.html",
+                    {"msg": msg,
+                     "Specialty": [(k, v) for k, v in Specialty_CHOICES.items()],
+                     "post": request.POST})
+
    # except Exception as e:
    #    msg = "Something went wrong. Please try again."
    #    print(e.with_traceback())

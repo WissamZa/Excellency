@@ -38,18 +38,21 @@
                             class="form-control"
                             type="text"
                             minlength="3"
+                            value="{{ post.full_name }}"
                             required
                             placeholder="قم بكاتبة اسمك هنا" />
                      <label class="form-label mb-0  mt-2">البريد الالكتروني:</label>
                      <input name="email"
                             class="form-control"
                             type="email"
+                            value="{{ post.email }}"
                             required
                             placeholder="قم بوضع بريدك الالكتروني هنا" />
                      <label class="form-label mb-0  mt-2">الهوية:</label>
                      <input name="national_id"
                             class="form-control"
                             type="text"
+                            value="{{ post.national_id }}"
                             maxlength="10"
                             pattern="^1[0-9]{9}$"
                             required
@@ -110,6 +113,7 @@
                                   maxlength="10"
                                   pattern="^05[0-9]{4}[0-9]{4}$"
                                   required
+                                  value="{{ post.phone }}"
                                   placeholder="05XXXXXXXX" />
                         </div>
                      </div>
@@ -142,19 +146,21 @@
                            <input type="file"
                                   class="form-control input-width mt-1"
                                   name="Qualification"
-
                                   id="Qualification">
                         </div>
                         <div>
                            <label>الرخصة:</label>
-                           <input type="file" class="form-control mt-1 input-width" name="licence" id="licence">
+                           <input type="file"
+                                  class="form-control mt-1 input-width"
+                                  name="licence"
+                                  id="licence">
                         </div>
                      </div>
                   </div>
                </div>
             </div>
             <input type="submit"
-                   class="btn  my-2 text-white "
+                   class="btn  my-2 text-white"
                    style="background-color:#113345"
                    value="سجل" />
          </form>
