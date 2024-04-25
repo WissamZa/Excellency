@@ -1,12 +1,29 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from service.models import Specialty
 
 from main import validator
 
 
 def group_based_upload_to(instance, filename):
    return "profiles/images/{}/{}".format(instance.user.id, filename)
+
+
+legal_advice = "استشارات قانونية"
+drafting_contracts = "صياغة عقود"
+warrant = "مذكرات"
+
+Specialty_CHOICES = {
+    'legal_advice': legal_advice,
+    'drafting_contracts': drafting_contracts,
+    'warrant': warrant
+}
+
+
+class Specialty(models.Model):
+   name = models.CharField(max_length=20)
+
+   def __str__(self):
+      return self.name
 
 
 class User(AbstractUser):
@@ -28,7 +45,7 @@ class User(AbstractUser):
    # bannar = models.ImageField(
    #    upload_to=group_based_upload_to, default="profiles/images/gold-icon.png")
    USERNAME_FIELD = "email"
-   REQUIRED_FIELDS = ['username', 'full_name']
+   REQUIRED_FIELDS = ['username', 'full_name', 'role']
 
    def __str__(self):
       return self.username
@@ -57,6 +74,7 @@ class LawyerProfile(models.Model):
    user = models.OneToOneField(User, on_delete=models.CASCADE)
    phone = models.CharField(max_length=10, unique=True, validators=[
        validator.validate_phone])
+   about = models.TextField(default="")
    image = models.ImageField(
       upload_to=group_based_upload_to, blank=False)
    gender = models.CharField(max_length=22,
