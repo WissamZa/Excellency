@@ -1,4 +1,3 @@
-from click import File
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from account.models import User, LawyerProfile, CustomarProfile
@@ -48,7 +47,6 @@ def sign_up_view(request: HttpRequest):
                   user=new_user,
                   image=request.POST.get(
                      "image", CustomarProfile.image.field.default),
-                  gender=request.POST["gender"],
                   phone=validat(phone=request.POST.get("phone")),
                )
 
@@ -144,7 +142,8 @@ def update_profile_view(request: HttpRequest, user_name):
 
 
 def account_balance(request):
-    return render(request, 'account/account_balance.html')
+   return render(request, 'account/account_balance.html')
 
-def Lawyer_profile_view(request:HttpRequest):
-   return render(request,"account/lawyer_profile.html")
+
+def lawyer_profile_view(request: HttpRequest):
+   return render(request, "account/lawyer_profile.html")

@@ -53,7 +53,8 @@
           <a href="{% url 'account:login_view' %}"
              class="btn nav-link btn-link px-3 me-2">تسجيل الدخول</a>
         {% else %}
-          <a href="#" class="btn nav-link btn-link px-3 me-2">مرحبا {{ request.user.full_name }}</a>
+          <a href="{% url "account:lawyer_profile_view" %}"
+             class="btn nav-link btn-link px-3 me-2">مرحبا {{ request.user.full_name }}</a>
           <a href="{% url "account:logout_view" %}"
              class="btn nav-link btn-link px-3 me-2">تسجيل الخروج</a>
         {% endif %}

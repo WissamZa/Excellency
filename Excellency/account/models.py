@@ -25,6 +25,8 @@ class User(AbstractUser):
    full_name = models.CharField(max_length=50, blank=False)
    role = models.CharField(max_length=15,
                            choices=ROLE_CHOICES, null=True, blank=True)
+   # bannar = models.ImageField(
+   #    upload_to=group_based_upload_to, default="profiles/images/gold-icon.png")
    USERNAME_FIELD = "email"
    REQUIRED_FIELDS = ['username', 'full_name']
 
