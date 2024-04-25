@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from account.models import User, LawyerProfile, CustomarProfile
 from django.contrib.auth import authenticate, login, logout
-from service.models import Specialty_CHOICES
-from main.validator import validat
+from service.models import Specialty, Specialty_CHOICES
+from main.validator import validat, validate_national_id
 from django.core.exceptions import ValidationError
 from django.db import transaction, IntegrityError
 from django.urls import reverse
@@ -23,22 +23,25 @@ def sign_up_view(request: HttpRequest):
                raise IntegrityError(msg)
             new_user = User.objects.create(
                full_name=request.POST.get("full_name"),
+               role=request.POST["role"],
                 national_id=validat(
                    national_id=request.POST.get("national_id")),
-                email=validat(email=request.POST.get("email")),
-                password=validat(password=request.POST.get("password"))
-            )
+                email=validat(email=request.POST.get("email")))
+            new_user.set_password(request.POST.get("password"))
+            new_user.save()
             if request.POST["role"] == "Lawyer":
 
                user_profile = LawyerProfile.objects.create(
                   user=new_user,
+
                   image=request.FILES["image"],
                   gender=request.POST["gender"],
                   phone=validat(phone=request.POST.get("phone")),
                   licence=request.FILES.get("licence"),
                   Qualification=request.FILES.get("qualification"))
-               
-               user_profile.specialty.add(name=request.POST["specialty"])
+               specialty_id = Specialty.objects.get(
+                  name=Specialty_CHOICES.get(request.POST["specialty"])).pk
+               user_profile.specialty.add(specialty_id)
 
             if request.POST["role"] == "Customar":
                CustomarProfile.objects.create(
@@ -59,8 +62,7 @@ def sign_up_view(request: HttpRequest):
    # except Exception as e:
    #    msg = "Something went wrong. Please try again."
    #    print(e.with_traceback())
-
-   return render(request, "account/sign_up.html", {"msg": msg, "Specialty": Specialty_CHOICES})
+   return render(request, "account/sign_up.html", {"msg": msg, "Specialty": [(k, v) for k, v in Specialty_CHOICES.items()]})
 
 
 def login_view(request: HttpRequest):
@@ -73,8 +75,8 @@ def login_view(request: HttpRequest):
 
    if request.method == "POST":
       # authenticat user
-      user_name = None
-      if validat(national_id=request.POST["username"]):
+      user = None
+      if validate_national_id(request.POST["username"]):
          user = authenticate(
           request,
           national_id=request.POST["username"],
@@ -113,10 +115,9 @@ def logout_view(request: HttpRequest):
 #       msg = "User Not Found"
 #       return render(request, "account/user_profile.html", {"msg": msg})
 #    return render(request, "account/user_profile.html", {"user": user})
-def user_profile_view(request:HttpRequest):
+def user_profile_view(request: HttpRequest):
 
    return render(request, "account/user_profile.html")
-
 
 
 def update_profile_view(request: HttpRequest, user_name):
