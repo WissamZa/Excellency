@@ -143,5 +143,8 @@ def update_profile_view(request: HttpRequest, user_name):
    return render(request, "account/update_profile.html", {"user": user})
 
 
+def account_balance(request):
+    return render(request, 'account/account_balance.html')
+
 def Lawyer_profile_view(request:HttpRequest):
    return render(request,"account/lawyer_profile.html")

@@ -1,0 +1,26 @@
+
+.card-law-order {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+.card-body-law {
+    padding: 20px;
+}
+
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    margin-top: -30px;
+}
+
+.card-text {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 5px;
+}

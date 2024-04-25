@@ -10,3 +10,12 @@ def payment_view(request):
 
 def chat_view(request):
     return render(request, 'service/chat.html')
+
+def order_Lawyers_view(request):
+    return render(request, 'service/Lawyers_orders.html')
+
+def previous_orders(request):
+    return render(request, 'service/previous_orders.html')
+
+def order_details(request):
+    return render(request, 'service/order_details.html')
