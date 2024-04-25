@@ -4,6 +4,7 @@
    الطلبات السابقة
 {% endblock title %}
 {% block content %}
+{% include "account/sidebar.html" %}
 <div class="container mt-4 w-50 mt-5">
     <ul class="nav nav-tabs mb-4">
         <li class="nav-item ">
@@ -19,11 +20,11 @@
             <div class="card-law-order mb-2">
                 <div class="card-body-law">
                     <h5 class="card-title">رقم الطلب #12345</h5>
-                    <p class="card-text">عميل: احمد</p>
-                    <p class="card-text">نوع الخدمة: استشارة</p>
-                    <p class="card-text">الحالة: تمت الموافقة</p>
+                    <p class="card-text">عميل : احمد</p>
+                    <p class="card-text">نوع الخدمة : استشارة</p>
+                    <p class="card-text">الحالة : تمت الموافقة</p>
                     <div class="d-flex justify-content-end g-4">
-                        <a href="{% url 'service:chat_view' %}" class="btn btn-outline-dark me-2">المحادثة</a>
+                        <a href="{% url 'service:order_details' %}" class="btn btn-outline-dark me-2">تفاصيل الطلب </a>
                     </div>
                 </div>
             </div>
