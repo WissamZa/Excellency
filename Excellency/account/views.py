@@ -140,3 +140,7 @@ def update_profile_view(request: HttpRequest, user_name):
       return redirect("account:user_profile_view", user_name=user.username)
 
    return render(request, "account/update_profile.html", {"user": user})
+
+
+def Lawyer_profile_view(request:HttpRequest):
+   return render(request,"account/lawyer_profile.html")
