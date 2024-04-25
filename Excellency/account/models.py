@@ -23,8 +23,8 @@ class User(AbstractUser):
    email = models.EmailField(max_length=100, unique=True, validators=[
     validator.validate_email])
    full_name = models.CharField(max_length=50, blank=False)
-   role = models.PositiveSmallIntegerField(
-      choices=ROLE_CHOICES, null=True, blank=True)
+   role = models.CharField(max_length=15,
+                           choices=ROLE_CHOICES, null=True, blank=True)
    USERNAME_FIELD = "email"
    REQUIRED_FIELDS = ['username', 'full_name']
 

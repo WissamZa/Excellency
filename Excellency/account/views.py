@@ -23,6 +23,7 @@ def sign_up_view(request: HttpRequest):
                raise IntegrityError(msg)
             new_user = User.objects.create(
                full_name=request.POST.get("full_name"),
+               role=request.POST["role"],
                 national_id=validat(
                    national_id=request.POST.get("national_id")),
                 email=validat(email=request.POST.get("email")))
@@ -32,20 +33,19 @@ def sign_up_view(request: HttpRequest):
 
                user_profile = LawyerProfile.objects.create(
                   user=new_user,
-                  role=request.POST["role"],
+
                   image=request.FILES["image"],
                   gender=request.POST["gender"],
                   phone=validat(phone=request.POST.get("phone")),
                   licence=request.FILES.get("licence"),
                   Qualification=request.FILES.get("qualification"))
                specialty_id = Specialty.objects.get(
-                  name=request.POST["specialty"]).pk
+                  name=Specialty_CHOICES.get(request.POST["specialty"])).pk
                user_profile.specialty.add(specialty_id)
 
             if request.POST["role"] == "Customar":
                CustomarProfile.objects.create(
                   user=new_user,
-                  role=request.POST["role"],
                   image=request.POST.get(
                      "image", CustomarProfile.image.field.default),
                   gender=request.POST["gender"],
@@ -62,8 +62,7 @@ def sign_up_view(request: HttpRequest):
    # except Exception as e:
    #    msg = "Something went wrong. Please try again."
    #    print(e.with_traceback())
-
-   return render(request, "account/sign_up.html", {"msg": msg, "Specialty": Specialty_CHOICES})
+   return render(request, "account/sign_up.html", {"msg": msg, "Specialty": [(k, v) for k, v in Specialty_CHOICES.items()]})
 
 
 def login_view(request: HttpRequest):
