@@ -290,24 +290,32 @@
         <i class="bx bx-grid-alt"></i>
         <span class="links_name">الملف الشخصي</span>
       </a>
-    <span class="tooltip"><i class="fa fa-user" aria-hidden="true"></i>
-  </span>
-</li>
-<li>
-  <a href="#">
-    <i class="bx bx-pie-chart-alt-2"></i>
-    <span class="links_name">الطلبات</span>
-  </a>
-  <span class="tooltip">Dashboard</span>
-</li>
-<li>
-  <a href="#">
-    <i class="bx bx-pie-chart-alt-2"></i>
-    <span class="links_name">الرصيد</span>
-  </a>
-  <span class="tooltip">Analytics</span>
-</li>
-</ul>
+
+       <span class="tooltip"><i class="fa fa-user" aria-hidden="true"></i>
+       </span>
+
+    </li>
+    
+
+
+   <li>
+     <a href="{% url 'service:Lawyers-view' %}">
+       <i class='bx bx-pie-chart-alt-2' ></i>
+       <span class="links_name">الطلبات</span>
+     </a>
+       <span class="tooltip">Dashboard</span>
+   </li>
+
+    <li>
+     <a href="{% url 'account:account_balance' %}">
+       <i class='bx bx-pie-chart-alt-2' ></i>
+       <span class="links_name">الرصيد</span>
+     </a>
+     <span class="tooltip">Analytics</span>
+   </li>
+   
+  </ul>
+
 </div>
 <script>
     let sidebar = document.querySelector(".sidebar");
