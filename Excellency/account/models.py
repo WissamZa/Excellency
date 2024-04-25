@@ -1,12 +1,29 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from service.models import Specialty
 
 from main import validator
 
 
 def group_based_upload_to(instance, filename):
    return "profiles/images/{}/{}".format(instance.user.id, filename)
+
+
+legal_advice = "استشارات قانونية"
+drafting_contracts = "صياغة عقود"
+warrant = "مذكرات"
+
+Specialty_CHOICES = {
+    'legal_advice': legal_advice,
+    'drafting_contracts': drafting_contracts,
+    'warrant': warrant
+}
+
+
+class Specialty(models.Model):
+   name = models.CharField(max_length=20)
+
+   def __str__(self):
+      return self.name
 
 
 class User(AbstractUser):
