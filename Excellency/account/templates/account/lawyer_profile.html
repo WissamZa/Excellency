@@ -1,70 +1,66 @@
+{# djlint:off H030,H031 H021 D018 H006 #}
 {% extends "base/base.html" %}
 {% load static %}
 {% block title %}
-User Profile
+  الملف الشخصي
 {% endblock title %}
-
 {% block css %}
-
   <!-- Boxicons CDN Link -->
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'
+        rel='stylesheet'>
+  <style>
+      .profile-head {
+          transform: translateY(5rem)
+      }
 
-<style>
-  .profile-head {
-    transform: translateY(5rem)
-  }
-
-  .cover {
-    background-size: cover;
-    background-repeat: no-repeat
-  }
-
-
-</style>
+      .cover {
+          background-size: cover;
+          background-repeat: no-repeat
+      }
+  </style>
 {% endblock css %}
-
 {% block content %}
-{% include "account/sidebar.html" %}
-<div class="row py-5 px-4 ">
-  <div class="col-md-5 mx-auto">
-    <!-- Profile widget -->
-    <div class="bg-white shadow rounded overflow-hidden">
-      <!-- هنا صورة الخلفية للبروفايل -->
-      <div style="background-image: url('{% static 'icons/gold-icon.png' %}');" class="px-4 pt-0 pb-4 cover">
-        <div class="media align-items-end profile-head">
-          <div class="profile mr-3">
-            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" alt="..." width="130" class="rounded mb-2 img-thumbnail">
+  {% include "account/sidebar.html" %}
+  <div class="row py-5 px-4 ">
+    <div class="col-md-5 mx-auto">
+      <!-- Profile widget -->
+      <div class="bg-white shadow rounded overflow-hidden">
+        <!-- هنا صورة الخلفية للبروفايل -->
+        <div class="px-4 pt-0 pb-4 cover" style="height: 200px;">
+          <div class="d-flex justify-content-center">
+            <img src="{% static "icons/gold-icon.png" %}" height="100%" weight="100%" alt="">
           </div>
-          
         </div>
+        <div class="bg-light pt-4 ps-4 pe-4  d-flex justify-content-between align-items-center">
+          <div class="profile mr-3" style="position: absolute; top: 10rem;">
+            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+                 alt="..."
+                 width="130"
+                 class="rounded mb-2 img-thumbnail">
+          </div>
+          <div class="bg-light d-flex align-items-center mt-4 mb-2">
+            <h4 class="mt-0 mb-0 text-start ">ريان الشهري</h4>
+          <a href="#"><i class="fa fa-pencil me-2" aria-hidden="true"></i>
+        </a>
       </div>
-      <div class="bg-light pt-4 ps-4 pe-4  d-flex justify-content-between align-items-center">
-        <div class="bg-light  d-flex  align-items-center mt-4 mb-2">
-          <h4 class="mt-0 mb-0 text-start ">ريان الشهري</h4>
-          <a href="#" ><i class="fa fa-pencil me-2" aria-hidden="true"></i>
-          </a>
-        </div>
-        <div class="bg-light  d-flex  align-items-center mt-4 mb-2">
-          <a href="#"  class="btn btn-outline-dark">اطلب خدمة</a>
-        </div>
-        
-      
-      </div>
-      <div class="px-4 py-3">
-        <h5 class="mb-0">نبذة</h5>
-        <div class="p-4 rounded shadow-sm bg-light">
-          <p class="font-italic mb-0">محامي منذ 10 سنوات قمت بحل العديد من القضايا</p>
- 
-        </div>
-      </div>
-      <div class="py-4 px-4">
-        <div class="d-flex align-items-center justify-content-between mb-3">
-          <h5 class="mb-0">المنشورات</h5><a href="#" class="btn btn-link text-muted">مشاهدة جميع المنشورات</a>
-        </div>
-        <div class="row">
-
-        </div>
+      <div class="bg-light  d-flex  align-items-center mt-4 mb-2">
+        <a href="#"  class="btn btn-outline-dark">اطلب خدمة</a>
       </div>
     </div>
+    <div class="px-4 py-3">
+      <h5 class="mb-0">نبذة</h5>
+      <div class="p-4 rounded shadow-sm bg-light">
+        <p class="font-italic mb-0">محامي منذ 10 سنوات قمت بحل العديد من القضايا</p>
+      </div>
+    </div>
+    <div class="py-4 px-4">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h5 class="mb-0">المنشورات</h5>
+        <a href="#" class="btn btn-link text-muted">مشاهدة جميع المنشورات</a>
+      </div>
+      <div class="row"></div>
+    </div>
   </div>
-</div>{% endblock content %}
+</div>
+</div>
+{% endblock content %}
