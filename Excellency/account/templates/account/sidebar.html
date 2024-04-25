@@ -15,7 +15,7 @@
     .sidebar {
         position: fixed;
         top: 0;
-
+        z-index: -1;
         height: 100%;
         width: 78px;
         background: #113345;
@@ -61,7 +61,7 @@
         transform: translateY(-50%);
         font-size: 22px;
         transition: all 0.4s ease;
-        font-size: 23px;
+        font-size: 0;
         text-align: center;
         cursor: pointer;
         transition: all 0.5s ease;
@@ -280,29 +280,27 @@
 </style>
 <div class="sidebar">
   <div class="logo-details">
-    <i class="bx pe-4 bxl-c-plus-plus icon "></i>
+    <i class='bx bx-menu'></i>
     <div class="logo_name me-2">{{ request.user.full_name }}</div>
     <i class="bx bx-menu" id="btn"></i>
   </div>
   <ul class="nav-list">
     <li>
       <a href="{% url 'account:profile_view' request.user.pk %}">
-        <i class="bx bx-grid-alt"></i>
+        <i class="bx bxs-user"></i>
         <span class="links_name">الملف الشخصي</span>
       </a>
-    <span class="tooltip"><i class="fa fa-user" aria-hidden="true"></i>
-  </span>
 </li>
 <li>
   <a href="{% url 'service:Lawyers-view' %}">
-    <i class="bx bx-pie-chart-alt-2"></i>
+    <i class='bx bxs-box'></i>
     <span class="links_name">الطلبات</span>
   </a>
   <span class="tooltip">Dashboard</span>
 </li>
 <li>
   <a href="{% url 'account:account_balance' %}">
-    <i class="bx bx-pie-chart-alt-2"></i>
+    <i class='bx bxs-wallet'></i>
     <span class="links_name">الرصيد</span>
   </a>
   <span class="tooltip">Analytics</span>
