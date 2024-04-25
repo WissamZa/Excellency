@@ -36,6 +36,13 @@
   border: none;
   padding: 6px;
   border-radius: 5px;
-  width: 100%;
+  width: 23vw;
 
+}
+
+.input-width{
+  width: 23vw;
+}
+.form-width{
+  width: 30%;
 }
