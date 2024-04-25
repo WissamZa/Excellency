@@ -11,7 +11,7 @@ def payment_view(request):
 def chat_view(request):
     return render(request, 'service/chat.html')
 
-def order_Lawyers_view(request):
+def current_orders(request):
     return render(request, 'service/Lawyers_orders.html')
 
 def previous_orders(request):
@@ -19,3 +19,6 @@ def previous_orders(request):
 
 def order_details(request):
     return render(request, 'service/order_details.html')
+
+def add_offer(request):
+    return render(request, 'service/add_offer.html')
