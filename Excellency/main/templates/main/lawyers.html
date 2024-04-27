@@ -1,135 +1,89 @@
 {# djlint:off H030,H031,H006,H021 #}
 {% extends "base/base.html" %}
 {% load static %}
+{% load tags %}
 {% block title %}
-المحامين
+    المحامين
 {% endblock title %}
 {% block content %}
-<nav class="navbar navbar-expand-lg " style="background-color: rgba(240, 248, 255, 0);">
-    <div class="container">
-        <div class="navbar-nav">
-            <input type="text" class="form-control " placeholder="بحث بالأسم">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        نوع الخدمة
-                    </a>
-                    <ul class="dropdown-menu p-2">
-                        <li class="dropdown-item px-2 text-end">
-                            <input type="checkbox" id="consultation" name="service" value="consultation">
-                            <label class="custom-checkbox" for="consultation">استشارة</label>
-                        </li>
-                        <li class="dropdown-item px-2 text-end">
-                            <input type="checkbox" id="contractDrafting" name="service" value="contractDrafting">
-                            <label class="custom-checkbox" for="contractDrafting">صياغة عقود</label>
-                        </li>
-                        <li class="dropdown-item px-2 text-end">
-                            <input type="checkbox" id="memos" name="service" value="memos">
-                            <label class="custom-checkbox" for="memos">مذكرات</label>
-                        </li>
-                    </ul>
-                </li>
-
-            </ul>
+    <nav class="navbar navbar-expand-lg"
+         style="background-color: rgba(240, 248, 255, 0)">
+        <div class="container">
+            <div class="navbar-nav">
+                <input type="text" class="form-control " placeholder="بحث بالأسم">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-black"
+                           href="#"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">نوع الخدمة</a>
+                        <ul class="dropdown-menu p-2">
+                            <li class="dropdown-item px-2 text-end">
+                                <input type="checkbox" id="consultation" name="service" value="consultation">
+                                <label class="custom-checkbox" for="consultation">استشارة</label>
+                            </li>
+                            <li class="dropdown-item px-2 text-end">
+                                <input type="checkbox"
+                                       id="contractDrafting"
+                                       name="service"
+                                       value="contractDrafting">
+                                <label class="custom-checkbox" for="contractDrafting">صياغة عقود</label>
+                            </li>
+                            <li class="dropdown-item px-2 text-end">
+                                <input type="checkbox" id="memos" name="service" value="memos">
+                                <label class="custom-checkbox" for="memos">مذكرات</label>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <form class="d-flex ms-auto" role="search" style="gap: 10px;">
+                <select class="form-select">
+                    <option value="Highest rating">الاكثر طلباً</option>
+                    <option value="Highest rating">ًالأعلى تقيما</option>
+                </select>
+                <button class="btn btn-outline-dark" type="submit">بحث</button>
+            </form>
         </div>
-
-
-        <form class="d-flex ms-auto" role="search" style="gap: 10px;">
-            <select class="form-select">
-                <option value="Highest rating">الاكثر طلباً</option>
-                <option value="Highest rating">ًالأعلى تقيما</option>
-            </select>
-            <button class="btn btn-outline-dark" type="submit">بحث</button>
-        </form>
-
-    </div>
-</nav>
-
-
-<div class="container py-5  g-5 p-1 g-col-6">
-    <div class="row justify-content-start align-items-center g-4">
-        <div class="col-md-4">
-            <div class="law-card card-10 shadow-lg p-4">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                            alt="Profile Picture" class="img-fluid" style="width: 180px;">
-                    </div>
-                    <div class="col-md-8">
-                        <h3 class="mb-2">عبدالله أحمد </h3>
-                        <div class="d-flex justify-content-start">
-                            <p class="text-muted">اسشارة | صيغة عقود </p>
-                        </div>
-                        <div class="d-flex mb-1">
-                            <div>
-                                <p class="mb-0 text-muted">محامي متخصص في </p>
-                                <p class="mb-1 text-muted">التقييم</p>
-                                <p class="mb-0">4.8</p>
+    </nav>
+    <div class="container-fluid py-5 g-5 mx-1">
+        <div class="d-flex flex-wrap gap-2 justify-content-start align-items-center g-4">
+            {% for lawyer in lawyers %}
+                <div class="col-md-3 bg-light rounded-4">
+                    <div class="law-card card-10 shadow-lg p-2">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="{{ lawyer.lawyer_profile.image.url }}"
+                                     alt="Profile Picture"
+                                     class="img-fluid"
+                                     style="width: 180px">
                             </div>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <a href="{% url 'service:order_form' %}"
-                                class="law-btn btn btn-outline-dark flex-grow-5 align-items-end">آطلب الخدمة</a>
+                            <div class="col-md-8">
+                                <h3 class="mb-2">{{ lawyer.full_name }}</h3>
+                                <div class="d-flex justify-content-start">
+                                    <p class="text-muted">
+                                        {% for sp in lawyer.lawyer_profile.specialty.all %}
+                                            {{ sp }}
+                                            {% if not forloop.last %}|{% endif %}
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                                <div class="d-flex justify-content-between mb-1">
+                                    <div>
+                                        <p class="mb-1 text-muted">التقييم</p>
+                                        <p class="mb-0">4.8</p>
+                                    </div>
+                                    <div class="d-flex align-self-end h-50">
+                                        <a href="{% url 'service:order_form' %}"
+                                           class="law-btn btn btn-outline-dark align-items-end">آطلب الخدمة</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="law-card card-10 shadow-lg p-4">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                            alt="Profile Picture" class="img-fluid" style="width: 180px;">
-                    </div>
-                    <div class="col-md-8">
-                        <h3 class="mb-2">محمد فهد</h3>
-                        <div class="d-flex justify-content-start">
-                            <p class="text-muted">اسشارة | صيغة عقود</p>
-                        </div>
-                        <div class="d-flex mb-1">
-                            <div>
-                                <p class="mb-0 text-muted">محامي متخصص في </p>
-                                <p class="mb-1 text-muted">التقييم</p>
-                                <p class="mb-0">4.5</p>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="button" class="law-btn btn btn-outline-dark flex-grow-5 align-items-end">آطلب
-                                الخدمة</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="law-card card-10 shadow-lg p-4">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                            alt="Profile Picture" class="img-fluid" style="width: 180px;">
-                    </div>
-                    <div class="col-md-8">
-                        <h3 class="mb-2">علي خالد</h3>
-
-                        <div class="d-flex justify-content-start">
-                            <p class="text-muted">اسشارة | صيغة عقود | مذكرات</p>
-                        </div>
-                        <div class="d-flex mb-1">
-                            <div>
-                                <p class="mb-0 text-muted">محامي متخصص في </p>
-                                <p class="mb-1 text-muted">التقييم</p>
-                                <p class="mb-0">4.2</p>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="button" class="law-btn btn btn-outline-dark flex-grow-5 align-items-end">آطلب
-                                الخدمة</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
-    {% endblock content %}
+{% endblock content %}

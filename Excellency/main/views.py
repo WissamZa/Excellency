@@ -1,6 +1,7 @@
 from django.http import HttpRequest
 from django.shortcuts import render
 from main.models import Contactus
+from account.models import LawyerProfile, User
 
 
 def index_view(request: HttpRequest):
@@ -23,7 +24,9 @@ def contactus_view(request: HttpRequest):
 
 
 def lawyers_view(request: HttpRequest):
-   return render(request, "main/lawyers.html")
+   lawyers = User.objects.filter(role="Lawyer")
+   return render(request, "main/lawyers.html", {"lawyers": lawyers})
+
 
 def contact_messages(request):
-    return render(request, 'main/contact_messages.html')
+   return render(request, 'main/contact_messages.html')
