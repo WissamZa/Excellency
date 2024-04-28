@@ -2,7 +2,7 @@ from os import name
 from django.http import HttpRequest
 from django.shortcuts import render
 from main.models import Contactus
-from account.models import User, Specialty
+from account.models import User, Specialty,LawyerProfile
 from django.db.models import Count
 
 
@@ -57,13 +57,12 @@ def lawyers_view(request: HttpRequest):
 
 
 def contact_messages(request):
-
    return render(request, 'main/contact_messages.html')
 
 
 def admin_viwe(request):
-   return render(request, 'main/admin.html')
-
+    lawyer_profiles = LawyerProfile.objects.all()
+    return render(request, 'main/admin.html', {'lawyer_profiles': lawyer_profiles})
 
 def lawyer_details_view(request):
    return render(request, 'main/lawyer_details.html')
