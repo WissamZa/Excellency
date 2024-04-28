@@ -1,82 +1,104 @@
-{% extends "main/base.html" %}
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/sign_up.css' %}">
+<style>
+       .container-bady::before {
+           content: "";
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           opacity: .7;
+           background: url("/static/images/sign_up_background.jpg");
+           background-position: center;
+           background-size: cover;
+           background-attachment: fixed;
+       }
+       .align-items-center .text-gold{
+         color:#CA9E67;
+         font-size: 16px;
+       }
+       .form-label{
+         color: #113345;
+       }
+       
+</style>
+{% endblock css %}
+
 {% block title %}
-   تعديل الملف الشخصي
+انشاء حساب
 {% endblock title %}
+
 {% block content %}
-   <div class="d-flex flex-column justify-content-center align-items-center w-100">
-      <h1 class="mt-4">تعديل الملف الشخصي</h1>
-      <div class="row mt-2 mb-5 w-50">
-         <div class="d-flex flex-column justify-self-center">
-            <form action="{% url 'account:update_profile_view' user.username %}"
-                  method="post"
-                  class="d-flex flex-column gap-2"
-                  enctype="multipart/form-data">
-               {% csrf_token %}
-               <fieldset disabled>
-                  <label class="form-label mb-0 ms-1 mt-2">اسم المستخدم</label>
-                  <input name="username"
-                         class="form-control opacity-50"
-                         type="text"
-                         minlength="3"
-                         required
-                         value="{{ request.user.username }}" />
-                  <label class="form-label mb-0 ms-1 mt-2">الاسم الأول</label>
-                  <input name="first_name"
-                         class="form-control"
-                         type="text"
-                         minlength="3"
-                         value="{{ request.user.first_name }}" />
-               </fieldset>
-               <label class="form-label mb-0 ms-1 mt-2">اسم العائلة</label>
-               <input name="last_name"
-                      class="form-control"
-                      type="text"
-                      minlength="3"
-                      value="{{ request.user.last_name }}" />
-               <label class="form-label mb-0 ms-1 mt-2">البريد الالكتروني</label>
-               <input name="email"
-                      class="form-control"
-                      type="email"
-                      minlength="3"
-                      disabled
-                      value="{{ request.user.email }}" />
-               <label class="form-label mb-0 ms-1 mt-2">الجوال</label>
-               <input name="phone"
-                      class="form-control"
-                      type="text"
-                      length="10"
-                      value="{{ user.profile.phone }}"
-                      placeholder="05XXXXXXXX" />
-               <label class="form-label mb-0 ms-1 mt-2">الجنس</label>
-               <select id="gender" name="gender" class="form-select">
-                  {% for val,key in genders %}
-                     <option {% if key == user.profile.gender %}selected{% endif %}
-                             value="{{ key }}">{{ val }}</option>
-                  {% endfor %}
-               </select>
-               <label class="form-label mb-0 ms-1 mt-2">العنوان</label>
-               <textarea name="address" class="form-control">{{ request.user.profile.address }}</textarea>
-               <label class="form-label mb-0 ms-1 mt-2">نبذة عنك</label>
-               <textarea name="about" class="form-control">{{ request.user.profile.about }}</textarea>
-               <div class="form-outline mb-4">
-                  <label class="form-label mb-0 ms-1 mt-2">الجنسية</label>
-                  <select id="nationality" name="nationality" class="form-select">
-                     {% for val,n in nationality %}
-                        <option {% if val == request.user.profile.nationality %}selected{% endif %}
-                                value="{{ val }}">{{ val }}</option>
-                     {% endfor %}
-                  </select>
-                  <label class="form-label mb-0 ms-1 mt-2">رفع صورة شخصية:</label>
-                  <img src="{{ request.user.profile.avatar.url }}"
-                       height="110px"
-                       width="100px"
-                       class="ms-3"
-                       alt="">
-                  <input type="file" class="form-control" name="avatar" />
+<div class="container py-4 d-flex flex-column justify-content-center align-items-center">
+    <h3 class="text-center mt-4 mb-5">تحديث الحساب</h3>
+    {% if msg %}
+    <div class="alert alert-danger d-flex align-items-center justify-content-center w-100" role="alert">
+        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:" width="24" height="24" fill="currentColor">
+            <use xlink:href="#exclamation-triangle-fill"/>
+        </svg>
+        <span>{{ msg }}</span>
+    </div>
+    {% endif %}
+    <form action="{% url 'account:sign_up_view' %}" method="post" class="w-100" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="role" value="Lawyer">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">الاسم الثلاثي:</label>
+                    <input name="full_name" class="form-control" type="text" minlength="3" required placeholder="قم بكاتبة اسمك هنا">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">البريد الالكتروني:</label>
+                    <input name="email" class="form-control" type="email" required placeholder="قم بوضع بريدك الالكتروني هنا">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">الجوال:</label>
+                    <input name="phone" class="form-control" type="text" maxlength="10" pattern="^05[0-9]{4}[0-9]{4}$" required placeholder="05XXXXXXXX">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">التخصصات:</label>
+                    <select name="specialty" class="form-select">
+                        {% for key, val in Specialty %}
+                        <option value="{{ key }}">{{ val }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="image" class="form-label">الصورة الشخصية:</label>
+                    <input type="file" name="image" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="Qualification" class="form-label">المؤهل العلمي:</label>
+                    <input type="file" name="Qualification" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="licence" class="form-label">الرخصة:</label>
+                    <input type="file" name="licence" class="form-control">
+                </div>
+                <div class="pt-2 mt-5">
+                  <label for="gender" class="form-label">الجنس:</label>
+                 <div class="form-check form-check-inline">
+                     <input class="form-check-input" type="radio" id="male" name="gender" value="male" checked>
+                     <label class="form-check-label" for="male">ذكر</label>
+                 </div>
+                 <div class="form-check form-check-inline">
+                     <input class="form-check-input" type="radio" id="female" name="gender" value="female">
+                     <label class="form-check-label" for="female">أنثى</label>
+                 </div>
+             </div>
                </div>
-               <input type="submit" class="btn btn-dark mt-3" value="تعديل" />
-            </form>
-         </div>
-      </div>
-   </div>
+               <div>
+                  <input type="submit" class="btn my-2 text-white w-100" style="background-color:#113345" value="تحديث" />
+               </div>
+        </div>
+    </form>
+</div>
 {% endblock content %}

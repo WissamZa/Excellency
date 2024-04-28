@@ -9,13 +9,13 @@
 {% endblock css %}
 {% block content %}
   <section>
-    <div class="container-fluid overflow-x-hidden">
+    <div class="container-fluid overflow-x-hidden shadow-lg">
       <div id="carouselExampleControls"
            class="carousel slide"
            data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="https://cdn.discordapp.com/attachments/1229704465569943563/1231573297066410016/GALARY.png?ex=66377303&is=6624fe03&hm=618fc4706747f69813dd679b25ceec599d5fc017e75a04e89e9824c1a015a999&"
+            <img src="{% static 'images/galary-1.jpg' %}"
                  class="d-block w-100  justify-content-center"
                  style="max-height: 500px;
                         object-fit: cover;
@@ -23,7 +23,7 @@
                  alt="Image 1">
           </div>
           <div class="carousel-item">
-            <img src="https://cdn.discordapp.com/attachments/1229704465569943563/1231573297066410016/GALARY.png?ex=66377303&is=6624fe03&hm=618fc4706747f69813dd679b25ceec599d5fc017e75a04e89e9824c1a015a999&"
+            <img src="{% static 'images/galary-2.jpg' %}"
                  class="d-block w-100  justify-content-center"
                  style="max-height: 500px;
                         object-fit: cover;
@@ -31,7 +31,7 @@
                  alt="Image 2">
           </div>
           <div class="carousel-item">
-            <img src="https://cdn.discordapp.com/attachments/1229704465569943563/1231573297066410016/GALARY.png?ex=66377303&is=6624fe03&hm=618fc4706747f69813dd679b25ceec599d5fc017e75a04e89e9824c1a015a999&"
+            <img src="{% static 'images/galary-3.jpg' %}"
                  class="d-block w-100  justify-content-center"
                  style="max-height: 500px;
                         object-fit: cover;
@@ -68,14 +68,14 @@
               <h5 class="card-title" style="color: #CA9E67;">استشارة</h5>
               <div class="h-50 align-items-center">
                 <p style="color: #CA9E67;">
-                  تساعد الاستشارة القانونية المستشير على حماية حقوقه القانونية، ومعرفة الوسائل القانونية المتاحة له .
+                  تساعد الاستشارة القانونية المستشير على حماية حقوقه القانونية، ومعرفة الوسائل القانونية المتاحة له.
                 </p>
               </div>
               <div class="d-flex justify-content-center">
                 <a href="#"
                    class="btn btn-outline-dark w-50 mb-5"
                    style="color: #ca9e67;
-                          border-color: #ca9e67">آطلب</a>
+                          border-color: #ca9e67">اطلب</a>
               </div>
             </div>
           </div>
@@ -89,14 +89,14 @@
               <h5 class="card-title" style="color: #CA9E67;">صياغة عقود</h5>
               <div class="h-50 align-items-center">
                 <p style="color: #CA9E67;">
-                  عملية إنشاء وتحرير اتفاقية ملزمة قانونًا بين طرفين أو أكثر، لتحديد حقوقهم ومسؤولياتهم والتزاماتهم
+                  عملية إنشاء وتحرير اتفاقية ملزمة قانونًا بين طرفين أو أكثر، لتحديد حقوقهم ومسؤولياتهم والتزاماتهم.
                 </p>
               </div>
               <div class="d-flex justify-content-center">
                 <a href="#"
                    class="btn btn-outline-dark w-50 mb-5"
                    style="color: #ca9e67;
-                          border-color: #ca9e67">آطلب</a>
+                          border-color: #ca9e67">اطلب</a>
               </div>
             </div>
           </div>
@@ -109,13 +109,13 @@
             <div class="card-body">
               <h5 class="card-title" style="color: #CA9E67;">المذكرات</h5>
               <div class="h-50 align-items-center">
-                <p style="color: #CA9E67;">هي كافة الكتابات القانونية المتعلقة بالعمل القانوني أمام المحاكم</p>
+                <p style="color: #CA9E67;">هي كافة الكتابات القانونية المتعلقة بالعمل القانوني أمام المحاكم.</p>
               </div>
               <div class="d-flex justify-content-center">
                 <a href="#"
                    class="btn btn-outline-dark w-50 mb-5"
                    style="color: #ca9e67;
-                          border-color: #ca9e67">آطلب</a>
+                          border-color: #ca9e67">اطلب</a>
               </div>
             </div>
           </div>
@@ -124,23 +124,24 @@
     </div>
   </section>
   <section class="number-section mb-5">
-    <h1 class="text-center custom-color">آرقامنا</h1>
+    <h1 class="text-center custom-color">أرقامنا</h1>
     <div class="container">
       <div class="row">
         <div class="col-md-4">
           <div class="card-section ">
             <div class="card-body-2">
-              <i class="fas fa-handshake"></i>
-              <span>500</span>
-              <h5 class="custom-color">استشارات</h5>
+              <i class="fas fa-handshake custom-color"></i>
+              
+              <span class="custom-color animate-number">500</span>
+              <h5 class="custom-color">استشارة</h5>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card-section">
             <div class="card-body-2">
-              <i class="fas fa-user"></i>
-              <span>200</span>
+              <i class="fas fa-user custom-color"></i>
+              <span class="custom-color animate-number">200</span>
               <h5 class="custom-color">محامي</h5>
             </div>
           </div>
@@ -148,13 +149,49 @@
         <div class="col-md-4">
           <div class="card-section">
             <div class="card-body-2">
-              <i class="fa fa-users"></i>
-              <span>50</span>
-              <h5 class="custom-color">عملاء</h5>
+              <i class="fa fa-users custom-color "></i>
+              <span class="custom-color animate-number">50</span>
+              <h5 class="custom-color">عميل</h5>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const observer = new IntersectionObserver(entries => {
+            // Loop through the entries
+            entries.forEach(entry => {
+                // If the element is visible
+                if (entry.isIntersecting) {
+                    const spans = document.querySelectorAll('.animate-number');
+                    spans.forEach(span => {
+                        if (!span.classList.contains('animated')) { // Check if animation has been applied
+                            const finalNumber = parseInt(span.textContent, 10);
+                            let currentNumber = 1;
+    
+                            const interval = setInterval(function() {
+                                span.textContent = currentNumber;
+                                currentNumber++;
+                                if (currentNumber > finalNumber) {
+                                    clearInterval(interval);
+                                    span.classList.add('animated'); // Add a class to prevent re-animation
+                                }
+                            }, 3);
+                        }
+                    });
+                    observer.disconnect(); // Optionally disconnect observer after animation
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when at least 50% of the element is visible
+        });
+    
+        // Target the section to watch
+        const section = document.querySelector('.number-section');
+        observer.observe(section); // Observe the 'number-section'
+    });
+    </script>
+    
 {% endblock content %}

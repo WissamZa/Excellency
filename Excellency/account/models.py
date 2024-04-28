@@ -4,8 +4,16 @@ from django.contrib.auth.models import AbstractUser
 from main import validator
 
 
-def group_based_upload_to(instance, filename):
-   return "profiles/images/{}/{}".format(instance.user.id, filename)
+def images_upload_to(instance, filename):
+   return "profiles/{}/images/{}".format(instance.user.id, filename)
+
+
+def licences_upload_to(instance, filename):
+   return "profiles/{}/licence/{}".format(instance.user.id, filename)
+
+
+def qualification_upload_to(instance, filename):
+   return "profiles/{}/qualification/{}".format(instance.user.id, filename)
 
 
 legal_advice = "استشارات قانونية"
@@ -57,11 +65,12 @@ class gender_choices(models.TextChoices):
 
 
 class CustomarProfile(models.Model):
-   user = models.OneToOneField(User, on_delete=models.CASCADE)
+   user = models.OneToOneField(
+      User, on_delete=models.CASCADE, related_name="customar_profile")
    phone = models.CharField(max_length=10, unique=True, validators=[
                             validator.validate_phone])
    image = models.ImageField(
-       upload_to=group_based_upload_to, default="profiles/images/user-defualt.svg")
+       upload_to=images_upload_to, default="profiles/images/user-defualt.svg")
    gender = models.CharField(max_length=22,
                              choices=gender_choices.choices,
                              null=True, blank=True)
@@ -71,19 +80,21 @@ class CustomarProfile(models.Model):
 
 
 class LawyerProfile(models.Model):
-   user = models.OneToOneField(User, on_delete=models.CASCADE)
+   user = models.OneToOneField(
+      User, on_delete=models.CASCADE, related_name="lawyer_profile")
    phone = models.CharField(max_length=10, unique=True, validators=[
        validator.validate_phone])
    about = models.TextField(default="")
    image = models.ImageField(
-      upload_to=group_based_upload_to, blank=False)
+      upload_to=images_upload_to, blank=False)
    gender = models.CharField(max_length=22,
                              choices=gender_choices.choices,
                              null=True, blank=True)
    specialty = models.ManyToManyField(Specialty)
    certified = models.BooleanField(default=False)
-   licence = models.FileField(blank=False)
-   Qualification = models.FileField(blank=False)
+   licence = models.FileField(upload_to=licences_upload_to, blank=False)
+   Qualification = models.FileField(
+      upload_to=qualification_upload_to, blank=False)
 
    def __str__(self) -> str:
       return f"{self.user.full_name}"
