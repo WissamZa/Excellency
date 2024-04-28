@@ -54,16 +54,14 @@
     margin-bottom: 20px;
 }
 
-.form-label {
-    font-weight: bold;
-}
 
-.form-control {
+
+/* .form-control {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
+} */
 
 .submit-btn {
     display: block;
