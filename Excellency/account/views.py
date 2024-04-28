@@ -82,34 +82,35 @@ def sign_up_view(request: HttpRequest):
 def login_view(request: HttpRequest):
    msg = None
    next = None
-   if request.user.is_authenticated:
-      return redirect("main:index_view")
-   if "next" in request.GET:
-      next = request.GET.get("next", "")
+   try:
+      if request.user.is_authenticated:
+         return redirect("main:index_view")
+      if "next" in request.GET:
+         next = request.GET.get("next", "")
 
-   if request.method == "POST":
-      # authenticat user
-      user = None
-      if validate_national_id(request.POST["username"]):
-         user = authenticate(
-          request,
-          national_id=request.POST["username"],
-          password=request.POST.get("password")
-             )
-      if validat(email=request.POST["username"]):
-         user = authenticate(
-          request,
-          email=request.POST["username"],
-          password=request.POST.get("password")
-             )
+      if request.method == "POST":
+         # authenticat user
+         user = None
+         # if validate_national_id(request.POST["username"]):
+         #    user = authenticate(
+         #     request,
+         #     national_id=request.POST["username"],
+         #     password=request.POST.get("password")
+         #        )
+         if validat(email=request.POST["username"]):
+            user = authenticate(
+                request,
+                email=request.POST["username"],
+                password=request.POST.get("password")
+               )
 
-      if user:
-         # login user
-         login(request, user)
+         if user:
+            # login user
+            login(request, user)
 
-         return redirect(request.POST.get("next") or "main:index_view")
-      else:
-         msg = "الهوية الوطنية أو الايميل مستخدم خاطئ. حاول مرة اخرى..."
+            return redirect(request.POST.get("next") or "main:index_view")
+   except ValidationError:
+      msg = "الهوية الوطنية أو الايميل مستخدم خاطئ. حاول مرة اخرى..."
 
    return render(request, "account/login.html", {"msg": msg,
                                                  "next": next})
@@ -179,8 +180,9 @@ def user_profile_view(request: HttpRequest, user_name):
 
 def update_profile_view(request: HttpRequest):
    specialties=Specialty.objects.all()
-
    return render(request, "account/update_profile.html",{"specialties":specialties})
+
+
 
 def account_balance(request):
    return render(request, 'account/account_balance.html')
