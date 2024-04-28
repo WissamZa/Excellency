@@ -6,19 +6,11 @@
   <div class="container">
     <!-- Navbar brand -->
     <a class="navbar-brand ps-5" href="{% url 'main:index_view' %}">
-      <img src="{% static 'icons/gold-icon.png' %}"
-           alt="Brand Image"
-           height="60px">
+      <img src="{% static 'icons/gold-icon.png' %}" alt="Brand Image" height="60px">
     </a>
     <!-- Toggle button -->
-    <button class="navbar-toggler me-2"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-      <i class="fa-solid fa-bars opacity-50"></i>
+    <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars  text-gold" style="border: none;" ></i>
     </button>
     <!-- Collapsible wrapper. -->
     <div class="collapse navbar-collapse justify-content-between"
@@ -59,7 +51,7 @@
         {% endif %}
       </div>
     </div>
-    <!-- Collapsible wrapper -->
+    <!-- Collapsible wrapper -->  
   </div>
   <!-- Container wrapper -->
 </nav>

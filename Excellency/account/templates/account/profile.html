@@ -8,73 +8,91 @@
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'
         rel='stylesheet'>
-  <style>
-      .profile-head {
-          transform: translateY(5rem)
-      }
+<style>
+.order-button{
+  background-color: rgb(255, 255, 255);
+  height: 40px;
+  width: 100px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 10px;
+}
+.order-button:hover{
+background-color: black;
+color: white;
+border: 1px  solid white;
+border-radius: 10px;
 
-      .cover {
-          background-size: cover;
-          background-repeat: no-repeat
-      }
-  </style>
+}
+</style>
+
 {% endblock css %}
+
 {% block content %}
   {% include "account/sidebar.html" %}
-  <div class="row py-5 px-4 ">
-    <div class="col-md-5 mx-auto">
-      <!-- Profile widget -->
-      <div class="bg-white shadow rounded overflow-hidden">
-        <!-- هنا صورة الخلفية للبروفايل -->
-        <div class="px-4 pt-0 pb-4 cover" style="height: 200px;">
-          <div class="d-flex justify-content-center">
-            <img src="{% static "icons/gold-icon.png" %}" height="100%" weight="100%" alt="">
-          </div>
-          <div class="d-flex justify-content-center">
-            <ul class="list-unstyled d-flex gap-3 ">
-              <li>صياغة عقود</li>
-              <li>صياغة عقود</li>
-              <li>صياغة عقود</li>
-            </ul>
+  <section class="h-100 gradient-custom-2">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-9 col-xl-7">
+          <div class="card-profile border-profile">
+            <div class="rounded-top text-white d-flex flex-row" style="background-repeat: no-repeat; background-size: cover; height: 261px; background-image:url({% static 'images/sign_up_background.jpg' %});">
+              <div class="ms-4  d-flex flex-column" style="width: 150px; margin-top: 130px; margin-right: 20px;">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                  alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                  style="width: 150px; z-index: 1">
+
+              </div>
+
+            </div>
+            <div class="p-4 text-black" style="background-color: #f8f9fa;">
+              <div class="d-flex justify-content-end">
+                <ul class="list-unstyled d-flex gap-3 ">
+                  <li>صياغة عقود</li>
+                  <li>صياغة عقود</li>
+                  <li>صياغة عقود</li>
+                </ul>
+              </div>
+              
+              <div class="d-flex justify-content-between   align-items-center">
+                <div class="ms-3 text-dark d-flex align-items-center gap-2" >
+                  <h5 class="mt-2">{{ request.user.full_name }}</h5>
+                                                <!-- علامة التوثيق للمحامي -->
+                  <i title="محامي موثوق" class="fa-solid fa-badge-check text-success"></i>
+
+                  <a href="{% url 'account:update_profile_view'  %}"><i class="fa fa-pencil " aria-hidden="true"></i>
+                </div>
+                {% if not request.user.pk == user_id %}
+                  <a href="#"  class="order-button">اطلب خدمة</a>
+                {% endif %}
+
+
+              </div>
+            </div>
+            <div class="card-body bg-white p-4 text-black">
+              <div class="mb-5">
+                <p class="lead fw-normal mb-1">نبذة</p>
+                <div class="p-4" style="background-color: #f8f9fa;">
+                  <p class="font-italic mb-1">{{ user.LawyerProfile.about }}</p>
+
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <p class="lead fw-normal mb-0">المنشورات</p>
+                <p class="mb-0"><a href="#!" class="text-muted">جميع المنشورات</a></p>
+              </div>
+
+              <div class="row g-2">
+  
+              </div>
+
+            </div>
           </div>
         </div>
-        <div class="bg-light pt-4 ps-4 pe-4 d-flex justify-content-between align-items-center">
-          <div class="profile mr-3" style="position: absolute; top: 10rem;">
-            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
-                 alt="..."
-                 width="130"
-                 class="rounded mb-2 img-thumbnail">
-                 
-          </div>
-
-
-          <div class="bg-light d-flex align-items-center mt-4 mb-2">
-            <h4 class="mt-0 mb-0 text-start ">{{ request.user.full_name }}</h4>
-          <a href="#"><i class="fa fa-pencil me-2" aria-hidden="true"></i>
-        </a>
-      </div>
-
-
-      {% if not request.user.pk == user_id %}
-        <div class="bg-light  d-flex  align-items-center mt-4 mb-2">
-          <a href="#"  class="btn btn-outline-dark">اطلب خدمة</a>
-        </div>
-      {% endif %}
-    </div>
-    <div class="px-4 py-3">
-      <h5 class="mb-0">نبذة</h5>
-      <div class="p-4 rounded shadow-sm bg-light">
-        <p class="font-italic mb-0">{{ user.LawyerProfile.about }}</p>
       </div>
     </div>
-    <div class="py-4 px-4">
-      <div class="d-flex align-items-center justify-content-between mb-3">
-        <h5 class="mb-0">المنشورات</h5>
-        <a href="#" class="btn btn-link text-muted">مشاهدة جميع المنشورات</a>
-      </div>
-      <div class="row"></div>
-    </div>
-  </div>
-</div>
-</div>
-{% endblock content %}
+  </section>
+  {% endblock content %}
