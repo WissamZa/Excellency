@@ -26,16 +26,18 @@
                                href="#"
                                role="button"
                                data-bs-toggle="dropdown"
-                               aria-expanded="false">نوع الخدمة</a>
+                               aria-expanded="false">
+                                {% if specialty.id|slugify  in request.GET|getlist:"spcialties" %}checked{% endif %}
+                            </a>
                             <ul class="dropdown-menu p-2">
                                 {% for specialty in specialities %}
                                     <li class="dropdown-item px-2 text-end">
                                         <input type="checkbox"
                                                id="spcialties"
                                                name="spcialties"
-                                               {% if specialty.id in request.GET|getlist:'spcialties' %}checked{% endif %}
+                                               {% if specialty.id|slugify  in request.GET|getlist:"spcialties" %}checked{% endif %}
                                                value="{{ specialty.id }}">
-                                        <label class="custom-checkbox" for="legal_advice">{{ specialty.name }}</label>
+                                        <label class="custom-checkbox" for="spcialties">{{ specialty.name }}</label>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -43,8 +45,9 @@
                         <li>
                             <div class="d-flex gap-2">
                                 <select name="sort" class="form-select" style="width: 8rem;">
-                                    <option value="sort_name" selected>بالاسم</option>
-                                    <option value="Highest rating">ًالأعلى تقيما</option>
+                                    <option value="user_name_a_z" selected>أ - ي</option>
+                                    <option value="user_name_z-a" selected>ي - أ</option>
+                                    <option value="rating_top">ًالأعلى تقيما</option>
                                 </select>
                                 <button class="btn btn-outline-dark" type="submit">بحث</button>
                             </div>
@@ -55,7 +58,7 @@
         </form>
     </nav>
     <div class="container-fluid py-5 g-5 mx-1">
-        <div class="d-flex flex-wrap gap-2 justify-content-start align-items-center g-4">
+        <div class="d-flex flex-wrap gap-5 justify-content-start align-items-center g-4">
             {% for lawyer in lawyers %}
                 <div class="col-md-3 bg-light rounded-4">
                     <div class="law-card card-10 shadow-lg p-2">
@@ -85,7 +88,7 @@
                                     </div>
                                     <div class="d-flex align-self-end h-50">
                                         <a href="{% url 'service:order_form' lawyer.id %}"
-                                           class="law-btn btn btn-outline-dark align-items-end">آطلب الخدمة</a>
+                                           class="law-btn btn btn-outline-dark align-items-end">اطلب الخدمة</a>
                                     </div>
                                 </div>
                             </div>
