@@ -22,12 +22,18 @@
                            placeholder="بحث بالأسم">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-black"
+                            <a class="nav-link dropdown-toggle bg-light rounded-2 mx-2 text-black"
                                href="#"
                                role="button"
                                data-bs-toggle="dropdown"
                                aria-expanded="false">
-                                {% if specialty.id|slugify  in request.GET|getlist:"spcialties" %}checked{% endif %}
+                                {% if not request.GET|getlist:"spcialties"|length %}اختر خدمة{% endif %}
+                                {% for specialty in specialities %}
+                                    {% if specialty.id|slugify in request.GET|getlist:"spcialties" %}
+                                        {{ specialty.name }}
+                                        {% if not forloop.last %},{% endif %}
+                                    {% endif %}
+                                {% endfor %}
                             </a>
                             <ul class="dropdown-menu p-2">
                                 {% for specialty in specialities %}

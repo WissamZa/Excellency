@@ -89,6 +89,8 @@ class LawyerProfile(models.Model):
    about = models.TextField(default="", blank=True)
    image = models.ImageField(
       upload_to=images_upload_to, blank=False)
+   bannar = models.ImageField(
+      upload_to=images_upload_to, default="profiles/images/gold-icon.png")
    gender = models.CharField(max_length=22,
                              choices=gender_choices.choices,
                              null=True, blank=True)
