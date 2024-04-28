@@ -2,6 +2,11 @@ from django import template
 register = template.Library()
 
 
+@register.filter(name="getlist")
+def getlist(request_dictionary, key):
+   return request_dictionary.getlist(key) if request_dictionary else []
+
+
 @register.filter(name='range')
 def _range(_min, max):
    return range(1, max + 1)

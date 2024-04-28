@@ -15,7 +15,11 @@
                       style="gap: 10px"
                       action="{% url "main:lawyers_view" %}"
                       method="get">
-                    <input type="text" name="name" class="form-control" placeholder="بحث بالأسم">
+                    <input type="text"
+                           name="lawyer_name"
+                           class="form-control"
+                           value="{{ request.GET.lawyer_name }}"
+                           placeholder="بحث بالأسم">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-black"
@@ -24,27 +28,16 @@
                                data-bs-toggle="dropdown"
                                aria-expanded="false">نوع الخدمة</a>
                             <ul class="dropdown-menu p-2">
-                                <li class="dropdown-item px-2 text-end">
-                                    <input type="checkbox"
-                                           id="legal_advice"
-                                           name="legal_advice"
-                                           {% if request.GET.legal_advice %}checked{% endif %}>
-                                    <label class="custom-checkbox" for="legal_advice">استشارة</label>
-                                </li>
-                                <li class="dropdown-item px-2 text-end">
-                                    <input type="checkbox"
-                                           id="drafting_contracts"
-                                           name="drafting_contracts"
-                                           {% if request.GET.drafting_contracts %}checked{% endif %}>
-                                    <label class="custom-checkbox" for="drafting_contracts">صياغة عقود</label>
-                                </li>
-                                <li class="dropdown-item px-2 text-end">
-                                    <input type="checkbox"
-                                           id="warrant"
-                                           name="warrant"
-                                           {% if request.GET.warrant %}checked{% endif %}>
-                                    <label class="custom-checkbox" for="warrant">مذكرات</label>
-                                </li>
+                                {% for specialty in specialities %}
+                                    <li class="dropdown-item px-2 text-end">
+                                        <input type="checkbox"
+                                               id="spcialties"
+                                               name="spcialties"
+                                               {% if specialty.id in request.GET|getlist:'spcialties' %}checked{% endif %}
+                                               value="{{ specialty.id }}">
+                                        <label class="custom-checkbox" for="legal_advice">{{ specialty.name }}</label>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </li>
                         <li>
