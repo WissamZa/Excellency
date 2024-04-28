@@ -55,8 +55,8 @@ def sign_up_view(request: HttpRequest):
                      "image", CustomarProfile.image.field.default),
                   phone=validat(phone=request.POST.get("phone")),
                )
-            subject = 'welcome to GFG world'
-            message = f"مرحبا  {new_user.full_name},\
+            subject = 'نشكرك على تسجيلك في موقع معالي '
+            message = f"مرحبا  {new_user.full_name},\n\
               نشكرك على تسجيلك ."
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [new_user.email, ]
