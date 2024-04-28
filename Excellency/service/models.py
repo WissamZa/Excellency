@@ -1,6 +1,16 @@
 from django.db import models
 from account.models import User, Specialty
 
+legal_advice = "استشارات قانونية"
+drafting_contracts = "صياغة عقود"
+warrant = "مذكرات"
+
+Specialty_CHOICES = {
+    'legal_advice': legal_advice,
+    'drafting_contracts': drafting_contracts,
+    'warrant': warrant
+}
+
 
 class Service(models.Model):
    accepted = "مقبول"

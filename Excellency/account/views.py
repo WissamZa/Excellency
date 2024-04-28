@@ -42,8 +42,8 @@ def sign_up_view(request: HttpRequest):
                   image=request.FILES["image"],
                   gender=request.POST["gender"],
                   phone=validat(phone=request.POST.get("phone")),
-                  licence=request.FILES.get("licence"),
-                  Qualification=request.FILES.get("qualification"))
+                  licence=request.FILES["licence"],
+                  Qualification=request.FILES["Qualification"])
                specialty_id = Specialty.objects.get(
                   name=Specialty_CHOICES.get(request.POST["specialty"])).pk
                user_profile.specialty.add(specialty_id)
@@ -178,10 +178,9 @@ def user_profile_view(request: HttpRequest, user_name):
 #    return render(request, "account/update_profile.html", {"user": user, "specialty_choices": Specialty_CHOICES})
 
 
-def update_profile_view(request: HttpRequest,user_id):
-   specialties=Specialty.objects.all()
-   return render(request, "account/update_profile.html",{"specialties":specialties})
-
+def update_profile_view(request: HttpRequest, user_id):
+   specialties = Specialty.objects.all()
+   return render(request, "account/update_profile.html", {"specialties": specialties})
 
 
 def account_balance(request):
@@ -189,6 +188,6 @@ def account_balance(request):
 
 
 def profile_view(request: HttpRequest, user_id):
-      
-   user=User.objects.get(pk=user_id)
+
+   user = User.objects.get(pk=user_id)
    return render(request, "account/profile.html", {"user": user})
