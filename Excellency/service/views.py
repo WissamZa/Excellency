@@ -22,3 +22,6 @@ def order_details(request):
 
 def add_offer(request):
     return render(request, 'service/add_offer.html')
+
+def rating_view(request):
+     return render(request, 'service/rating.html')

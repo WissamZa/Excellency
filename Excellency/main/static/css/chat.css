@@ -34,7 +34,7 @@
     border-radius: 20px;
 }
 .input-chat{
-   border: none !important;
+    border: none !important;
     width: 20px !important;
 }
 .ico-chat{
@@ -42,3 +42,29 @@
     border: #fff;
 }
 
+.chat-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+.chat-message {
+    margin-bottom: 20px;
+    max-width: 80%;
+    word-wrap: break-word;
+    padding: 10px;
+}
+
+
+.chat-message.right {
+    background-color: #f0f0f0;
+    border-radius: 10px 10px 10px 0;
+    margin-left: auto;
+}
+
+
+.chat-message.left {
+    background-color: #f0f0f0;
+    border-radius: 10px 10px 10px 0;
+    margin-right: auto;
+}

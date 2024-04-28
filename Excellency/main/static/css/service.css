@@ -1,14 +1,13 @@
 .custom-container {
-    background-color: #113344; 
+    background-color: #ffffff; 
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 15px;
-    border: 4px solid;
-    border-color: #ca9e67;
+    padding: 40px;
+    border-radius: 25px 0px 25px 0px;
+    border: 1px solid;
+    border-color: #113344;
 }
 .service-order{
-    color: #ca9e67;
     font-weight: bold;
 }
 .file-order {

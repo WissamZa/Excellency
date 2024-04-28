@@ -7,4 +7,7 @@ urlpatterns = [
     path("lawyers", views.lawyers_view, name="lawyers_view"),
     path("contactus", views.contactus_view, name="contactus_view"),
     path("contact_messages", views.contact_messages, name="contact_messages"),
+    path("admin_viwe", views.admin_viwe, name="admin_viwe"),
+    path('lawyer_details', views.lawyer_details_view, name='lawyer_details'),
+    path('post/', views.post_view, name='post_view'),
 ]

@@ -6,7 +6,6 @@ from main.models import Contactus
 def index_view(request: HttpRequest):
    return render(request, "main/index.html")
 
-
 def contactus_view(request: HttpRequest):
    msg = None
    try:
@@ -27,3 +26,12 @@ def lawyers_view(request: HttpRequest):
 
 def contact_messages(request):
     return render(request, 'main/contact_messages.html')
+
+def admin_viwe(request):
+    return render(request, 'main/admin.html')
+
+def lawyer_details_view(request):
+    return render(request, 'main/lawyer_details.html')
+ 
+def post_view(request):
+    return render(request, 'main/post_lawyers.html')
