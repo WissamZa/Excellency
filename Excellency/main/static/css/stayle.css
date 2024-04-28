@@ -178,16 +178,20 @@
 
 .law-card {
   gap: 100px;
+  background-color: #fff;
+  border-radius: 20px;
+  
 }
 
 .card-10 {
   background-color: #ffffff8a;
   border-radius: 15px;
-
+  
 }
 
 .card-10 img {
   width: 180px;
+  
 }
 
 .card-title {
