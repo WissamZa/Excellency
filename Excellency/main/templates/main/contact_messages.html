@@ -1,0 +1,19 @@
+{% extends "base/base.html" %}
+{% block title %}
+   الرسائل
+{% endblock title %}
+{% block content %}
+<h1 class="text-center fw-bold mt-3">الرسائل</h1>
+
+<div class="row align-items-center">
+    <div class="col d-flex flex-column gap-2">
+        {% for message in messages %}
+            <div class="d-flex flex-column gap-2 border border-1 p-3 rounded-3">
+                <h4>{{ message.full_name }}</h4>
+                <p>{{message.subject}}</p>
+                <p>{{ message.created_at }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

@@ -9,5 +9,5 @@ urlpatterns = [
     path("contact_messages", views.contact_messages, name="contact_messages"),
     path("admin_viwe", views.admin_viwe, name="admin_viwe"),
     path('lawyer_details', views.lawyer_details_view, name='lawyer_details'),
-    path('post/', views.post_view, name='post_view'),
+    path('post/', views.post_list, name='post_list'),
 ]
