@@ -1,0 +1,76 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+  admin
+{% endblock title %}
+{% block content %}
+{% include "account/sidebar.html" %}
+<nav class="navbar navbar-expand-lg " style="background-color: rgba(240, 248, 255, 0);">
+    <div class="container ">
+        <div class="navbar-nav">
+            <input type="text" class="form-control rounded-3 mx-5 " placeholder="بحث بالأسم">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            </ul>
+        </div>
+        <form class="d-flex ms-auto" role="search" style="gap: 10px;">
+            <select class="form-select">
+                <option value="Verified">موثق</option>
+                <option value="Unverified">غير موثق</option>
+            </select>
+            <button class="btn btn-outline-dark" type="submit">بحث</button>
+        </form>
+    </div>
+</nav>
+<div class="container-fluid py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card-10 shadow-lg p-4 mb-4">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                            alt="Profile Picture" class="img-fluid rounded-3" style="width: 180px;">
+                    </div>
+                    <div class="col-md-8">
+                        <h3 class="mb-2"> عبدالله أحمد <i title="محامي موثوق" class="fa-solid fa-badge-check text-success" style="font-size: 0.8em;"></i></h3>
+                        <div class="d-flex justify-content-start">
+                            <p class="text-muted">اسشارة | صيغة عقود </p>
+                        </div>
+                        <div class="d-flex mb-1">
+                            <div>
+                                <p class="mb-0 text-muted">محامي متخصص في </p>
+                                <p class="mb-1 text-muted">التقييم</p>
+                                <p class="mb-0">4.8</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <a href="{% url 'main:lawyer_details' %}" class="btn btn-outline-dark">تفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-10 shadow-lg p-4">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                            alt="Profile Picture" class="img-fluid rounded-3" style="width: 180px;">
+                    </div>
+                    <div class="col-md-8">
+                        <h3 class="mb-2">محمد فهد</h3>
+                        <div class="d-flex justify-content-start">
+                            <p class="text-muted">اسشارة | صيغة عقود</p>
+                        </div>
+                        <div class="d-flex mb-1">
+                            <div>
+                                <p class="mb-0 text-muted">محامي متخصص في </p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <a href="{% url 'main:lawyer_details' %}" class="btn btn-outline-dark">تفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

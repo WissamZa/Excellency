@@ -1,54 +1,89 @@
 {% extends "base/base.html" %}
 {% load static %}
 {% block title %}
-    طلب الخدمة
+    الدفع
 {% endblock title %}
 {% block content %}
-
-<section class="gradient-custom">
-    <div class="container my-5 py-5">
-      <div class="row d-flex justify-content-center py-5">
-        <div class="col-md-7 col-lg-5 col-xl-4">
-          <div class="card" style="border-radius: 15px;">
-            <div class="card-body p-4">
-              <form>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <div data-mdb-input-init class="form-outline">
-                    <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
-                      placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
-                    <label class="service-order form-label" for="typeText">رقم البطاقة</label>
-                  </div>
-                  <img src="https://img.icons8.com/color/48/000000/visa.png" alt="visa" width="64px" />
+<section class="payment-section mt-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card-pay payment-card">
+                    <div class="card-body-pay">
+                        <h5 class="card-title text-center mb-4">معلومات الدفع</h5>
+                        <form>
+                            <div class="form-group">
+                                <label for="cardNumber">رقم البطاقة</label>
+                                <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardName">اسم حامل البطاقة</label>
+                                <input type="text" class="form-control" id="cardName" placeholder="Cardholder's Name" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="expiryDate">تاريخ الانتهاء</label>
+                                        <input type="text" class="form-control" id="expiryDate" placeholder="MM/YYYY" minlength="7" maxlength="7" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cvv">CVV</label>
+                                        <input type="password" class="form-control" id="cvv" placeholder="CVV" minlength="3" maxlength="3" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center d-flex flex-column">
+                                <button type="submit" class="btn btn-dark btn-lg">تأكيد الدفع <i class="fab fa-cc-visa"></i></button>
+                                <button type="submit" class="btn btn-dark btn-lg mt-3 "><i class="fab fa-apple-pay mt-2 " style="font-size: 30px;"></i></button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-  
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                  <div data-mdb-input-init class="form-outline">
-                    <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                      placeholder="Cardholder's Name" />
-                    <label class="service-order form-label" for="typeName">اسم حامل البطاقة</label>
-                  </div>
-                </div>
-  
-                <div class="d-flex justify-content-between align-items-center pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YYYY"
-                      size="7" id="exp" minlength="7" maxlength="7" />
-                    <label class="service-order form-label" for="typeExp">تاريخ الانتهاء</label>
-                  </div>
-                  <div data-mdb-input-init class="form-outline">
-                    <input type="password" id="typeText2" class="form-control form-control-lg"
-                      placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
-                    <label class="service-order form-label" for="typeText2">رمز الامان</label>
-                  </div>
-                  <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-info btn-lg btn-rounded">
-                    <i class="fas fa-arrow-right"></i>
-                  </button>
-                </div>
-              </form>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
+
+<style>
+  .payment-card {
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.payment-card .card-body-pay {
+    padding: 40px;
+}
+
+.payment-card .form-group label {
+    font-size: 14px;
+}
+
+.payment-card .form-control {
+    height: 50px;
+    font-size: 16px;
+}
+
+.payment-card .btn-primary {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.payment-card input[type="text"],
+.payment-card input[type="password"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.payment-card input[type="text"]:focus,
+.payment-card input[type="password"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+</style>
 {% endblock %}

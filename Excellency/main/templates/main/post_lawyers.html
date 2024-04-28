@@ -1,0 +1,208 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+مجتمع المحامين
+{% endblock title %}
+{% block content %}
+<div class="col-sm-12 d-flex justify-content-center mt-3 rounded-3">
+    <div class="panel panel-white post rounded-3 ">
+        <div class="post-heading rounded-3">
+            <div class="pull-left image">
+                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-circle avatar" alt="user profile image">
+            </div>
+            <div class="pull-left meta">
+                <div class="title h5 ">
+                    <a href="#"><b>محمد عبدالله</b></a> 
+                </div>
+                <h6 class="text-muted time">5 seconds ago</h6>
+            </div>
+        </div>
+        <div class="post-image">
+            <img src="{% static 'images/background.jpg' %}" class="image" alt="image post">
+        </div>
+        <div class="post-description mt-3">
+            <h4>العقود ومامعناها</h4>
+            <p>العقود هي ماتضمن حقك وحق الاخرين</p>
+            <div class="stats">
+                <a href="javascript:void(0);" class="btn btn-default stat-item">
+                    <i class="fa fa-thumbs-up icon"></i> {{ thumbs_up_count }}
+                </a>
+                <a href="javascript:void(0);" class="btn btn-default stat-item">
+                    <i class="fa fa-bookmark" aria-hidden="true"></i> {{ bookmark_count }}
+                </a>
+            </div>            
+        </div>
+        <div class="post-footer">
+            <div class="input-group w-50 ms-2 mx-2">
+                <input class="form-control" placeholder="Add a comment" type="text">
+                <span class="input-group-addon">
+                    <a href="javascript:void(0);"><i class="fa fa-edit mx-2"></i></a>
+                </span>
+            </div>
+            <ul class="comments-list">
+                <li class="comment">
+                    <a class="pull-left" href="javascript:void(0);">
+                        <img class="avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                    </a>
+                    <div class="comment-body">
+                        <div class="comment-heading">
+                            <h4 class="user">John Doe</h4>
+                            <h5 class="time">7 minutes ago</h5>
+                        </div>
+                        <p>I really love this picture. I really wish I could have been there.</p>
+                    </div>
+                </li>
+                <li class="comment">
+                    <a class="pull-left" href="javascript:void(0);">
+                        <img class="avatar" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                    </a>
+                    <div class="comment-body">
+                        <div class="comment-heading">
+                            <h4 class="user">John Doe</h4>
+                            <h5 class="time">3 minutes ago</h5>
+                        </div>
+                        <p>I think I might use this for one of my projects.</p>
+                    </div>
+                </li>
+                <li class="comment">
+                    <a class="pull-left" href="javascript:void(0);">
+                        <img class="avatar" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="avatar">
+                    </a>
+                    <div class="comment-body">
+                        <div class="comment-heading">
+                            <h4 class="user">John Doe</h4>
+                            <h5 class="time">10 seconds ago</h5>
+                        </div>
+                        <p>Wow! This is gorgeous.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12 d-flex justify-content-center">
+    <div class="panel panel-white post ">
+        <div class="post-heading">
+            <div class="pull-left image">
+                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-circle avatar" alt="user profile image">
+            </div>
+            <div class="pull-left meta">
+                <div class="title h5">
+                    <a href="#"><b>John Doe</b></a> 
+                </div>
+                <h6 class="text-muted time">5 seconds ago</h6>
+            </div>
+        </div>
+        <div class="post-image">
+            <img src="{% static 'images/sign_up_background.jpg' %}" class="image" alt="image post">
+        </div>
+        <div class="post-description">
+            <h4>Product Shoot</h4>
+            <p>Here is a picture of the walkway to our product shoot.</p>
+            <div class="stats">
+                <a href="javascript:void(0);" class="btn btn-default stat-item">
+                    <i class="fa fa-thumbs-up icon"></i>228
+                </a>
+                <a href="javascript:void(0);" class="btn btn-default stat-item">
+                    <i class="fa fa-bookmark-o"  aria-hidden="true"></i>128
+                </a>
+            </div>
+        </div>
+        <div class="post-footer">
+            <div class="input-group w-50">
+                <input class="form-control" placeholder="Add a comment" type="text">
+                <span class="input-group-addon">
+                    <a href="javascript:void(0);"><i class="fa fa-edit"></i></a>
+                </span>
+            </div>
+            <ul class="comments-list">
+                <li class="comment">
+                    <a class="pull-left" href="javascript:void(0);">
+                        <img class="avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                    </a>
+                    <div class="comment-body">
+                        <div class="comment-heading">
+                            <h4 class="user">John Doe</h4>
+                            <h5 class="time">7 minutes ago</h5>
+                        </div>
+                        <p>I really love this picture. I really wish I could have been there.</p>
+                    </div>
+                </li>
+                <li class="comment">
+                    <a class="pull-left" href="javascript:void(0);">
+                        <img class="avatar" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                    </a>
+                    <div class="comment-body">
+                        <div class="comment-heading">
+                            <h4 class="user">John Doe</h4>
+                            <h5 class="time">3 minutes ago</h5>
+                        </div>
+                        <p>I think I might use this for one of my projects.</p>
+                    </div>
+                </li>
+                <li class="comment">
+                    <a class="pull-left" href="javascript:void(0);">
+                        <img class="avatar" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="avatar">
+                    </a>
+                    <div class="comment-body">
+                        <div class="comment-heading">
+                            <h4 class="user">John Doe</h4>
+                            <h5 class="time">10 seconds ago</h5>
+                        </div>
+                        <p>Wow! This is gorgeous.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<style>
+.post {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 50px;
+    background-color: #ffffff9f;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.image {
+    width: 500px; 
+    height: auto; 
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.comments-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.comment {
+    margin-bottom: 15px;
+}
+
+.comment-body {
+    padding-left: 70px;
+}
+
+.user {
+    font-weight: bold;
+}
+
+.time {
+    color: #999;
+    font-size: 12px;
+}
+
+.input-group-addon {
+    cursor: pointer;
+}
+</style>
+{% endblock content %}

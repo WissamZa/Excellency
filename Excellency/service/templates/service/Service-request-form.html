@@ -4,28 +4,23 @@
 طلب الخدمة
 {% endblock title %}
 {% block content %}
-<div class="custom-container container  w-75 mt-5 pt-5">
-    <form  action="/submit_order/" method="POST" enctype="multipart/form-data">
+<div class="custom-container container w-75 mt-5 pt-5">
+    <form  action="/submit_order/" method="POST" enctype="multipart/form-data" class="service-form">
         {% csrf_token %}
         <div class="row justify-content-center">
-            <h2 class="service-order mb-4 text-center">طلب الخدمة</h2>
-
+            <h2 class="service-order text-center">طلب الخدمة</h2>
             <div class="col-md-6">
-
-
-                <div class="service-order w-100 mb-3">
-                    <label for="subject" class="form-label">الموضوع</label>
+                <div class="service-order-input">
+                    <label for="subject" class="form-label service-order">الموضوع</label>
                     <input type="subject" class="form-control" id="subject" name="subject" required>
                 </div>
-                <div class="service-order w-100  mb-3">
-                    <label for="message" class="form-label">تفاصيل الطلب</label>
+                <div class="service-order-input">
+                    <label for="message" class="form-label service-order">تفاصيل الطلب</label>
                     <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
                 </div>
-                
-
             </div>
-            <div class="col-md-6 pt-4 ">
-                <div class="px-3 pt-2">
+            <div class="col-md-6 pt-4 mt-3">
+                <div class="service-order-input">
                     <select class="form-select" id="service" name="service" required>
                         <option value="">اختر نوع الخدمة</option>
                         <option value="consultation">استشارة</option>
@@ -33,25 +28,85 @@
                         <option value="memos">مذكرات</option>
                     </select>
                 </div>
-                <div class="px-3 pt-2">
-                    <div class="file-order service-order w-100 mb-3 d-flex align-items-end">
-                        <i class="bi bi-file-earmark-plus-fill me-2"></i>
-                        <div class="flex-grow-1">
-                            <label for="file" class="form-label mb-1">تحميل الملف</label>
-                            <input type="file" class="form-control" id="file" name="file">
-                        </div>
-
+                <div class="service-order-input">
+                    <div class="file-order mb-3">
+                        <label for="file" class="form-label service-order">
+                            <h5 class="text-decoration-underline"> تحميل ملف <i class="fa fa-upload me-2 ms-3" aria-hidden="true"></i></h5>
+                        </label>
+                        <input type="file" class="form-control" id="file" name="file" onchange="displayFileName(this)">
+                        <span id="file-name" class="file-name"></span>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-outline-light btn-block">إرسال الطلب</button>
+                </div>                
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-dark btn-block">إرسال الطلب</button>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
     </form>
 </div>
 
+<style>
+    .custom-container {
+        background-color: #f8f9fa;
+        border-radius: 25px 0px 25px 0px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-order {
+        color: #343a40;
+    }
+
+    .service-order-input {
+        margin-bottom: 20px;
+    }
+
+    .file-order {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .file-order i {
+        font-size: 1.2rem;
+        color: #6c757d;
+    }
+    .file-name {
+    display: none;
+}
+
+.form-label:hover .file-name {
+    display: inline;
+}
+
+
+    .service-form input[type="file"] {
+        display: none;
+    }
+
+    .service-form label[for="file"] {
+        cursor: pointer;
+    }
+
+    .btn-dark {
+        background-color: #343a40;
+        border-color: #343a40;
+    }
+
+    .btn-dark:hover {
+        background-color: #23272b;
+        border-color: #23272b;
+    }
+</style>
+<script>
+    function displayFileName() {
+        const input = document.getElementById('file');
+        const label = document.querySelector('.file-order .form-label');
+
+        if (input.files.length > 0) {
+            label.innerHTML = `<h5 class="text-decoration-underline"> تحميل ملف <i class="fa fa-upload me-2 ms-3" aria-hidden="true"></i>${input.files[0].name}</h5>`;
+        } else {
+            label.innerHTML = '<h5 class="text-decoration-underline"> تحميل ملف <i class="fa fa-upload me-2 ms-3" aria-hidden="true"></i></h5>';
+        }
+    }
+</script>
 {% endblock %}

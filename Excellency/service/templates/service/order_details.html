@@ -9,11 +9,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card-details">
-                <div class="card-body ">
-                    <h5 class="card-title text-113345 ">رقم الطلب #12345</h5>
-                    <p class="card-text text-113345">عميل : نورة </p>
-                    <p class="card-text text-113345">نوع الخدمة : استشارة</p>
-                    <p class="card-text text-113345"></p>
+                <div class="card-body">
+                    <h5 class="card-title">رقم الطلب #12345</h5>
+                    <hr>
+                    <p class="card-text">عميل : نورة </p>
+                    <p class="card-text">نوع الخدمة : استشارة</p>
+                    <p class="card-text"></p>
+
                     
                     
                     <h3 class="mt-4 text-113345">وصف الطلب</h3>
@@ -67,10 +69,13 @@
       </div>
       <div class="modal-body">
         <form class="d-flex justify-content-center flex-column">
-            <div class=" flex-column mb-3 w-100 ">
-                <label for="offerPrice" class="form-label">السعر</label>
-                <input type="text" class="form-control  " id="offerPrice">ريال
-            </div>
+            <h3 class=" text-dark ">إضافة مبلغ</h3>
+            <div class="input-group mb-3">
+                
+                <span class="input-group-text">ريال</span>
+                <input type="text" class="form-control" aria-label="السعر (to the nearest dollar)">
+              
+              </div>
             <a href="{% url 'service:previous_orders' %}" class="btn btn-outline-dark">تقديم العرض</a>
         </form>
 

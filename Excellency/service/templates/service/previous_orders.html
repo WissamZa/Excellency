@@ -5,12 +5,12 @@
 {% endblock title %}
 {% block content %}
 {% include "account/sidebar.html" %}
-<div class="container mt-4 w-50 mt-5">
+<div class="container mt-4 w-50 mt-5 ">
     <ul class="nav nav-tabs mb-4">
-        <li class="nav-item ">
+        <li class="nav-item p-2">
             <a class="nav-link" href="{% url 'service:Lawyers-view' %}" style="color: #ca9e67">الطلبات الحالية</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item p-2">
             <a class="nav-link" href="{% url 'service:previous_orders' %}" style="color: #ca9e67">الطلبات السابقة</a>
         </li>
     </ul>
@@ -31,5 +31,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

@@ -20,10 +20,16 @@
       {% url "main:lawyers_view" as lawyers_page %}
       <!-- Left links -->
       <ul class="navbar-nav justify-content-between p-0 align-items-center flex-row-reverse">
+        
         <li class="nav-item">
           <a class="nav-link
                     {% if request.path == contactus_page %}active{% endif %}"
              href="{{ contactus_page }}">تواصل</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link
+                    {% if request.path == post_view  %}active{% endif %}"
+             href="{{ post_view }}">المنشورات</a>
         </li>
         <li class="nav-item">
           <a class="nav-link
