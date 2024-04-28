@@ -53,19 +53,23 @@ border-radius: 10px;
             <div class="p-4 text-black" style="background-color: #f8f9fa;">
               <div class="d-flex justify-content-end">
                 <ul class="list-unstyled d-flex gap-3 ">
-                  <li>صياغة عقود</li>
-                  <li>صياغة عقود</li>
-                  <li>صياغة عقود</li>
+                  {% for sp in user.lawyer_profile.specialty.all %}
+                  <li>{{ sp }}</li>
+                  {% if not forloop.last %}
+                  {% endif %}
+              {% endfor %}                
                 </ul>
               </div>
               
               <div class="d-flex justify-content-between   align-items-center">
                 <div class="ms-3 text-dark d-flex align-items-center gap-2" >
-                  <h5 class="mt-2">{{ request.user.full_name }}</h5>
+                  <h5 class="mt-2">{{ user.full_name }}</h5>
                                                 <!-- علامة التوثيق للمحامي -->
-                  <i title="محامي موثوق" class="fa-solid fa-badge-check text-success"></i>
+                  {% if user.role == "Lawyer" and user.lawyer_profile.certified %}
 
-                  <a href="{% url 'account:update_profile_view'  %}"><i class="fa fa-pencil " aria-hidden="true"></i>
+                  <i title="محامي موثوق" class="fa-solid fa-badge-check text-success"></i>
+                  {% endif %}
+                  <a href="{% url 'account:update_profile_view' request.user.pk  %}"><i class="fa fa-pencil " aria-hidden="true"></i>
                 </div>
                 {% if not request.user.pk == user_id %}
                   <a href="#"  class="order-button">اطلب خدمة</a>

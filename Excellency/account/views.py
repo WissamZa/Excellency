@@ -178,7 +178,7 @@ def user_profile_view(request: HttpRequest, user_name):
 #    return render(request, "account/update_profile.html", {"user": user, "specialty_choices": Specialty_CHOICES})
 
 
-def update_profile_view(request: HttpRequest):
+def update_profile_view(request: HttpRequest,user_id):
    specialties=Specialty.objects.all()
    return render(request, "account/update_profile.html",{"specialties":specialties})
 
@@ -189,5 +189,6 @@ def account_balance(request):
 
 
 def profile_view(request: HttpRequest, user_id):
+      
    user=User.objects.get(pk=user_id)
    return render(request, "account/profile.html", {"user": user})

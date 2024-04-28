@@ -46,4 +46,11 @@ class Payment(models.Model):
    card_name = models.CharField(max_length=50)
    card_number = models.CharField(max_length=15)
    exp_date = models.DateField()
-   payed = models.BooleanField(default=False)
+   paied = models.BooleanField(default=False)
+
+
+class Rating(models.Model):
+   user = models.ForeignKey(User, on_delete=models.CASCADE)
+   service = models.OneToOneField(Service, on_delete=models.CASCADE)
+   comment = models.TextField(max_length=250, default="")
+   rate = models.IntegerField(default=None)

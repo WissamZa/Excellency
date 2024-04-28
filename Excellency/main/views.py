@@ -9,6 +9,7 @@ from django.db.models import Count
 def index_view(request: HttpRequest):
    return render(request, "main/index.html")
 
+
 def contactus_view(request: HttpRequest):
    msg = None
    try:
@@ -32,7 +33,7 @@ def check_lawyer_has_specialty(lawyer: User, specialty):
 
 def lawyers_view(request: HttpRequest):
    try:
-      lawyers = User.objects.filter(role="Lawyer")
+      lawyers = User.objects.filter(role="Lawyer").order_by("full_name")
       spcialities = Specialty.objects.all()
 
       if "lawyer_name" in request.GET:
@@ -43,22 +44,29 @@ def lawyers_view(request: HttpRequest):
          spcialities_filter = request.GET.getlist("spcialties")
          lawyers = lawyers.filter(
             lawyer_profile__specialty__in=spcialities_filter).annotate(Count("id"))
+      if "sort" in request.GET:
+         if request.GET.get("sort") == "user_name_a_z":
+            lawyers = lawyers.order_by("full_name")
+         if request.GET.get("sort") == "user_name_z-a":
+            lawyers = lawyers.order_by("-full_name")
+         if request.GET.get("sort") == "rating_top":
+            pass
    except Exception as e:
       print(e)
    return render(request, "main/lawyers.html", {"lawyers": lawyers, "specialities": spcialities})
 
 
 def contact_messages(request):
+   return render(request, 'main/contact_messages.html')
 
-    return render(request, 'main/contact_messages.html')
 
 def admin_viwe(request):
     lawyer_profiles = LawyerProfile.objects.all()
     return render(request, 'main/admin.html', {'lawyer_profiles': lawyer_profiles})
 
 def lawyer_details_view(request):
-    return render(request, 'main/lawyer_details.html')
- 
-def post_view(request):
-    return render(request, 'main/post_lawyers.html')
+   return render(request, 'main/lawyer_details.html')
 
+
+def post_view(request):
+   return render(request, 'main/post_lawyers.html')
