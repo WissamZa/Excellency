@@ -18,6 +18,7 @@
       {% url "main:index_view" as home_page %}
       {% url "main:contactus_view" as contactus_page %}
       {% url "main:lawyers_view" as lawyers_page %}
+      {% url "main:post_view" as post_view %}
       <!-- Left links -->
       <ul class="navbar-nav justify-content-between p-0 align-items-center flex-row-reverse">
         
@@ -51,8 +52,8 @@
           <a href="{% url 'account:login_view' %}"
              class="btn nav-link btn-link px-3 me-2">تسجيل الدخول</a>
         {% else %}
-        <a href="{% url "account:profile_view" request.user.pk %}" class="btn nav-link btn-link px-3 me-2">مرحبا {{ request.user.full_name }} |  حسابي  </a>
-        <a href="{% url "account:logout_view" %}"
+        <a href="{% url 'account:profile_view' request.user.pk %}" class="btn nav-link btn-link px-3 me-2">مرحبا {{ request.user.full_name }} |  حسابي  </a>
+        <a href="{% url 'account:logout_view' %}"
         class="btn nav-link btn-link px-3 me-2">تسجيل الخروج</a>
         {% endif %}
       </div>

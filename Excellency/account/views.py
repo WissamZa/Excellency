@@ -121,17 +121,19 @@ def logout_view(request: HttpRequest):
    return redirect('main:index_view')
 
 
-# def user_profile_view(request: HttpRequest, user_name):
-#    try:
-#       msg = None
-#       user = User.objects.get(username=user_name)
-#    except User.DoesNotExist:
-#       msg = "User Not Found"
-#       return render(request, "account/user_profile.html", {"msg": msg})
-#    return render(request, "account/user_profile.html", {"user": user})
-def user_profile_view(request: HttpRequest):
+def user_profile_view(request: HttpRequest, user_name):
+   try:
+      msg = None
+      user = User.objects.get(username=user_name)
+   except User.DoesNotExist:
+      msg = "User Not Found"
+      return render(request, "account/user_profile.html", {"msg": msg})
+   return render(request, "account/user_profile.html", {"user": user})
 
-   return render(request, "account/user_profile.html")
+
+# def user_profile_view(request: HttpRequest):
+
+#    return render(request, "account/user_profile.html")
 
 
 # def update_profile_view(request: HttpRequest, user_name):
@@ -176,14 +178,14 @@ def user_profile_view(request: HttpRequest):
 
 
 def update_profile_view(request: HttpRequest):
+   specialties=Specialty.objects.all()
 
-
-   return render(request, "account/update_profile.html")
+   return render(request, "account/update_profile.html",{"specialties":specialties})
 
 def account_balance(request):
    return render(request, 'account/account_balance.html')
 
 
 def profile_view(request: HttpRequest, user_id):
-
-   return render(request, "account/profile.html", {"user_id": user_id})
+   user=User.objects.get(pk=user_id)
+   return render(request, "account/profile.html", {"user": user})
