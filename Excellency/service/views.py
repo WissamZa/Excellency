@@ -1,20 +1,23 @@
 from django.http import HttpRequest
 from django.shortcuts import render
 from account.models import User
+from django.contrib.auth.decorators import login_required
 from service.models import Service, Specialty
 # Create your views here.
 
 
+@login_required(login_url='/account/login')
 def order_form(request: HttpRequest, lawyer_id):
    try:
       lawyer = User.objects.get(pk=lawyer_id)
-      service = Service.objects.create(lawyer=lawyer,
-                                       customar=request.user,
-                                       order_type=Specialty.objects.get(
-                                          pk=request.POST['service']),
-                                       subject=request.POST['subject'],
-                                       content=request.POST['message'],
-                                       file=request.FILES.get('file'))
+      if request.method == 'POST':
+         service = Service.objects.create(lawyer=lawyer,
+                                          customar=request.user,
+                                          order_type=Specialty.objects.get(
+                                             pk=request.POST['service']),
+                                          subject=request.POST['subject'],
+                                          content=request.POST['message'],
+                                          file=request.FILES.get('file'))
    except User.DoesNotExist:
       return render(request, "404.html")
 
