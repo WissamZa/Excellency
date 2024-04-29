@@ -8,50 +8,51 @@
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'
         rel='stylesheet'>
-<style>
-.order-button{
-  background-color: rgb(255, 255, 255);
-  height: 40px;
-  width: 100px;
-  border: 1px solid black;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  padding: 10px;
-}
-.order-button:hover{
-background-color: black;
-color: white;
-border: 1px  solid white;
-border-radius: 10px;
+  <style>
+      .order-button {
+          background-color: rgb(255, 255, 255);
+          height: 40px;
+          width: 100px;
+          border: 1px solid black;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          padding: 10px;
+      }
 
-}
-.order-button-2{
-  background-color: rgb(255, 255, 255);
-  height: 40px;
-  width: 130px;
-  border: 1px solid black;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration:none;
-  color: black;
-  padding: 10px;
-}
-.order-button-2:hover{
-background-color: black;
-color: white;
-border: 1px  solid white;
-border-radius: 10px;
+      .order-button:hover {
+          background-color: black;
+          color: white;
+          border: 1px solid white;
+          border-radius: 10px;
 
-}
-</style>
+      }
 
+      .order-button-2 {
+          background-color: rgb(255, 255, 255);
+          height: 40px;
+          width: 130px;
+          border: 1px solid black;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          color: black;
+          padding: 10px;
+      }
+
+      .order-button-2:hover {
+          background-color: black;
+          color: white;
+          border: 1px solid white;
+          border-radius: 10px;
+
+      }
+  </style>
 {% endblock css %}
-
 {% block content %}
   {% include "account/sidebar.html" %}
   <section class="h-100 gradient-custom-2">
@@ -74,20 +75,17 @@ border-radius: 10px;
               <div class="d-flex justify-content-end">
                 <ul class="list-unstyled d-flex gap-3 ">
                   {% for sp in user.lawyer_profile.specialty.all %}
-                  <li>{{ sp }}</li>
-                  {% if not forloop.last %}
-                  {% endif %}
-              {% endfor %}                
+                    <li>{{ sp }}</li>
+                    {% if not forloop.last %}{% endif %}
+                  {% endfor %}
                 </ul>
               </div>
-              
               <div class="d-flex justify-content-between   align-items-center">
-                <div class="ms-3 text-dark d-flex align-items-center gap-2" >
+                <div class="ms-3 text-dark d-flex align-items-center gap-2">
                   <h5 class="mt-2">{{ user.full_name }}</h5>
-                                                <!-- علامة التوثيق للمحامي -->
+                  <!-- علامة التوثيق للمحامي -->
                   {% if user.role == "Lawyer" and user.lawyer_profile.certified %}
-
-                  <i title="محامي موثوق" class="fa-solid fa-badge-check text-success"></i>
+                    <i title="محامي موثوق" class="fa-solid fa-badge-check text-success"></i>
                   {% endif %}
                   <a href="{% url 'account:update_profile_view' request.user.pk  %}"><i class="fa fa-pencil " aria-hidden="true"></a></i>
                 </div>
@@ -137,41 +135,52 @@ border-radius: 10px;
               </div>
 
             </div>
+            <div class="row g-2"></div>
           </div>
         </div>
       </div>
     </div>
-    <div class="modal fade " id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered mb-5">
-        <div class="modal-content">
-          <div class="modal-header flex-column-reverse">
-            <h3 class="modal-title" id="postModalLabel">إنشاء منشور</h3>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="postSubject" class="form-label">العنوان</label>
-                <input type="text" class="form-control" id="postSubject" placeholder="ادخل عنوان">
-              </div>
-              <div class="mb-3">
-                <label for="postImage" class="form-label">إضافة صورة</label>
-                <input type="file" class="form-control" id="postImage">
-              </div>
-              <div class="mb-3">
-                <label for="postDescription" class="form-label">المقالة</label>
-                <textarea class="form-control" id="postDescription" rows="3"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">رجوع</button>
-            <button type="button" class="order-button-2">نشر</button>
-          </div>
+  </div>
+  <div class="modal fade"
+       id="postModal"
+       tabindex="-1"
+       aria-labelledby="postModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered mb-5">
+      <div class="modal-content">
+        <div class="modal-header flex-column-reverse">
+          <h3 class="modal-title" id="postModalLabel">إنشاء منشور</h3>
+          <button type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="postSubject" class="form-label">العنوان</label>
+              <input type="text"
+                     class="form-control"
+                     id="postSubject"
+                     placeholder="ادخل عنوان">
+            </div>
+            <div class="mb-3">
+              <label for="postImage" class="form-label">إضافة صورة</label>
+              <input type="file" class="form-control" id="postImage">
+            </div>
+            <div class="mb-3">
+              <label for="postDescription" class="form-label">المقالة</label>
+              <textarea class="form-control" id="postDescription" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">رجوع</button>
+          <button type="button" class="order-button-2">نشر</button>
         </div>
       </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  </section>
-  {% endblock content %}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</section>
+{% endblock content %}

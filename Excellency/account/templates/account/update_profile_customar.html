@@ -1,6 +1,6 @@
 <!--djlint:off H021-->
 <div class="form d-flex flex-column justify-content-center form-width">
-  <form action="{% url 'account:sign_up_view' %}"
+  <form action="{% url 'account:update_profile_view' request.user.id %}"
         method="post"
         class="d-flex flex-column gap-2"
         enctype="multipart/form-data">
@@ -23,14 +23,12 @@
            value="{{ request.user.email }}"
            required
            placeholder="قم بوضع بريدك الالكتروني هنا" />
-    <label for="about">نبذة:</label>
-    <textarea name="about" id="" cols="30" rows="3" class="form-control"></textarea>
     <label class="form-label mb-0 mt-2">الجوال</label>
     <input name="phone"
            class="form-control"
            type="text"
            maxlength="10"
-           value="{{ user.phone }}"
+           value="{{ user.customar_profile.phone }}"
            pattern="^05[0-9]{4}[0-9]{4}$"
            required
            placeholder="05XXXXXXXX" />
@@ -40,12 +38,9 @@
       <label for="back-image" class="form-label">الصورة الخلفية:</label>
       <input type="file" name="back-image" class="form-control">
     </div>
-    <span class="text-end message"></span>
-    <span class="text-end message"></span>
     <input type="submit"
            class="btn my-2 text-white"
            style="background-color:#113345"
-           value="سجل" />
+           value="تحديث" />
   </form>
-  <span>لديك بالفعل حساب؟ <a href="{% url 'account:login_view' %}">تسجيل الدخول هنا</a> </span>
 </div>

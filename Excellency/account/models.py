@@ -70,9 +70,9 @@ class CustomarProfile(models.Model):
    phone = models.CharField(max_length=10, blank=True, validators=[
                             validator.validate_phone])
    image = models.ImageField(
-       upload_to=images_upload_to, default="profiles/images/user-defualt.svg")
+       upload_to=images_upload_to, default="/profiles/images/user-defualt.svg")
    bannar = models.ImageField(
-       upload_to=images_upload_to, default="profiles/images/user-defualt.svg")
+       upload_to=images_upload_to, default="/profiles/images/user-defualt.svg")
    gender = models.CharField(max_length=22,
                              choices=gender_choices.choices,
                              null=True, blank=True)

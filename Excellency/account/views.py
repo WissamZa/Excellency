@@ -56,8 +56,6 @@ def sign_up_view(request: HttpRequest):
             if request.POST["role"] == "Customar":
                CustomarProfile.objects.create(
                   user=new_user,
-                  image=request.POST.get(
-                     "image", CustomarProfile.image.field.get_default),
                   phone=validat(phone=request.POST.get("phone")),
                )
             subject = 'نشكرك على تسجيلك في موقع معالي '
@@ -197,7 +195,10 @@ def update_profile_view(request: HttpRequest, user_id):
             lawyer_profile = LawyerProfile.objects.get(user=user)
             lawyer_profile.image = request.FILES.get(
                 "image", lawyer_profile.image)
+            lawyer_profile.about = request.POST.get(
+               "about", lawyer_profile.about)
             post_specialties = request.POST.getlist("specialty")
+
             lawyer_profile.gender = request.POST.get(
                 "gender", lawyer_profile.gender)
             lawyer_profile.phone = validat(
@@ -221,9 +222,11 @@ def update_profile_view(request: HttpRequest, user_id):
             user.save()
             customar_profile: CustomarProfile = CustomarProfile.objects.get(
                user=user)
-
-            customar_profile.image = request.POST.get(
+            print(request.FILES.get("image"))
+            customar_profile.image = request.FILES.get(
                 "image", customar_profile.image)
+            customar_profile.bannar = request.FILES.get(
+                "bannar", customar_profile.bannar)
             customar_profile.phone = validat(phone=request.POST.get(
                "phone", customar_profile.phone))
             customar_profile.save()
@@ -235,6 +238,14 @@ def account_balance(request):
 
 
 def profile_view(request: HttpRequest, user_id):
-   
+
    user = User.objects.get(pk=user_id)
-   return render(request, "account/profile.html", {"user": user})
+   user_profile = None
+   if user.role == "Lawyer":
+      print("la")
+      user_profile = user.lawyer_profile
+   if user.role == "Customer":
+      print("cu")
+      user_profile = user.customar_profile
+   return render(request, "account/profile.html", {"user": user,
+                                                   "user_profile": user_profile})
