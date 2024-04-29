@@ -63,7 +63,6 @@
           <div class="card">
             <div class="circle-icon">
               <i class="fa fa-comments" style="color: #CA9E67;"></i>
-              
             </div>
             <div class="card-body">
               <h5 class="card-title" style="color: #CA9E67;">استشارة</h5>
@@ -132,8 +131,7 @@
           <div class="card-section ">
             <div class="card-body-2">
               <i class="fas fa-handshake custom-color"></i>
-              
-              <span class="custom-color animate-number">500</span>
+              <span class="custom-color animate-number">{{ order_num }}</span>
               <h5 class="custom-color">استشارة</h5>
             </div>
           </div>
@@ -142,7 +140,7 @@
           <div class="card-section">
             <div class="card-body-2">
               <i class="fas fa-user custom-color"></i>
-              <span class="custom-color animate-number">200</span>
+              <span class="custom-color animate-number">{{ lawyers_num }}</span>
               <h5 class="custom-color">محامي</h5>
             </div>
           </div>
@@ -151,7 +149,7 @@
           <div class="card-section">
             <div class="card-body-2">
               <i class="fa fa-users custom-color "></i>
-              <span class="custom-color animate-number">50</span>
+              <span class="custom-color animate-number">{{ customar_num }}</span>
               <h5 class="custom-color">عميل</h5>
             </div>
           </div>
@@ -160,39 +158,38 @@
     </div>
   </section>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const observer = new IntersectionObserver(entries => {
-            // Loop through the entries
-            entries.forEach(entry => {
-                // If the element is visible
-                if (entry.isIntersecting) {
-                    const spans = document.querySelectorAll('.animate-number');
-                    spans.forEach(span => {
-                        if (!span.classList.contains('animated')) { // Check if animation has been applied
-                            const finalNumber = parseInt(span.textContent, 10);
-                            let currentNumber = 1;
-    
-                            const interval = setInterval(function() {
-                                span.textContent = currentNumber;
-                                currentNumber++;
-                                if (currentNumber > finalNumber) {
-                                    clearInterval(interval);
-                                    span.classList.add('animated'); // Add a class to prevent re-animation
-                                }
-                            }, 3);
-                        }
-                    });
-                    observer.disconnect(); // Optionally disconnect observer after animation
-                }
-            });
-        }, {
-            threshold: 0.5 // Trigger when at least 50% of the element is visible
-        });
-    
-        // Target the section to watch
-        const section = document.querySelector('.number-section');
-        observer.observe(section); // Observe the 'number-section'
-    });
-    </script>
-    
+      document.addEventListener('DOMContentLoaded', function() {
+          const observer = new IntersectionObserver(entries => {
+              // Loop through the entries
+              entries.forEach(entry => {
+                  // If the element is visible
+                  if (entry.isIntersecting) {
+                      const spans = document.querySelectorAll('.animate-number');
+                      spans.forEach(span => {
+                          if (!span.classList.contains('animated')) { // Check if animation has been applied
+                              const finalNumber = parseInt(span.textContent, 10);
+                              let currentNumber = 1;
+
+                              const interval = setInterval(function() {
+                                  span.textContent = currentNumber;
+                                  currentNumber++;
+                                  if (currentNumber > finalNumber) {
+                                      clearInterval(interval);
+                                      span.classList.add('animated'); // Add a class to prevent re-animation
+                                  }
+                              }, 3);
+                          }
+                      });
+                      observer.disconnect(); // Optionally disconnect observer after animation
+                  }
+              });
+          }, {
+              threshold: 0.5 // Trigger when at least 50% of the element is visible
+          });
+
+          // Target the section to watch
+          const section = document.querySelector('.number-section');
+          observer.observe(section); // Observe the 'number-section'
+      });
+  </script>
 {% endblock content %}

@@ -163,3 +163,4 @@ create_superuser.bat
 .djlintrc
 **/media/post/*
 **/media/profiles/*
+dummy_data.py

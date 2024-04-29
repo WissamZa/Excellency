@@ -1,13 +1,18 @@
-from os import name
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from main.models import Contactus, Post
+from service.models import Service
 from account.models import User, Specialty, LawyerProfile
 from django.db.models import Count
 
 
 def index_view(request: HttpRequest):
-   return render(request, "main/index.html")
+   order_num = Service.objects.all().count()
+   lawyers_num = User.objects.filter(role="Lawyer").count()
+   customar_num = User.objects.filter(role="Customer").count()
+   return render(request, "main/index.html", {"order_num": order_num,
+                                              "lawyers_num": lawyers_num,
+                                              "customar_num": customar_num})
 
 
 def contactus_view(request: HttpRequest):
@@ -70,14 +75,16 @@ def admin_viwe(request):
 
 
 def lawyer_details_view(request, user_id):
-   user=User.objects.get(id=user_id)
-   return render(request, 'main/lawyer_details.html',{"user":user})
+   user = User.objects.get(id=user_id)
+   return render(request, 'main/lawyer_details.html', {"user": user})
 
-def verification(request:HttpRequest,user_id):
-   user=User.objects.get(id=user_id)
-   user.lawyer_profile.certified=True
+
+def verification(request: HttpRequest, user_id):
+   user = User.objects.get(id=user_id)
+   user.lawyer_profile.certified = True
    user.lawyer_profile.save()
    return redirect("main:admin_viwe")
+
 
 def post_list(request):
    if request.user.is_authenticated:
