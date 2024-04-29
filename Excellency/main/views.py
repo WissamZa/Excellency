@@ -66,9 +66,15 @@ def admin_viwe(request):
     lawyer_profiles = LawyerProfile.objects.all()
     return render(request, 'main/admin.html', {'lawyer_profiles': lawyer_profiles})
 
-def lawyer_details_view(request):
-   return render(request, 'main/lawyer_details.html')
+def lawyer_details_view(request, user_id):
+   user=User.objects.get(id=user_id)
+   return render(request, 'main/lawyer_details.html',{"user":user})
 
+def verification(request:HttpRequest,user_id):
+   user=User.objects.get(id=user_id)
+   user.lawyer_profile.certified=True
+   user.lawyer_profile.save()
+   return redirect("main:admin_viwe")
 
 def post_list(request):
     if request.user.is_authenticated:

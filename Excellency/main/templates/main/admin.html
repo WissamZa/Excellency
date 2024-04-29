@@ -14,31 +14,30 @@
             {% for profile in lawyer_profiles %}
             <div class="card-10 shadow-lg p-4 mb-4">
                 <div class="row align-items-center">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <img src="{{ profile.image.url }}" alt="Profile Picture" class="img-fluid rounded-3" style="width: 180px;">
                     </div>
-                    <div class="col-md-8">
-                        <h3 class="mb-2">{{ profile.user.full_name }} {% if profile.certified %}<i title="محامي موثوق" class="fa-solid fa-badge-check text-success" style="font-size: 0.8em;"></i>{% endif %}</h3>
-                        <div class="d-flex justify-content-start">
-                            <p class="text-muted">
-                                {% for specialty in profile.specialty.all %}
-                                    {{ specialty }}{% if not forloop.last %} | {% endif %}
-                                {% endfor %}
-                            </p>
-                        </div>
-                        <div class="d-flex mb-1">
-                            <div>
-                                <p class="mb-0 text-muted">محامي متخصص في</p>
-                                <p class="mb-0">{{ profile.about }}</p> <!-- You may need to adjust this field based on your requirements -->
-                                <p class="mb-1 text-muted">التقييم: 4.8</p> <!-- You may need to adjust this field based on your requirements -->
+                    <div class="col-md-10">
+                        <div>
+                            <h3 class="mb-2">{{ profile.user.full_name }} {% if profile.certified %}<i title="محامي موثوق" class="fa-solid fa-badge-check text-success" style="font-size: 0.8em;"></i>{% endif %}</h3>
+                            <div class="d-flex justify-content-start">
+                                <p class="text-muted">
+                                    {% for specialty in profile.specialty.all %}
+                                        {{ specialty }}{% if not forloop.last %} | {% endif %}
+                                    {% endfor %}
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="{% url 'main:lawyer_details' profile.user.id %}" class="btn btn-outline-dark">تفاصيل</a>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <a href="{% url 'main:lawyer_details' %}" class="btn btn-outline-dark">تفاصيل</a>
-                        </div>
+
                     </div>
                 </div>
+                
+
             </div>
+            
             {% endfor %}
         </div>
     </div>
