@@ -72,3 +72,4 @@ class Rating(models.Model):
    service = models.OneToOneField(Service, on_delete=models.CASCADE)
    comment = models.TextField(max_length=250, default="")
    rate = models.IntegerField(default=None)
+

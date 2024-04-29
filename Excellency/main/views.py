@@ -1,7 +1,7 @@
 from os import name
 from django.http import HttpRequest
-from django.shortcuts import render
-from main.models import Contactus
+from django.shortcuts import render,redirect
+from main.models import Contactus,Post
 from account.models import User, Specialty,LawyerProfile
 from django.db.models import Count
 
@@ -56,9 +56,11 @@ def lawyers_view(request: HttpRequest):
    return render(request, "main/lawyers.html", {"lawyers": lawyers, "specialities": spcialities})
 
 
-def contact_messages(request):
-   return render(request, 'main/contact_messages.html')
-
+def contact_messages(request:HttpRequest):
+   
+    messages = Contactus.objects.all()
+    
+    return render(request, 'main/contact_messages.html', {'messages': messages})
 
 def admin_viwe(request):
     lawyer_profiles = LawyerProfile.objects.all()
@@ -68,5 +70,9 @@ def lawyer_details_view(request):
    return render(request, 'main/lawyer_details.html')
 
 
-def post_view(request):
-   return render(request, 'main/post_lawyers.html')
+def post_list(request):
+    if request.user.is_authenticated:
+        posts = Post.objects.all()
+        return render(request, 'main/post_lawyers.html', {'posts': posts})
+    else:
+        return redirect('account:login_view')
