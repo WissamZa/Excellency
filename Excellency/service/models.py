@@ -17,10 +17,12 @@ def service_file_upload_to(instance, filename):
 
 
 class Service(models.Model):
+   completed = "مكتمل"
    accepted = "مقبول"
    pending = "قيد الانتظار"
    rejected = "مرفوض"
    STATUS_CHOICES = (
+      ('completed', completed),
        ('accepted', accepted),
        ('pending', pending),
        ('rejected', rejected),
@@ -72,4 +74,3 @@ class Rating(models.Model):
    service = models.OneToOneField(Service, on_delete=models.CASCADE)
    comment = models.TextField(max_length=250, default="")
    rate = models.IntegerField(default=None)
-
