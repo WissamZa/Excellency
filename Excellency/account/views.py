@@ -61,8 +61,15 @@ def sign_up_view(request: HttpRequest):
                   phone=validat(phone=request.POST.get("phone")),
                )
             subject = 'نشكرك على تسجيلك في موقع معالي '
-            message = f"مرحبا  {new_user.full_name},\n\
-              نشكرك على تسجيلك ."
+            message = f'''مرحبا  {new_user.full_name},\n\
+                نحن سعداء بتواجدك هنا. نتطلع إلى تقديم خدماتنا لك بأفضل شكل ممكن وتلبية احتياجاتك وتطلعاتك. سواء كنت تبحث عن استشارة قانونية، أو ترغب في الوصول إلى معلومات قانونية مفيدة، فإننا هنا لمساعدتك.
+
+لا تتردد في استكشاف الموارد المتاحة لدينا، ولا تتردد في الاتصال بنا إذا كان لديك أي استفسار أو اقتراح. نحن هنا لخدمتك وتقديم الدعم الذي تحتاجه.
+
+شكرًا لثقتك بنا، ونتمنى لك تجربة ممتعة ومفيدة على منصتنا.
+
+تحياتنا،
+فريق المعالي للمحاماة .'''
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [new_user.email, ]
             send_mail(subject, message, email_from, recipient_list)
