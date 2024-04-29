@@ -47,7 +47,8 @@
                                    class="btn btn-outline-dark me-2">تفاصيل الطلب</a>
                                 {% if request.user.role == "Lawyer" and order.status == status_choices.pending %}
                                     <form action="{% url "service:order_details" order.id %}" method="post">
-                                        <input type="hidden" name="status" value="rejected">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="status" value="{{ status_choices.rejected }}">
                                         <button type="submit" name="reject-btn" class="btn btn-danger me-2">غير مهتم</button>
                                     </form>
                                 {% endif %}

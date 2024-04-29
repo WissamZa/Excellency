@@ -27,6 +27,11 @@
                         <p class="card-text">
                             حالة الخدمة : <span>{{ order.status }}</span>
                         </p>
+                        {% if order.status == status_choices.offer_made %}
+                            <p class="card-text">
+                                السعر  المعروض : <span>{{ order.price }}</span>
+                            </p>
+                        {% endif %}
                         <h3 class="mt-4 text-113345">
                             عنوان الطلب : <span class="fs-5 bg-gradient p-2 rounded-4 mx-3">{{ order.subject }}</span>
                         </h3>
@@ -48,7 +53,7 @@
                                         data-bs-target="#offerModal">إضافة عرض</button>
                                 {% if request.user.role == "Lawyer" %}
                                     <form action="{% url "service:order_details" order.id %}" method="post">
-                                        <input type="hidden" name="status" value="rejected">
+                                        <input type="hidden" name="status" value="{{ status_choices.rejected }}">
                                         <button type="submit" name="reject-btn" class="btn btn-danger me-2">غير مهتم</button>
                                     </form>
                                 {% endif %}
@@ -76,16 +81,20 @@
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="d-flex justify-content-center flex-column">
+                    <form action="{% url "service:order_details" order.id %}"
+                          method="post"
+                          class="d-flex justify-content-center flex-column">
+                        {% csrf_token %}
                         <h3 class=" text-dark ">إضافة مبلغ</h3>
                         <div class="input-group mb-3">
                             <span class="input-group-text">ريال</span>
                             <input type="text"
                                    class="form-control"
+                                   name="price"
                                    aria-label="السعر (to the nearest dollar)">
+                            <input type="hidden" name="status" value="{{ status_choices.offer_made }}">
                         </div>
-                        <a href="{% url 'service:previous_orders' %}"
-                           class="btn btn-outline-dark">تقديم العرض</a>
+                        <button type="submit" name="make_offer" class="btn btn-outline-dark">تقديم العرض</button>
                     </form>
                 </div>
             </div>

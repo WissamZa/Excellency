@@ -58,9 +58,14 @@ def order_details(request: HttpRequest, order_id):
    if not (order.lawyer == user or order.customar == user):
       return render(request, "no_permission.html")
 
-   if request.method == "POST" and "reject-btn" in request.POST:
-      order.status = request.GET.get("status", order.status)
-      order.save()
+   if request.method == "POST":
+      if "reject-btn" in request.POST:
+         order.status = request.POST.get("status", order.status)
+         order.save()
+      if "make_offer" in request.POST:
+         order.price = request.POST.get("price")
+         order.status = request.POST.get("status", order.status)
+         order.save()
 
    return render(request, 'service/order_details.html', {"order": order,
                                                          "status_choices": dict(Service.STATUS_CHOICES)})

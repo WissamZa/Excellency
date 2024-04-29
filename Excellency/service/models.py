@@ -19,11 +19,13 @@ def service_file_upload_to(instance, filename):
 class Service(models.Model):
    completed = "مكتمل"
    accepted = "مقبول"
+   offer_made = "عرض سعر"
    pending = "قيد الانتظار"
    rejected = "مرفوض"
    STATUS_CHOICES = (
       ('completed', completed),
        ('accepted', accepted),
+       ('offer_made', offer_made),
        ('pending', pending),
        ('rejected', rejected),
     )
@@ -39,7 +41,7 @@ class Service(models.Model):
    price = models.DecimalField(
       decimal_places=2, max_digits=4, blank=True, null=True)
    status = models.CharField(
-      max_length=18, choices=STATUS_CHOICES, default=pending)
+      max_length=18, default=pending)
    created_date = models.DateTimeField(auto_now_add=True)
 
 
