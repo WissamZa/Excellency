@@ -28,6 +28,26 @@ border: 1px  solid white;
 border-radius: 10px;
 
 }
+.order-button-2{
+  background-color: rgb(255, 255, 255);
+  height: 40px;
+  width: 130px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration:none;
+  color: black;
+  padding: 10px;
+}
+.order-button-2:hover{
+background-color: black;
+color: white;
+border: 1px  solid white;
+border-radius: 10px;
+
+}
 </style>
 
 {% endblock css %}
@@ -69,10 +89,19 @@ border-radius: 10px;
 
                   <i title="محامي موثوق" class="fa-solid fa-badge-check text-success"></i>
                   {% endif %}
-                  <a href="{% url 'account:update_profile_view' request.user.pk  %}"><i class="fa fa-pencil " aria-hidden="true"></i>
+                  <a href="{% url 'account:update_profile_view' request.user.pk  %}"><i class="fa fa-pencil " aria-hidden="true"></a></i>
                 </div>
-                {% if not request.user.pk == user_id %}
+                {% if  request.user.role == "Lawyer" and request.user == user %}
+
+                  <button type="button" class="order-button-2" data-bs-toggle="modal" data-bs-target="#postModal">
+                    إضافة منشور
+                  </button>
+                  
+                {% endif %}
+
+                {% if request.user.role == "Customar"   %}
                   <a href="#"  class="order-button">اطلب خدمة</a>
+
                 {% endif %}
 
 
@@ -80,7 +109,7 @@ border-radius: 10px;
             </div>
             <div class="card-body bg-white p-4 text-black">
               <div class="mb-5">
-                <p class="lead fw-normal mb-1">نبذة</p>
+                <p >نبذة</p>
                 <div class="p-4" style="background-color: #f8f9fa;">
                   <p class="font-italic mb-1">{{ user.LawyerProfile.about }}</p>
 
@@ -100,5 +129,37 @@ border-radius: 10px;
         </div>
       </div>
     </div>
+    <div class="modal fade " id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered mb-5">
+        <div class="modal-content">
+          <div class="modal-header flex-column-reverse">
+            <h3 class="modal-title" id="postModalLabel">إنشاء منشور</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="postSubject" class="form-label">العنوان</label>
+                <input type="text" class="form-control" id="postSubject" placeholder="ادخل عنوان">
+              </div>
+              <div class="mb-3">
+                <label for="postImage" class="form-label">إضافة صورة</label>
+                <input type="file" class="form-control" id="postImage">
+              </div>
+              <div class="mb-3">
+                <label for="postDescription" class="form-label">المقالة</label>
+                <textarea class="form-control" id="postDescription" rows="3"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">رجوع</button>
+            <button type="button" class="order-button-2">نشر</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   </section>
   {% endblock content %}
