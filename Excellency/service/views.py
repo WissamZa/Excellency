@@ -1,11 +1,24 @@
+from django.http import HttpRequest
 from django.shortcuts import render
-
+from account.models import User
+from service.models import Service, Specialty
 # Create your views here.
 
 
-def order_form(request, lawyer_id):
-    
-   return render(request, 'service/Service-request-form.html')
+def order_form(request: HttpRequest, lawyer_id):
+   try:
+      lawyer = User.objects.get(pk=lawyer_id)
+      service = Service.objects.create(lawyer=lawyer,
+                                       customar=request.user,
+                                       order_type=Specialty.objects.get(
+                                          pk=request.POST['service']),
+                                       subject=request.POST['subject'],
+                                       content=request.POST['message'],
+                                       file=request.FILES.get('file'))
+   except User.DoesNotExist:
+      return render(request, "404.html")
+
+   return render(request, 'service/Service-request-form.html', {"lawyer": lawyer})
 
 
 def payment_view(request):
@@ -29,8 +42,8 @@ def order_details(request):
 
 
 def add_offer(request):
-    return render(request, 'service/add_offer.html')
+   return render(request, 'service/add_offer.html')
+
 
 def rating_view(request):
-     return render(request, 'service/rating.html')
-
+   return render(request, 'service/rating.html')

@@ -12,6 +12,10 @@ Specialty_CHOICES = {
 }
 
 
+def service_file_upload_to(instance, filename):
+   return "service/file/{}/{}".format(instance.user.id, filename)
+
+
 class Service(models.Model):
    accepted = "مقبول"
    pending = "قيد الانتظار"
@@ -28,8 +32,12 @@ class Service(models.Model):
    order_type = models.ForeignKey(Specialty, on_delete=models.CASCADE)
    subject = models.CharField(max_length=100)
    content = models.TextField()
-   price = models.DecimalField(decimal_places=2, max_digits=4)
-   status = models.CharField(max_length=18, choices=STATUS_CHOICES)
+   file = models.FileField(
+      upload_to=service_file_upload_to, blank=True, null=True)
+   price = models.DecimalField(
+      decimal_places=2, max_digits=4, blank=True, null=True)
+   status = models.CharField(
+      max_length=18, choices=STATUS_CHOICES, default=pending)
    created_date = models.DateTimeField(auto_now_add=True)
 
 
