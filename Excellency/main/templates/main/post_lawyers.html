@@ -1,85 +1,55 @@
 {% extends "base/base.html" %}
-{% load static %}
 {% block title %}
-مجتمع المحامين
+ مجتمع المحامين
 {% endblock title %}
 {% block content %}
-<div class="col-sm-6 d-flex justify-content-start mt-3 mx-3">
-    <div class="panel panel-white post rounded-3 ">
-        <div class="post-heading rounded-3">
-            <div class="pull-left image">
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-circle avatar" alt="user profile image">
-            </div>
-            <div class="pull-left ">
-                <div class="title h5">
-                    <a href="#"><b>محمد عبدالله</b></a> 
-                </div>
-                <h6 class="text-muted time">5 seconds ago</h6>
-            </div>
-        </div>
-        <div class="post-image p-2">
-            <img src="{% static 'images/background.jpg' %}" class="image rounded-3" alt="image post">
-        </div>
-        <hr>
-        <div class="post-description mt-3">
-            <h4>العقود ومامعناها</h4>
-            <p>العقود هي ماتضمن حقك وحق الاخرين</p>
-            <div class="stats align-items-center">
-                <a href="javascript:void(0);" class="btn btn-default stat-item">
-                    <i class="fa fa-thumbs-up icon"></i> {{ thumbs_up_count }}
-                </a>
-                <a href="javascript:void(0);" class="btn btn-default stat-item">
-                    <i class="fa fa-bookmark" aria-hidden="true"></i> {{ bookmark_count }}
-                </a>
-                <a href="javascript:void(0);" class="btn btn-default stat-item"> <i class="fa fa-comment"></i> {{ bookmark_count }} </a>
-            </div>            
-        </div>
-        
-        </div>
-    </div>
-    <div class="col-sm-4 d-flex  mt-3 mx-3">
-        <div class="panel panel-white post rounded-3 ">
-            <div class="post-heading rounded-3">
-                <div class="pull-left image">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-circle avatar" alt="user profile image">
-                </div>
-                <div class="pull-left ">
-                    <div class="title h5">
-                        <a href="#"><b>محمد عبدالله</b></a> 
+<div class="container mt-3 justify-content-center">
+    <div class="row justify-content-center">
+        {% for post in posts %}
+        <div class="col-sm-4">
+            <div class="card-post mt-3">
+                <div class="card-body-post">
+                    <div class="post-heading rounded-3">
+                        <div class="pull-left image">
+                            <img src="{{ post.author.lawyer_profile.image.url }}" class="img-circle avatar" alt="user profile image">
+                        </div>
+                        <div class="pull-left">
+                            <div class="title h5">
+                                <a href="{% url "account:profile_view" lawyer.id %}"><b>{{ post.author.lawyer_profile.user.get_full_name }}</b></a> 
+                            </div>
+                            <h6 class="text-muted time">{{ post.timestamp }}</h6>
+                        </div>
                     </div>
-                    <h6 class="text-muted time">5 seconds ago</h6>
+                    <div class="post-image p-2">
+                        <img src="{{ post.image.url }}" class="image rounded-3" alt="image post">
+                    </div>
+                    <hr>
+                    <div class="post-description mt-3">
+                        <h4>{{ post.title }}</h4>
+                        <p>{{ post.content }}</p>
+                        <div class="stats align-items-center">
+                            <a href="javascript:void(0);" class="btn btn-default stat-item">
+                                <i class="fa fa-thumbs-up icon"></i> Like Count
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-default stat-item">
+                                <i class="fa fa-bookmark" aria-hidden="true"></i> Bookmark Count
+                            </a>
+                        </div>            
+                    </div>
                 </div>
             </div>
-            <div class="post-image p-2">
-                <img src="{% static 'images/background.jpg' %}" class="image rounded-3" alt="image post">
-            </div>
-            <hr>
-            <div class="post-description mt-3">
-                <h4>العقود ومامعناها</h4>
-                <p>العقود هي ماتضمن حقك وحق الاخرين</p>
-                <div class="stats align-items-center">
-                    <a href="javascript:void(0);" class="btn btn-default stat-item">
-                        <i class="fa fa-thumbs-up icon"></i> {{ thumbs_up_count }}
-                    </a>
-                    <a href="javascript:void(0);" class="btn btn-default stat-item">
-                        <i class="fa fa-bookmark" aria-hidden="true"></i> {{ bookmark_count }}
-                    </a>
-                    <a href="javascript:void(0);" class="btn btn-default stat-item"> <i class="fa fa-comment"></i> {{ bookmark_count }} </a>
-                </div>            
-            </div>
-            
-            </div>
         </div>
-        
+        {% endfor %}
+    </div>
 </div>
 
 <style>
-.post {
+.card-post {
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-bottom: 20px;
-    padding: 10px;
-    background-color: #ffffff;
+    background-color: #ffffff9b;
+    padding: 15px;
 }
 
 .avatar {
@@ -90,30 +60,13 @@
 }
 
 .image {
-    width: 500px; 
+    width: 350px; 
     height: auto; 
     margin-top: 10px;
     border-radius: 5px;
+    justify-content: center;
 }
 
-.comments-list {
-    display: none; 
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.input-group-addon:hover + .comments-list {
-    display: flex;
-    list-style-type: none;
-    padding-left: 0;
-}
-.comment {
-    margin-bottom: 15px;
-}
-
-.comment-body {
-    padding-left: 70px;
-}
 
 .user {
     font-weight: bold;
@@ -126,11 +79,6 @@
 
 .input-group-addon {
     cursor: pointer;
-}
-
-
-.input-group-addon:hover + .comments-list {
-    display: block;
 }
 </style>
 

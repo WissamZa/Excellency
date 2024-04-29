@@ -18,7 +18,7 @@
       {% url "main:index_view" as home_page %}
       {% url "main:contactus_view" as contactus_page %}
       {% url "main:lawyers_view" as lawyers_page %}
-      {% url "main:post_view" as post_view %}
+      {% url "main:post_list" as post_list %}
       <!-- Left links -->
       <ul class="navbar-nav justify-content-between p-0 align-items-center flex-row-reverse">
         
@@ -29,8 +29,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link
-                    {% if request.path == post_view  %}active{% endif %}"
-             href="{{ post_view }}">المنشورات</a>
+                    {% if request.path == post_list  %}active{% endif %}"
+             href="{{ post_list }}">المنشورات</a>
         </li>
         <li class="nav-item">
           <a class="nav-link
