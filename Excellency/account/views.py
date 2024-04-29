@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from account.models import User, LawyerProfile, CustomarProfile
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 from account.models import Specialty, Specialty_CHOICES
 from main.validator import validat, validate_national_id
 from django.core.exceptions import ValidationError
@@ -135,11 +137,6 @@ def user_profile_view(request: HttpRequest, user_name):
    return render(request, "account/user_profile.html", {"user": user})
 
 
-# def user_profile_view(request: HttpRequest):
-
-#    return render(request, "account/user_profile.html")
-
-
 # def update_profile_view(request: HttpRequest, user_name):
 #    if not (request.user.is_authenticated and request.user.username == user_name):
 #       return render(request, "main/no_permission.html")
@@ -180,7 +177,7 @@ def user_profile_view(request: HttpRequest, user_name):
 
 #    return render(request, "account/update_profile.html", {"user": user, "specialty_choices": Specialty_CHOICES})
 
-
+@login_required(login_url="/account/login")
 def update_profile_view(request: HttpRequest, user_id):
    specialties = Specialty.objects.all()
    user: User = request.user
@@ -231,6 +228,6 @@ def account_balance(request):
 
 
 def profile_view(request: HttpRequest, user_id):
-
+   
    user = User.objects.get(pk=user_id)
    return render(request, "account/profile.html", {"user": user})
