@@ -86,9 +86,11 @@ class LawyerProfile(models.Model):
       User, on_delete=models.CASCADE, related_name="lawyer_profile")
    phone = models.CharField(max_length=10, unique=True, validators=[
        validator.validate_phone])
-   about = models.TextField(default="")
+   about = models.TextField(default="", blank=True)
    image = models.ImageField(
       upload_to=images_upload_to, blank=False)
+   bannar = models.ImageField(
+      upload_to=images_upload_to, default="profiles/images/gold-icon.png")
    gender = models.CharField(max_length=22,
                              choices=gender_choices.choices,
                              null=True, blank=True)

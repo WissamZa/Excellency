@@ -1,3 +1,4 @@
+from django.db.models.manager import BaseManager
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from account.models import User, LawyerProfile, CustomarProfile
@@ -35,18 +36,20 @@ def sign_up_view(request: HttpRequest):
             new_user.set_password(request.POST.get("password"))
             new_user.save()
             if request.POST["role"] == "Lawyer":
-
+               specialties = [Specialty_CHOICES.get(
+                   s) for s in request.POST.getlist("specialty")]
                user_profile = LawyerProfile.objects.create(
                   user=new_user,
 
                   image=request.FILES["image"],
                   gender=request.POST["gender"],
                   phone=validat(phone=request.POST.get("phone")),
-                  licence=request.FILES.get("licence"),
-                  Qualification=request.FILES.get("qualification"))
-               specialty_id = Specialty.objects.get(
-                  name=Specialty_CHOICES.get(request.POST["specialty"])).pk
-               user_profile.specialty.add(specialty_id)
+                  licence=request.FILES["licence"],
+                  Qualification=request.FILES["Qualification"])
+               specialty_id = Specialty.objects.filter(
+                  name__in=specialties)
+               for spec in specialty_id:
+                  user_profile.specialty.add(spec)
 
             if request.POST["role"] == "Customar":
                CustomarProfile.objects.create(
@@ -178,10 +181,45 @@ def user_profile_view(request: HttpRequest, user_name):
 #    return render(request, "account/update_profile.html", {"user": user, "specialty_choices": Specialty_CHOICES})
 
 
-def update_profile_view(request: HttpRequest,user_id):
-   specialties=Specialty.objects.all()
-   return render(request, "account/update_profile.html",{"specialties":specialties})
+def update_profile_view(request: HttpRequest, user_id):
+   specialties = Specialty.objects.all()
+   user: User = request.user
+   if request.method == "POST":
+      with transaction.atomic():
+         print(request.POST)
+         user.full_name = validat(full_name=request.POST.get("full_name")),
+         user.role = request.POST["role"],
+         user.save()
+         if request.POST["role"] == "Lawyer":
+            lawyer_profile = LawyerProfile.objects.get(user=user)
+            lawyer_profile.image = request.FILES.get(
+                "image", lawyer_profile.image.url),
+            lawyer_profile.gender = request.POST.get(
+                "gender", lawyer_profile.gender),
+            lawyer_profile.phone = validat(
+                phone=request.POST.get("phone", lawyer_profile.phone)),
+            lawyer_profile.licence = request.FILES.get(
+                "licence", lawyer_profile.licence.url)
+            lawyer_profile.bannar = request.FILES.get(
+                "back-image", lawyer_profile.bannar.url)
+            lawyer_profile.Qualification = request.FILES.get(
+             "Qualification", lawyer_profile.Qualification.url)
+            lawyer_profile.save()
 
+            # all_lawyer_spe = LawyerProfile.objects.get(
+            #     user=user).specialty.all()
+            # specialty_id = Specialty.objects.get(
+            #     name=request.POST["specialty"]).pk
+            # user.lawyer_profile.specialty.update_or_create(id=specialty_id)
+
+         # if request.POST["role"] == "Customar":
+         #       CustomarProfile.objects.create(
+         #         user = new_user,
+         #          image = request.POST.get(
+         #               "image", CustomarProfile.image.field.default),
+         #           phone = validat(phone=request.POST.get("phone")),
+         #       )
+   return render(request, "account/update_profile.html", {"specialties": specialties})
 
 
 def account_balance(request):
@@ -189,6 +227,6 @@ def account_balance(request):
 
 
 def profile_view(request: HttpRequest, user_id):
-      
-   user=User.objects.get(pk=user_id)
+
+   user = User.objects.get(pk=user_id)
    return render(request, "account/profile.html", {"user": user})
