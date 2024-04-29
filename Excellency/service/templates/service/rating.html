@@ -1,0 +1,104 @@
+<!--djlint:off H021 H023-->
+<div class="container mt-5">
+  <h2 class="text-113345">اترك تقييم</h2>
+  <form method="post" action="">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="comment" class="text-gold">تعليقك:</label>
+      <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+    </div>
+    <div class="form-group d-flex align-items-center gap-1 ">
+      <label for="rating" class="text-gold">تقييمك:</label>
+      <div class="rating fs-3">
+        <input type="radio" id="star5" name="rating" value="5" />
+        <label for="star5" title="5 stars">&#9733;</label>
+        <input type="radio" id="star4" name="rating" value="4" />
+        <label for="star4" title="4 stars">&#9733;</label>
+        <input type="radio" id="star3" name="rating" value="3" />
+        <label for="star3" title="3 stars">&#9733;</label>
+        <input type="radio" id="star2" name="rating" value="2" />
+        <label for="star2" title="2 stars">&#9733;</label>
+        <input type="radio" id="star1" name="rating" value="1" />
+        <label for="star1" title="1 star">&#9733;</label>
+      </div>
+    </div>
+    <span style="cursor: default;">
+      <div class="rating-symbol"
+           style="display: inline-block;
+                  position: relative">
+        <div class="rating-symbol-background glyphicon glyphicon-star-empty"
+             style="visibility: hidden"></div>
+        <div class="rating-symbol-foreground"
+             style="display: inline-block;
+                    position: absolute;
+                    overflow: hidden;
+                    left: 0px;
+                    right: 0px;
+                    width: auto">
+          <span class="glyphicon glyphicon-star"></span>
+        </div>
+      </div>
+      <div class="rating-symbol"
+           style="display: inline-block;
+                  position: relative">
+        <div class="rating-symbol-background glyphicon glyphicon-star-empty"
+             style="visibility: hidden"></div>
+        <div class="rating-symbol-foreground"
+             style="display: inline-block;
+                    position: absolute;
+                    overflow: hidden;
+                    left: 0px;
+                    right: 0px;
+                    width: auto">
+          <span class="glyphicon glyphicon-star"></span>
+        </div>
+      </div>
+      <div class="rating-symbol"
+           style="display: inline-block;
+                  position: relative">
+        <div class="rating-symbol-background glyphicon glyphicon-star-empty"
+             style="visibility: hidden"></div>
+        <div class="rating-symbol-foreground"
+             style="display: inline-block;
+                    position: absolute;
+                    overflow: hidden;
+                    left: 0px;
+                    right: 0px;
+                    width: auto">
+          <span class="glyphicon glyphicon-star"></span>
+        </div>
+      </div>
+      <div class="rating-symbol"
+           style="display: inline-block;
+                  position: relative">
+        <div class="rating-symbol-background glyphicon glyphicon-star-empty"
+             style="visibility: hidden"></div>
+        <div class="rating-symbol-foreground"
+             style="display: inline-block;
+                    position: absolute;
+                    overflow: hidden;
+                    left: 0px;
+                    right: 0px;
+                    width: auto">
+          <span class="glyphicon glyphicon-star"></span>
+        </div>
+      </div>
+      <div class="rating-symbol"
+           style="display: inline-block;
+                  position: relative">
+        <div class="rating-symbol-background glyphicon glyphicon-star-empty"
+             style="visibility: hidden"></div>
+        <div class="rating-symbol-foreground"
+             style="display: inline-block;
+                    position: absolute;
+                    overflow: hidden;
+                    left: 0px;
+                    right: 0px;
+                    width: auto">
+          <span class="glyphicon glyphicon-star"></span>
+        </div>
+      </div>
+    </span>
+    <button type="submit" class="btn btn-color">تقييم</button>
+  </form>
+</div>

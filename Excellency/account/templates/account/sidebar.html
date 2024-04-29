@@ -279,77 +279,67 @@
     }
 </style>
 <div class="sidebar">
-  <div class="logo-details">
-    <i class='bx bx-menu'></i>
-    <div class="logo_name me-2">{{ request.user.full_name }}</div>
-    <i class="bx bx-menu" id="btn"></i>
-  </div>
-  <hr class="text-white">
-  <ul class="nav-list">
-    {% if not request.user.is_staff  %}
-    <li>
-      <a href="{% url 'account:profile_view' request.user.pk %}">
-        <i class="bx bxs-user"></i>
-        <span class="links_name">الملف الشخصي</span>
-      </a>
-</li>
-{% endif %}
-
-{% if request.user.role == "Lawyer" %}
-<li>
-  <a href="{% url 'service:Lawyers-view' %}">
-    <i class='bx bxs-box'></i>
-    <span class="links_name">  الطلبات   </span>
-  </a>
-  <span class="tooltip">Dashboard</span>
-</li> 
-{% elif request.user.role == "Customar" %}
-<li>
-    <a href="{% url 'service:Lawyers-view' %}">
-      <i class='bx bxs-box'></i>
-      <span class="links_name"> طلباتي </span>
-    </a>
-    <span class="tooltip">Dashboard</span>
-  </li> 
-{% endif %}
-
-{% if not request.user.is_staff  and request.user.role == "Lawyer" %}
-
-<li>
-  <a href="{% url 'account:account_balance' %}">
-    <i class='bx bxs-wallet'></i>
-    <span class="links_name">الرصيد</span>
-  </a>
-  <span class="tooltip">Analytics</span>
-</li>
-{% endif %}
-
-
-<!-- --------- admin --------- -->
- 
-{% if request.user.is_staff %}
-    <!-- lawyers -->
-
-    <li>
-        <a href="{% url 'main:admin_viwe' %}">
-            <i class="fa fa-users" aria-hidden="true"></i>
-            <span class="links_name">المحامين</span>
-        </a>
-        <span class="tooltip">Analytics</span>
-    </li>
-
-    <!-- messages -->
-
-    <li>
-        <a href="{% url 'main:contact_messages' %}">
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-            <span class="links_name">الرسائل</span>
-        </a>
-<i class="fa fa-envelope-o" aria-hidden="true"></i>
-    </li>
-
-{% endif %}
-</ul>
+    <div class="logo-details">
+        <i class="bx bx-menu"></i>
+        <div class="logo_name me-2">{{ request.user.full_name }}</div>
+        <i class="bx bx-menu" id="btn"></i>
+    </div>
+    <hr class="text-white">
+    <ul class="nav-list">
+        {% if not request.user.is_staff %}
+            <li>
+                <a href="{% url "account:profile_view" request.user.pk %}">
+                    <i class="bx bxs-user"></i>
+                    <span class="links_name">الملف الشخصي</span>
+                </a>
+            </li>
+        {% endif %}
+        {% if request.user.role == "Lawyer" %}
+            <li>
+                <a href="{% url "service:current_orders_view" %}">
+                    <i class="bx bxs-box"></i>
+                    <span class="links_name">الطلبات</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+        {% elif request.user.role == "Customar" %}
+            <li>
+                <a href="{% url "service:current_orders_view" %}">
+                    <i class="bx bxs-box"></i>
+                    <span class="links_name">طلباتي</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+        {% endif %}
+        {% if not request.user.is_staff and request.user.role == "Lawyer" %}
+            <li>
+                <a href="{% url "account:account_balance" %}">
+                    <i class="bx bxs-wallet"></i>
+                    <span class="links_name">الرصيد</span>
+                </a>
+                <span class="tooltip">Analytics</span>
+            </li>
+        {% endif %}
+        <!-- --------- admin --------- -->
+        {% if request.user.is_staff %}
+            <!-- lawyers -->
+            <li>
+                <a href="{% url 'main:admin_viwe' %}">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span class="links_name">المحامين</span>
+                </a>
+                <span class="tooltip">Analytics</span>
+            </li>
+            <!-- messages -->
+            <li>
+                <a href="{% url 'main:contact_messages' %}">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <span class="links_name">الرسائل</span>
+                </a>
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </li>
+        {% endif %}
+    </ul>
 </div>
 <script>
     let sidebar = document.querySelector(".sidebar");

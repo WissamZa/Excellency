@@ -1,88 +1,94 @@
+<!--djlint:off H021 H023-->
 {% extends "base/base.html" %}
 {% load static %}
 {% block title %}
     طلب الخدمة
 {% endblock title %}
 {% block content %}
-{% include "account/sidebar.html" %}
-<div class="container mt-4 mb-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card-details">
-                <div class="card-body">
-                    <h5 class="card-title">رقم الطلب #12345</h5>
-                    <hr>
-                    <p class="card-text">عميل : نورة </p>
-                    <p class="card-text">نوع الخدمة : استشارة</p>
-                    <p class="card-text"></p>
-
-                    
-                    
-                    <h3 class="mt-4 text-113345">وصف الطلب</h3>
-                    <div class="row justify-content-start">
-                        <div class="col-md-8">
-                            <div class="card-law-order mb-2">
-                                <div class="card-body-law">
-                                    <p class="card-text">توفير الحماية القانونية للشركات والمؤسسات أثناء أداء أعمالها، مما يساهم في الحفاظ على نموها واستمراريتها في السوق الحالي.
-                                        تساعد الاستشارة القانونية المتنازعين في القضايا على توفير الوقت والجهد، حيث تقدم لهم المساعدة في معرفة الإجراءات والمتطلبات اللازمة لرفع الدعوى، بدلاً من البحث الطويل عنها. </p>
+    {% include "account/sidebar.html" %}
+    <div class="container mt-4 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card-details">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            رقم الطلب #<span>{{ order.id }}</span>
+                        </h5>
+                        <hr>
+                        <p class="card-text">
+                            عميل : <span>{{ order.customar.full_name }}</span>
+                        </p>
+                        <p class="card-text">
+                            المحامي : <span>{{ order.lawyer.full_name }}</span>
+                        </p>
+                        <p class="card-text">
+                            نوع الخدمة : <span>{{ order.order_type }}</span>
+                        </p>
+                        <p class="card-text">
+                            حالة الخدمة : <span>{{ order.status }}</span>
+                        </p>
+                        <h3 class="mt-4 text-113345">
+                            عنوان الطلب : <span class="fs-5 bg-gradient p-2 rounded-4 mx-3">{{ order.subject }}</span>
+                        </h3>
+                        <h3 class="mt-4 text-113345">وصف الطلب</h3>
+                        <div class="row justify-content-start">
+                            <div class="col-md-8">
+                                <div class="card-law-order mb-2">
+                                    <div class="card-body-law">
+                                        <p class="card-text">{{ order.content }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex mt-5 g-4">
-                        <button  type="button" class="btn btn-outline-dark me-2" data-bs-toggle="modal" data-bs-target="#offerModal">إضافة عرض</button>
-                        <a href="" class="btn btn-danger me-2">غير مهتم</a>
-                    </div>
-                </div>
-            </div>
-            <div class="container mt-5">
-                <h2 class="text-113345">اترك تقييم</h2>
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="comment" class="text-gold">تعليقك:</label>
-                        <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group d-flex align-items-center gap-1 ">
-                        <label for="rating" class="text-gold">تقييمك:</label>
-                        <div class="rating fs-3">
-                            <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">&#9733;</label>
-                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">&#9733;</label>
-                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">&#9733;</label>
-                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">&#9733;</label>
-                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">&#9733;</label>
+                        <div class="d-flex mt-5 g-4">
+                            {% if order.status == status_choices.pending %}
+                                <button type="button"
+                                        class="btn btn-outline-dark me-2"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#offerModal">إضافة عرض</button>
+                                {% if request.user.role == "Lawyer" %}
+                                    <form action="{% url "service:order_details" order.id %}" method="post">
+                                        <input type="hidden" name="status" value="rejected">
+                                        <button type="submit" name="reject-btn" class="btn btn-danger me-2">غير مهتم</button>
+                                    </form>
+                                {% endif %}
+                            {% endif %}
                         </div>
                     </div>
-                    <span style="cursor: default;"><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background glyphicon glyphicon-star-empty" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="glyphicon glyphicon-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background glyphicon glyphicon-star-empty" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="glyphicon glyphicon-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background glyphicon glyphicon-star-empty" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="glyphicon glyphicon-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background glyphicon glyphicon-star-empty" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="glyphicon glyphicon-star"></span></div></div><div class="rating-symbol" style="display: inline-block; position: relative;"><div class="rating-symbol-background glyphicon glyphicon-star-empty" style="visibility: hidden;"></div><div class="rating-symbol-foreground" style="display: inline-block; position: absolute; overflow: hidden; left: 0px; right: 0px; width: auto;"><span class="glyphicon glyphicon-star"></span></div></div></span>
-                    <button type="submit" class="btn btn-color">تقييم</button>
-                </form>
-            
+                </div>
+                {% if order.status == status_choices.completed %}
+                    {% include "service/rating.html" %}
+                {% endif %}
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="offerModal" tabindex="-1" aria-labelledby="offerModalLabel" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header ">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form class="d-flex justify-content-center flex-column">
-            <h3 class=" text-dark ">إضافة مبلغ</h3>
-            <div class="input-group mb-3">
-                
-                <span class="input-group-text">ريال</span>
-                <input type="text" class="form-control" aria-label="السعر (to the nearest dollar)">
-              
-              </div>
-            <a href="{% url 'service:previous_orders' %}" class="btn btn-outline-dark">تقديم العرض</a>
-        </form>
-
-      </div>
+    <div class="modal fade"
+         id="offerModal"
+         tabindex="-1"
+         aria-labelledby="offerModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="d-flex justify-content-center flex-column">
+                        <h3 class=" text-dark ">إضافة مبلغ</h3>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">ريال</span>
+                            <input type="text"
+                                   class="form-control"
+                                   aria-label="السعر (to the nearest dollar)">
+                        </div>
+                        <a href="{% url 'service:previous_orders' %}"
+                           class="btn btn-outline-dark">تقديم العرض</a>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
-
-{% endblock %}
+{% endblock content %}

@@ -1,0 +1,15 @@
+{# djlint:off H013,H006,H021 #}
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+   403
+{% endblock title %}
+{% block content %}
+   <div class="no-perms">
+      <div class="justify-self-center align-self-center text-bg-warning p-2 rounded-1">
+         <h2 class="text-danger text-center">
+            ليس لديك إذن للوصول إلى هذه الصفحة
+         </h2 class="text-danger-emphasis">
+      </div>
+   </div>
+{% endblock content %}

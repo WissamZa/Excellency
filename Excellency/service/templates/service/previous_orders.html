@@ -1,20 +1,25 @@
+<!--djlint:off H021-->
 {% extends "base/base.html" %}
 {% load static %}
 {% block title %}
-   الطلبات السابقة
+    الطلبات السابقة
 {% endblock title %}
 {% block content %}
-{% include "account/sidebar.html" %}
-<div class="container mt-4 w-50 mt-5 ">
-    <ul class="nav nav-tabs mb-4">
-        <li class="nav-item p-2">
-            <a class="nav-link" href="{% url 'service:Lawyers-view' %}" style="color: #ca9e67">الطلبات الحالية</a>
-        </li>
-        <li class="nav-item p-2">
-            <a class="nav-link" href="{% url 'service:previous_orders' %}" style="color: #ca9e67">الطلبات السابقة</a>
-        </li>
-    </ul>
-</div>
+    {% include "account/sidebar.html" %}
+    <div class="container mt-4 w-50 mt-5 ">
+        <ul class="nav nav-tabs mb-4">
+            <li class="nav-item p-2">
+                <a class="nav-link"
+                   href="{% url 'service:current_orders_view' %}"
+                   style="color: #ca9e67">الطلبات الحالية</a>
+            </li>
+            <li class="nav-item p-2">
+                <a class="nav-link"
+                   href="{% url 'service:previous_orders' %}"
+                   style="color: #ca9e67">الطلبات السابقة</a>
+            </li>
+        </ul>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card-law-order mb-2">
@@ -24,11 +29,11 @@
                     <p class="card-text">نوع الخدمة : استشارة</p>
                     <p class="card-text">الحالة : تمت الموافقة</p>
                     <div class="d-flex justify-content-end g-4">
-                        <a href="{% url 'service:order_details' %}" class="btn btn-outline-dark me-2">تفاصيل الطلب </a>
+                        <a href="{% url 'service:order_details' %}"
+                           class="btn btn-outline-dark me-2">تفاصيل الطلب</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-{% endblock %}
+{% endblock content %}

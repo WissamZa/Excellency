@@ -8,9 +8,9 @@ urlpatterns = [
     path('order/<lawyer_id>', views.order_form, name='order_form'),
     path('payment/', views.payment_view, name='payment_view'),
     path('chat/', views.chat_view, name='chat_view'),
-    path('order_Lawyers/', views.current_orders, name='Lawyers-view'),
+    path('orders/', views.current_orders, name='current_orders_view'),
     path('previous_orders/', views.previous_orders, name='previous_orders'),
-    path('order_details/', views.order_details, name='order_details'),
+    path('order_details/<order_id>/', views.order_details, name='order_details'),
     path('offer/add/', views.add_offer, name='add_offer'),
-     path('rating/', views.rating_view, name='rating_view'),
+    path('rating/', views.rating_view, name='rating_view'),
 ]
