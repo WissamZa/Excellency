@@ -1,15 +1,13 @@
-from django.db.models.manager import BaseManager
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from account.models import User, LawyerProfile, CustomarProfile
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from main.models import Post
 from account.models import Specialty, Specialty_CHOICES
-from main.validator import validat, validate_national_id
+from main.validator import validat
 from django.core.exceptions import ValidationError
 from django.db import transaction, IntegrityError
-from django.urls import reverse
 
 
 from django.conf import global_settings as settings
@@ -76,6 +74,7 @@ def sign_up_view(request: HttpRequest):
    except IntegrityError as e:
       msg = "الهوية الوطنية أو البريد الالكتروني مستخدم بالفعل. حاول مرة اخرى..."
       print(e)
+
    except ValidationError as e:
       msg = e.message
       return render(request, "account/sign_up.html",
@@ -83,9 +82,9 @@ def sign_up_view(request: HttpRequest):
                      "Specialty": [(k, v) for k, v in Specialty_CHOICES.items()],
                      "post": request.POST})
 
-   # except Exception as e:
-   #    msg = "Something went wrong. Please try again."
-   #    print(e.with_traceback())
+   except Exception as e:
+      msg = "Something went wrong. Please try again."
+
    return render(request, "account/sign_up.html", {"msg": msg, "Specialty": [(k, v) for k, v in Specialty_CHOICES.items()]})
 
 
@@ -141,46 +140,6 @@ def user_profile_view(request: HttpRequest, user_name):
       return render(request, "account/user_profile.html", {"msg": msg})
    return render(request, "account/user_profile.html", {"user": user})
 
-
-# def update_profile_view(request: HttpRequest, user_name):
-#    if not (request.user.is_authenticated and request.user.username == user_name):
-#       return render(request, "main/no_permission.html")
-#    user: User = request.user
-
-#    if request.method == "POST":
-#       user.full_name = request.POST.get(
-#           'full_name', user.full_name)
-#       # Lawyer Profile update
-#       if user.role == "Lawyer":
-#          lawyer_profile: LawyerProfile = user.LawyerProfile
-#          lawyer_profile.phone = validat(
-#             phone=request.POST.get('phone', lawyer_profile.phone))
-#          lawyer_profile.gender = request.POST.get(
-#             'gender', lawyer_profile.gender)
-#          lawyer_profile.image = request.FILES.get(
-#             'image', lawyer_profile.image)
-#          lawyer_profile.about = request.POST.get(
-#             'about', lawyer_profile.about)
-#          lawyer_profile.licence = request.FILES.get("licence",),
-#          lawyer_profile.Qualification = request.FILES.get(
-#              "qualification", lawyer_profile.Qualification)
-#          specialties = Specialty.objects.filter(
-#            name=Specialty_CHOICES.get(request.POST["specialty"], lawyer_profile.specialty.all()))
-#          lawyer_profile.specialty.add(id.pk for id in specialties)
-#          lawyer_profile.save()
-
-#          # customar profile Update
-#          if user.role == "Customar":
-#             customar_profile: CustomarProfile = user.CustomarProfile
-#          customar_profile.gender = request.POST.get(
-#             'gender', customar_profile.gender)
-#          customar_profile.image = request.FILES.get(
-#             'image', customar_profile.image)
-#          customar_profile.save()
-#          user.save()
-#          return redirect("account:profile_view", user_name=user.username)
-
-#    return render(request, "account/update_profile.html", {"user": user, "specialty_choices": Specialty_CHOICES})
 
 @login_required(login_url="/account/login")
 def update_profile_view(request: HttpRequest, user_id):
@@ -239,14 +198,20 @@ def account_balance(request):
 
 
 def profile_view(request: HttpRequest, user_id):
+   try:
+      user = User.objects.get(pk=user_id)
+      user_profile = None
+      if user.role == "Lawyer":
+         user_profile = user.lawyer_profile
+      if user.role == "Customer":
+         user_profile = user.customar_profile
+      if request.method == "POST":
+         Post.objects.create(author=request.user,
+                             title=request.POST.get('title'),
+                             content=request.POST.get('content'),
+                             image=request.FILES.get('image'))
+   except User.DoesNotExist:
+      return render(request, "404.html")
 
-   user = User.objects.get(pk=user_id)
-   user_profile = None
-   if user.role == "Lawyer":
-      print("la")
-      user_profile = user.lawyer_profile
-   if user.role == "Customer":
-      print("cu")
-      user_profile = user.customar_profile
    return render(request, "account/profile.html", {"user": user,
                                                    "user_profile": user_profile})

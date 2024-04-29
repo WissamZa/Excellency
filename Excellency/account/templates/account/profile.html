@@ -162,27 +162,31 @@
                   aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form action="{% url 'account:profile_view' request.user.id %}"
+                method="post"
+                enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="mb-3">
               <label for="postSubject" class="form-label">العنوان</label>
               <input type="text"
                      class="form-control"
                      id="postSubject"
+                     name="title"
                      placeholder="ادخل عنوان">
             </div>
             <div class="mb-3">
               <label for="postImage" class="form-label">إضافة صورة</label>
-              <input type="file" class="form-control" id="postImage">
+              <input type="file" name="image" class="form-control" id="postImage">
             </div>
             <div class="mb-3">
               <label for="postDescription" class="form-label">المقالة</label>
-              <textarea class="form-control" id="postDescription" rows="3"></textarea>
+              <textarea name="content" class="form-control" id="postDescription" rows="3"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">رجوع</button>
+              <button type="submit" class="order-button-2">نشر</button>
             </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">رجوع</button>
-          <button type="button" class="order-button-2">نشر</button>
         </div>
       </div>
     </div>
