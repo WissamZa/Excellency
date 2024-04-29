@@ -11,13 +11,13 @@ class Contactus(models.Model):
    created_at = models.DateTimeField(auto_now_add=True)
    
 def post_image_upload_to(instance, filename):
-   return "post/images/{}/{}".format(instance.user.id, filename)
+   return "post/images/{}/{}".format(instance.author.id, filename)
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     content = models.TextField()
-    image = models.ImageField(upload_to=post_image_upload_to)
+    image = models.ImageField(upload_to=post_image_upload_to, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
