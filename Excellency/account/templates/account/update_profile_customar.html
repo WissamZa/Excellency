@@ -1,0 +1,51 @@
+<!--djlint:off H021-->
+<div class="form d-flex flex-column justify-content-center form-width">
+  <form action="{% url 'account:sign_up_view' %}"
+        method="post"
+        class="d-flex flex-column gap-2"
+        enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="role" value="Customar">
+    <label class="form-label mb-0 mt-2">الاسم الثلاثي:</label>
+    <input name="full_name"
+           class="form-control"
+           style="width: 100%"
+           type="text"
+           value="{{ request.user.full_name }}"
+           minlength="3"
+           required
+           placeholder="قم بكاتبة اسمك هنا" />
+    <label class="form-label mb-0 mt-2">البريد الالكتروني</label>
+    <input name="email"
+           class="form-control"
+           disabled
+           type="email"
+           value="{{ request.user.email }}"
+           required
+           placeholder="قم بوضع بريدك الالكتروني هنا" />
+    <label for="about">نبذة:</label>
+    <textarea name="about" id="" cols="30" rows="3" class="form-control"></textarea>
+    <label class="form-label mb-0 mt-2">الجوال</label>
+    <input name="phone"
+           class="form-control"
+           type="text"
+           maxlength="10"
+           value="{{ user.phone }}"
+           pattern="^05[0-9]{4}[0-9]{4}$"
+           required
+           placeholder="05XXXXXXXX" />
+    <div class=" ">
+      <label for="image" class="form-label">الصورة الشخصية:</label>
+      <input type="file" name="image" class="form-control mb-2">
+      <label for="back-image" class="form-label">الصورة الخلفية:</label>
+      <input type="file" name="back-image" class="form-control">
+    </div>
+    <span class="text-end message"></span>
+    <span class="text-end message"></span>
+    <input type="submit"
+           class="btn my-2 text-white"
+           style="background-color:#113345"
+           value="سجل" />
+  </form>
+  <span>لديك بالفعل حساب؟ <a href="{% url 'account:login_view' %}">تسجيل الدخول هنا</a> </span>
+</div>

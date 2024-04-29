@@ -28,7 +28,7 @@ def validat(**keywords):
    for key, value in keywords.items():
       match key:
          case "full_name":
-            if not (len(str(value).split(" ")) == 3):
+            if not (len(str(value).split(" ")) >= 3):
                raise ValidationError("يرجى كتابة الإسم الثلاثي")
 
          case "national_id":

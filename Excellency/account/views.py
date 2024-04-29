@@ -55,7 +55,7 @@ def sign_up_view(request: HttpRequest):
                CustomarProfile.objects.create(
                   user=new_user,
                   image=request.POST.get(
-                     "image", CustomarProfile.image.field.default),
+                     "image", CustomarProfile.image.field.get_default),
                   phone=validat(phone=request.POST.get("phone")),
                )
             subject = 'نشكرك على تسجيلك في موقع معالي '
@@ -184,41 +184,45 @@ def user_profile_view(request: HttpRequest, user_name):
 def update_profile_view(request: HttpRequest, user_id):
    specialties = Specialty.objects.all()
    user: User = request.user
+
    if request.method == "POST":
       with transaction.atomic():
-         print(request.POST)
-         user.full_name = validat(full_name=request.POST.get("full_name")),
-         user.role = request.POST["role"],
+         user.full_name = validat(full_name=request.POST.get("full_name"))
          user.save()
          if request.POST["role"] == "Lawyer":
             lawyer_profile = LawyerProfile.objects.get(user=user)
             lawyer_profile.image = request.FILES.get(
-                "image", lawyer_profile.image.url),
+                "image", lawyer_profile.image)
+            post_specialties = request.POST.getlist("specialty")
             lawyer_profile.gender = request.POST.get(
-                "gender", lawyer_profile.gender),
+                "gender", lawyer_profile.gender)
             lawyer_profile.phone = validat(
-                phone=request.POST.get("phone", lawyer_profile.phone)),
+                phone=request.POST.get("phone", lawyer_profile.phone))
             lawyer_profile.licence = request.FILES.get(
-                "licence", lawyer_profile.licence.url)
+                "licence", lawyer_profile.licence)
             lawyer_profile.bannar = request.FILES.get(
-                "back-image", lawyer_profile.bannar.url)
+                "back-image", lawyer_profile.bannar)
             lawyer_profile.Qualification = request.FILES.get(
-             "Qualification", lawyer_profile.Qualification.url)
+             "Qualification", lawyer_profile.Qualification)
+
+            lawyer_profile.specialty.clear()
+            specialty_id = Specialty.objects.filter(
+                name__in=post_specialties)
+            for spec in specialty_id:
+               lawyer_profile.specialty.add(spec)
             lawyer_profile.save()
 
-            # all_lawyer_spe = LawyerProfile.objects.get(
-            #     user=user).specialty.all()
-            # specialty_id = Specialty.objects.get(
-            #     name=request.POST["specialty"]).pk
-            # user.lawyer_profile.specialty.update_or_create(id=specialty_id)
+         if request.POST["role"] == "Customar":
+            user.full_name = validat(full_name=request.POST.get("full_name"))
+            user.save()
+            customar_profile: CustomarProfile = CustomarProfile.objects.get(
+               user=user)
 
-         # if request.POST["role"] == "Customar":
-         #       CustomarProfile.objects.create(
-         #         user = new_user,
-         #          image = request.POST.get(
-         #               "image", CustomarProfile.image.field.default),
-         #           phone = validat(phone=request.POST.get("phone")),
-         #       )
+            customar_profile.image = request.POST.get(
+                "image", customar_profile.image)
+            customar_profile.phone = validat(phone=request.POST.get(
+               "phone", customar_profile.phone))
+            customar_profile.save()
    return render(request, "account/update_profile.html", {"specialties": specialties})
 
 
