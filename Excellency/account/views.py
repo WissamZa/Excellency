@@ -230,6 +230,7 @@ def update_profile_view(request: HttpRequest, user_id):
             customar_profile.phone = validat(phone=request.POST.get(
                "phone", customar_profile.phone))
             customar_profile.save()
+         return redirect("account:profile_view", user_id=user.pk)
    return render(request, "account/update_profile.html", {"specialties": specialties})
 
 

@@ -1,8 +1,8 @@
 from os import name
 from django.http import HttpRequest
-from django.shortcuts import render,redirect
-from main.models import Contactus,Post
-from account.models import User, Specialty,LawyerProfile
+from django.shortcuts import render, redirect
+from main.models import Contactus, Post
+from account.models import User, Specialty, LawyerProfile
 from django.db.models import Count
 
 
@@ -33,7 +33,8 @@ def check_lawyer_has_specialty(lawyer: User, specialty):
 
 def lawyers_view(request: HttpRequest):
    try:
-      lawyers = User.objects.filter(role="Lawyer").order_by("full_name")
+      lawyers = User.objects.filter(
+         role="Lawyer", lawyer_profile__certified=True).order_by("full_name")
       spcialities = Specialty.objects.all()
 
       if "lawyer_name" in request.GET:
@@ -56,23 +57,25 @@ def lawyers_view(request: HttpRequest):
    return render(request, "main/lawyers.html", {"lawyers": lawyers, "specialities": spcialities})
 
 
-def contact_messages(request:HttpRequest):
-   
-    messages = Contactus.objects.all()
-    
-    return render(request, 'main/contact_messages.html', {'messages': messages})
+def contact_messages(request: HttpRequest):
+
+   messages = Contactus.objects.all()
+
+   return render(request, 'main/contact_messages.html', {'messages': messages})
+
 
 def admin_viwe(request):
-    lawyer_profiles = LawyerProfile.objects.all()
-    return render(request, 'main/admin.html', {'lawyer_profiles': lawyer_profiles})
+   lawyer_profiles = LawyerProfile.objects.all()
+   return render(request, 'main/admin.html', {'lawyer_profiles': lawyer_profiles})
+
 
 def lawyer_details_view(request):
    return render(request, 'main/lawyer_details.html')
 
 
 def post_list(request):
-    if request.user.is_authenticated:
-        posts = Post.objects.all()
-        return render(request, 'main/post_lawyers.html', {'posts': posts})
-    else:
-        return redirect('account:login_view')
+   if request.user.is_authenticated:
+      posts = Post.objects.all()
+      return render(request, 'main/post_lawyers.html', {'posts': posts})
+   else:
+      return redirect('account:login_view')
