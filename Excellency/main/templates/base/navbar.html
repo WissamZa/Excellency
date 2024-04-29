@@ -52,7 +52,11 @@
           <a href="{% url 'account:login_view' %}"
              class="btn nav-link btn-link px-3 me-2">تسجيل الدخول</a>
         {% else %}
+         {% if request.user.is_superuser %}
+         <a href="{% url 'main:admin_viwe' %}" class="btn nav-link btn-link px-3 me-2"> لوحة التحكم </a>
+         {% else %}
         <a href="{% url 'account:profile_view' request.user.pk %}" class="btn nav-link btn-link px-3 me-2">مرحبا {{ request.user.full_name }} |  حسابي  </a>
+        {% endif %}
         <a href="{% url 'account:logout_view' %}"
         class="btn nav-link btn-link px-3 me-2">تسجيل الخروج</a>
         {% endif %}

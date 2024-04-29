@@ -59,7 +59,7 @@ border-radius: 10px;
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-lg-9 col-xl-7">
           <div class="card-profile border-profile">
-            <div class="rounded-top text-white d-flex flex-row" style="background-repeat: no-repeat; background-size: cover; height: 261px; background-image:url({% static 'images/sign_up_background.jpg' %});">
+            <div class="rounded-top text-white d-flex flex-row" style="background-repeat: no-repeat; background-size: cover; height: 261px; background-image: url('{{ user.lawyer_profile.image.url }}');">
               <div class="ms-4  d-flex flex-column " style="width: 150px; margin-top: 130px; margin-right: 20px;">
                 {% if user_profile.profile_image %}
                    <img src="{{ user_profile.profile_image.url }}" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-5 pt mb-2 " style="width: 150px; z-index: 1">
@@ -91,12 +91,19 @@ border-radius: 10px;
                   {% endif %}
                   <a href="{% url 'account:update_profile_view' request.user.pk  %}"><i class="fa fa-pencil " aria-hidden="true"></a></i>
                 </div>
-                {% if  request.user.role == "Lawyer" and request.user == user %}
+                {% if  request.user.role == "Lawyer" and request.user == user  %}
 
+                {% if user.lawyer_profile.certified %}
                   <button type="button" class="order-button-2" data-bs-toggle="modal" data-bs-target="#postModal">
                     إضافة منشور
                   </button>
                   
+                  {% else %}
+                  <button type="button" class="btn btn-close-white"  data-bs-toggle="modal" disabled data-bs-target="#postModal">
+                    إضافة منشور
+                  </button>
+                  {% endif %}
+
                 {% endif %}
 
                 {% if request.user.role == "Customar"   %}
@@ -116,8 +123,13 @@ border-radius: 10px;
                 </div>
               </div>
               <div class="d-flex justify-content-between align-items-center mb-4">
+                {% if request.user.role == "Lawyer" %}
                 <p class="lead fw-normal mb-0">المنشورات</p>
                 <p class="mb-0"><a href="#!" class="text-muted">جميع المنشورات</a></p>
+                {% elif request.user.role == "Customar" %}
+                <p class="lead fw-normal mb-0">المنشورات المحفوظة</p>
+                <p class="mb-0"><a href="#!" class="text-muted"> جميع المنشورات المحفوظة</a></p>
+                {% endif %}
               </div>
 
               <div class="row g-2">
