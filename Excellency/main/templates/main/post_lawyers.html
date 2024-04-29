@@ -3,36 +3,39 @@
  مجتمع المحامين
 {% endblock title %}
 {% block content %}
-<div class="container mt-3 justify-content-center">
+<div class="container mt-3">
     <div class="row justify-content-center">
+        {% if posts %}
         {% for post in posts %}
-        <div class="col-sm-4">
+        <div class="col-md-7">
             <div class="card-post mt-3">
-                <div class="card-body-post">
+                <div class="card-body-post justify-content-center">
                     <div class="post-heading rounded-3">
-                        <div class="pull-left image">
+                        <div>
                             <img src="{{ post.author.lawyer_profile.image.url }}" class="img-circle avatar" alt="user profile image">
                         </div>
                         <div class="pull-left">
-                            <div class="title h5">
-                                <a href="{% url "account:profile_view" lawyer.id %}"><b>{{ post.author.lawyer_profile.user.get_full_name }}</b></a> 
+                            <div class="title-post h5 text-end mx-4 px-5 ">
+                                <a href="{% url "account:profile_view" post.author.id %}"><b>{{ post.author.full_name }}</b></a> 
                             </div>
+                            <hr>
                             <h6 class="text-muted time">{{ post.timestamp }}</h6>
                         </div>
                     </div>
+                    {% if post.image %}
                     <div class="post-image p-2">
                         <img src="{{ post.image.url }}" class="image rounded-3" alt="image post">
                     </div>
-                    <hr>
+                    {% endif %}
                     <div class="post-description mt-3">
                         <h4>{{ post.title }}</h4>
                         <p>{{ post.content }}</p>
                         <div class="stats align-items-center">
                             <a href="javascript:void(0);" class="btn btn-default stat-item">
-                                <i class="fa fa-thumbs-up icon"></i> Like Count
+                                <i class="fa fa-thumbs-up icon"></i> 
                             </a>
                             <a href="javascript:void(0);" class="btn btn-default stat-item">
-                                <i class="fa fa-bookmark" aria-hidden="true"></i> Bookmark Count
+                                <i class="fa fa-bookmark" aria-hidden="true"></i> 
                             </a>
                         </div>            
                     </div>
@@ -40,6 +43,11 @@
             </div>
         </div>
         {% endfor %}
+        {% else %}
+        <div class="col-md-12">
+            <p>لا يوجد منشورات</p>
+        </div>
+    {% endif %}
     </div>
 </div>
 {% csrf_token %}
@@ -48,8 +56,22 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     margin-bottom: 20px;
-    background-color: #ffffff9b;
+    background-color: #ffffff;
     padding: 15px;
+    width: 800px; 
+    height: auto; 
+}
+
+.card-post .image {
+    width: 85%;
+    height: auto; 
+    border-radius: 10px; 
+    margin-right: 50px;
+}
+
+.card-post .post-description {
+    max-height: 150px; 
+    overflow: hidden; 
 }
 
 .avatar {
@@ -57,16 +79,8 @@
     height: 50px;
     border-radius: 50%;
     margin-top: 5px;
+    margin-left: 70px;
 }
-
-.image {
-    width: 350px; 
-    height: auto; 
-    margin-top: 10px;
-    border-radius: 5px;
-    justify-content: center;
-}
-
 
 .user {
     font-weight: bold;
@@ -77,9 +91,18 @@
     font-size: 12px;
 }
 
+
 .input-group-addon {
     cursor: pointer;
 }
-</style>
 
+
+.title-post {
+    margin-top: -30px; 
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #333; 
+}
+
+</style>
 {% endblock content %}
