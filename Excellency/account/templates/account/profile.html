@@ -63,11 +63,21 @@
         <div class="col col-lg-9 col-xl-7">
           <div class="card-profile border-profile">
             <div class="rounded-top text-white d-flex flex-row"
-                 style="background-repeat: no-repeat; background-size: cover; height: 261px; background-image: url('{{ user_profile.bannar.url }}')">
+                 style="background-repeat: no-repeat;
+                        background-size: cover;
+                        height: 261px;
+                        background-image: url('{{ user_profile.bannar.url }}')">
               <div class="ms-4  d-flex flex-column"
-                   style="width: 150px; margin-top: 130px; margin-right: 20px">
-                   <img src="{{ user_profile.image.url }}" alt="User profile image" class="img-fluid img-thumbnail mt-2 pt mb-2 rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
-                    </div>
+                   style="width: 150px;
+                          margin-top: 130px;
+                          margin-right: 20px">
+                <img src="{{ user_profile.image.url }}"
+                     alt="User profile image"
+                     class="img-fluid img-thumbnail mt-2 pt mb-2 rounded-circle"
+                     style="width: 150px;
+                            height: 150px;
+                            object-fit: cover">
+              </div>
             </div>
             <div class="p-4 text-black" style="background-color: #f8f9fa;">
               <div class="d-flex justify-content-end">
@@ -113,45 +123,40 @@
               </div>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4">
-              {% if request.user.role == "Lawyer" %}
-                  <p class="lead fw-normal mb-0">المنشورات</p>
-                  <p class="mb-0">
-                      <a href="#!" class="text-muted">جميع المنشورات</a>
-                  </p>
-              {% elif request.user.role == "Customar" %}
-                  <p class="lead fw-normal mb-0">المنشورات المحفوظة</p>
-                  <p class="mb-0">
-                      <a href="#!" class="text-muted">جميع المنشورات المحفوظة</a>
-                  </p>
-                  {%%}
-              {% endif %}
-          </div>
-          <hr>
-          {% for post in posts %}
+              <p class="lead fw-normal mb-0">المنشورات</p>
+              <p class="mb-0">
+                <a href="#!" class="text-muted">جميع المنشورات</a>
+              </p>
+            </div>
+            <hr>
+            {% for bookmark in bookmarks %}
               <div class="card-post mb-3">
-                  {% if post.image %}
-                      <img src="{{ post.image.url }}" class="card-img-top" alt="Post Image">
+                {% if bookmark.post.image %}
+                  <img src="{{ bookmark.post.image.url }}"
+                       class="card-img-top"
+                       alt="Post Image">
+                {% endif %}
+                <div class="card-header">{{ bookmark.post.title }}</div>
+                <div class="card-body-post">
+                  <p class="card-text">{{ bookmark.post.content }}</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">{{ bookmark.post.timestamp }}</small>
+                </div>
+                <div class="stats align-items-center">
+                  <a href="{% url 'main:like_post' bookmark.post.id %}"
+                     class="btn btn-default stat-item">
+                    <i class="fa fa-thumbs-up icon"></i> {{ bookmark.post.total_likes }}
+                  </a>
+                  {% if request.user.role == "Customar" %}
+                    <a href="{% url 'main:bookmark_post' bookmark.post.id %}"
+                       class="btn btn-default stat-item">
+                      <i class="fa fa-bookmark" aria-hidden="true"></i> {{ bookmark.post.total_bookmarks }}
+                    </a>
                   {% endif %}
-                  <div class="card-header">{{ post.title }}</div>
-                  <div class="card-body-post">
-                      <p class="card-text">{{ post.content }}</p>
-                  </div>
-                  <div class="card-footer">
-                      <small class="text-muted">{{ post.timestamp }}</small>
-                  </div>
-                  <div class="stats align-items-center">
-                      <a href="{% url 'main:like_post' post.id %}" class="btn btn-default stat-item">
-                          <i class="fa fa-thumbs-up icon"></i> {{ post.total_likes }}
-                      </a>
-                      {% if request.user.role == "Customar" %}
-                          <a href="{% url 'main:bookmark_post' post.id %}" class="btn btn-default stat-item">
-                              <i class="fa fa-bookmark" aria-hidden="true"></i> {{ post.total_bookmarks }}
-                          </a>
-                      {% endif %}
-                  </div>
+                </div>
               </div>
-          {% endfor %}
-          
+            {% endfor %}
             <div class="row g-2"></div>
           </div>
           <div class="row g-2"></div>
