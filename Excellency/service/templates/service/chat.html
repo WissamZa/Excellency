@@ -9,7 +9,8 @@
     <div class="container mt-3">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <a href="{% url 'service:order_details' order.id %}" class="btn btn-outline-dark"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                <a href="{% url 'service:order_details' order.id %}"
+                   class="btn btn-outline-dark"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                 <h2 class="mb-4 text-center">المحادثة</h2>
                 <ul class="list-unstyled chat-list" id="chat-messages">
                     {% for comment in comments %}
@@ -38,34 +39,35 @@
                             </div>
                         </li>
                     {% endfor %}
-
                 </ul>
-                <form action="{{ request.path }}"
-                      method="post"
-                      enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="chat-sum input-group mt-4 mb-4">
-                        <textarea id="message-input"
-                                  name="content"
-                                  class="input-chat form-control rounded-4"
-                                  rows="1"
-                                  placeholder="اكتب رسالتك هنا..."></textarea>
-                        <label for="file-upload"
-                               class="ico-chat btn btn-outline-dark rounded-4 align-content-center">
-                            <i class="fas fa-file-upload"></i>
-                        </label>
-                        <input id="file-upload"
-                               type="file"
-                               name="file"
-                               class="form-control"
-                               style="display: none">
-                        <button id="send-button"
-                                class="ico-chat btn btn-outline-dark rounded-4"
-                                type="submit">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </form>
+                <hr>
+                {% if not order.status == order.completed %}
+                    <form action="{{ request.path }}"
+                          method="post"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="chat-sum input-group mt-4 mb-4">
+                            <input id="message-input"
+                                   name="content"
+                                   class="input-chat form-control rounded-4"
+                                   placeholder="اكتب رسالتك هنا..." />
+                            <label for="file-upload"
+                                   class="ico-chat btn btn-outline-dark rounded-4 align-content-center">
+                                <i class="fas fa-file-upload"></i>
+                            </label>
+                            <input id="file-upload"
+                                   type="file"
+                                   name="file"
+                                   class="form-control"
+                                   style="display: none">
+                            <button id="send-button"
+                                    class="ico-chat btn btn-outline-dark rounded-4"
+                                    type="submit">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -74,6 +76,5 @@
             const chatMessages = document.getElementById('chat-messages');
             chatMessages.scrollTop = chatMessages.scrollHeight;
         });
-        </script>
-        
+    </script>
 {% endblock content %}

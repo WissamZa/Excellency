@@ -28,10 +28,10 @@
                             حالة الخدمة : <span>{{ order.status }}</span>
                         </p>
                         {% if order.file %}
-                        <p class="card-text">
-                            ملف:
-                           <a href="{{ order.file.url }}" target="_blank">انقر هنا</a>   
-                        </p>
+                            <p class="card-text">
+                                ملف:
+                                <a href="{{ order.file.url }}" target="_blank">انقر هنا</a>
+                            </p>
                         {% endif %}
                         {% if order.status == status_choices.pending_accept_offer %}
                             <p class="card-text">
@@ -71,25 +71,23 @@
                     </div>
                 </div>
                 <div class="d-flex gap-2">
-
                     {% if request.user.role == order.customar.role or request.user.role == order.lawyer.role %}
-                        {% if order.status == status_choices.accepted %}
+                        {% if order.status == status_choices.accepted or order.status == status_choices.completed %}
                             <a href="{% url "service:chat_view" order.id %}"
                                class="btn btn-success me-2">المحادثة</a>
                         {% endif %}
-                        
                     {% endif %}
                     {% if order.status == status_choices.accepted %}
-                    <form action="{% url "service:order_details" order.id %}" method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="status" value="{{ status_choices.completed }}">
-                        <button type="submit" name="completed-btn" class="btn btn-outline-dark ">إنهاء الطلب</button>
-                    </form>
+                        <form action="{% url "service:order_details" order.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="status" value="{{ status_choices.completed }}">
+                            <button type="submit" name="completed-btn" class="btn btn-outline-dark ">إنهاء الطلب</button>
+                        </form>
                     {% endif %}
                 </div>
                 {% if order.status == status_choices.completed %}
                     {% if not order.rating and request.user.role == "Customar" %}
-                    {% include "service/rating.html" %}
+                        {% include "service/rating.html" %}
                     {% endif %}
                 {% endif %}
             </div>
