@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpRequest
 from account.models import User, LawyerProfile, CustomarProfile
 from django.contrib.auth import authenticate, login, logout
@@ -214,3 +214,26 @@ def profile_view(request: HttpRequest, user_id):
 
    return render(request, "account/profile.html", {"user": user,
                                                    "user_profile": user_profile, "bookmarks": bookmarks})
+
+def my_post(request, user_id):
+    if not request.user.is_authenticated:
+        return redirect("main:login_view")
+   
+    posts = Post.objects.filter(author__id=user_id)
+
+    return render(request, "account/my_post.html", {'posts': posts})
+ 
+@login_required
+def delete_post(request, post_id):
+    if request.method == 'POST':
+        post = get_object_or_404(Post, pk=post_id)
+        
+        if post.author == request.user:
+            post.delete()
+            
+            return redirect('main:my_post')
+        else:
+           
+            pass
+    
+    return redirect('main:my_post')
