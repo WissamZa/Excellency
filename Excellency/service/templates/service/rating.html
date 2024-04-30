@@ -1,11 +1,11 @@
 <!--djlint:off H021 H023-->
 <div class="container mt-5">
   <h2 class="text-113345">اترك تقييم</h2>
-  <form method="post" action="">
+  <form method="post" action="{{ request.path }}">
     {% csrf_token %}
     <div class="form-group">
       <label for="comment" class="text-gold">تعليقك:</label>
-      <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+      <textarea class="form-control" id="comment" name="comment" rows="3" ></textarea>
     </div>
     <div class="form-group d-flex align-items-center gap-1 ">
       <label for="rating" class="text-gold">تقييمك:</label>
@@ -99,6 +99,6 @@
         </div>
       </div>
     </span>
-    <button type="submit" class="btn btn-color">تقييم</button>
+    <button type="submit" class="btn btn-color" name="rating-submit">تقييم</button>
   </form>
 </div>

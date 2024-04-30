@@ -110,18 +110,25 @@
             </div>
           </div>
           <div class="card-body bg-white p-4 text-black">
+            {% if user.role == "Lawyer" %}
+
             <div class="mb-5">
               <p>نبذة</p>
               <div class="p-4" style="background-color: #f8f9fa;">
                 <p class="font-italic mb-1">{{ user.lawyer_profile.about }}</p>
               </div>
             </div>
+            {% endif %}
+
             <div class="d-flex justify-content-between align-items-center mb-4">
 
               <p class="lead fw-normal mb-0">المنشورات</p>
+              {% if user.role == "Lawyer" %}
+
               <p class="mb-0">
                 <a href="{% url 'account:my_post' user.id %}" class="text-muted">جميع المنشورات</a>
               </p>
+              {% endif %}
             </div>
             <hr>
             {% for bookmark in bookmarks %}

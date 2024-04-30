@@ -2,11 +2,11 @@
 {% extends "base/base.html" %}
 {% load static %}
 {% block title %}
-    الطلبات السابقة
+    طلب الخدمة
 {% endblock title %}
 {% block content %}
     {% include "account/sidebar.html" %}
-    <div class="container mt-4 w-50 mt-5 ">
+    <div class="container mt-4 w-50 mt-5">
         <ul class="nav nav-tabs mb-4">
             <li class="nav-item p-2">
                 <a class="nav-link"
@@ -20,20 +20,43 @@
             </li>
         </ul>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card-law-order mb-2">
-                <div class="card-body-law">
-                    <h5 class="card-title">رقم الطلب #12345</h5>
-                    <p class="card-text">عميل : احمد</p>
-                    <p class="card-text">نوع الخدمة : استشارة</p>
-                    <p class="card-text">الحالة : تمت الموافقة</p>
-                    <div class="d-flex justify-content-end g-4">
-                        <a href="{% url 'service:order_details' %}"
-                           class="btn btn-outline-dark me-2">تفاصيل الطلب</a>
+    <div class="container mt-4 ">
+        <div class="row justify-content-center">
+            {% for order in orders %}
+                <div class="col-md-8">
+                    <div class="card-law-order mb-2">
+                        <div class="card-body-law">
+                            <h5 class="card-title">
+                                رقم الطلب #<span>{{ order.id }}</span>
+                            </h5>
+                            <p class="card-text">
+                                {% if request.user.role == "Lawyer" %}
+                                    عميل : <span>{{ order.customar.full_name }}</span>
+                                {% elif request.user.role == "Customar" %}
+                                    المحامي : <span>{{ order.lawyer.full_name }}</span>
+                                {% endif %}
+                            </p>
+                            <p class="card-text">
+                                نوع الخدمة : <span>{{ order.order_type }}</span>
+                            </p>
+                            <p class="card-text">
+                                الحالة : <span>{{ order.status }}</span>
+                            </p>
+                            <div class="d-flex justify-content-end g-4">
+                                <a href="{% url "service:order_details" order.id %}"
+                                   class="btn btn-outline-dark me-2">تفاصيل الطلب</a>
+                                {% if request.user.role == "Lawyer" and order.status == status_choices.pending %}
+                                    <form action="{% url "service:order_details" order.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="status" value="{{ status_choices.rejected }}">
+                                        <button type="submit" name="reject-btn" class="btn btn-danger me-2">غير مهتم</button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock content %}
