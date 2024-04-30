@@ -1,36 +1,35 @@
 {% extends "base/base.html" %}
+{% load static %}
 {% block title %}
   منشوراتي
 {% endblock title %}
 {% block content %}
 <div class="container mt-3">
-    <div class="row justify-content-center">
+    <div class="row flex-wrap justify-content-start">
         {% if posts %}
             {% for post in posts %}
                 <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card-my bg-light">
-                        <div class="card-body-my">
-                            {% if post.image %}
-                                <img src="{{ post.image.url }}" class="card-img-top" alt="Post Image">
-                            {% endif %}
+                    <div class="card-my bg-light" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                        <div class="card-body-my" style="padding: 20px;">
                             <h5 class="card-title">{{ post.title }}</h5>
                             <p class="card-text">{{ post.content }}</p>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer" style="padding: 10px 20px;">
                             <small class="text-muted">{{ post.timestamp }}</small>
-                            <div class="stats align-items-center">
-                                <a href="{% url 'main:like_post' post.id %}" class="btn btn-default stat-item">
+                            <div class="stats align-items-center" style="margin-top: 10px;">
+                                <a href="{% url 'main:like_post' post.id %}" class="btn btn-default stat-item" style="margin-right: 10px;">
                                     <i class="fa fa-thumbs-up icon"></i> {{ post.total_likes }}
                                 </a>
-                                {% if request.user.role == "Customar" %}
-                                    <a href="{% url 'main:bookmark_post' post.id %}" class="btn btn-default stat-item">
-                                        <i class="fa fa-bookmark" aria-hidden="true"></i> {{ post.total_bookmarks }}
-                                    </a>
-                                {% endif %}
-                                {% if request.user.role == "Lawyer" %}
-                                <form action="{% url 'main:delete_post' post.id %}" method="post" class="d-inline">
+                                <a href="{% url 'main:bookmark_post' post.id %}" class="btn btn-default stat-item" style="margin-right: 10px;">
+                                    <i class="fa fa-bookmark" aria-hidden="true"></i> {{ post.total_bookmarks }}
+                                </a>
+                                {% if request.user.role == "Lawyer" and request.user == post.author %}
+                                <form action="{% url 'account:delete_post' post.id %}" method="post" class="d-inline">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn  me-1">
+                                        <i class="fas fa-trash-alt me-1"></i> 
+                                        
+                                    </button>
                                 </form>
                                 {% endif %}
                             </div>

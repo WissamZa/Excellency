@@ -13,5 +13,6 @@ urlpatterns = [
     path("verification/<user_id>/",views.verification,name="verification"),
     path('post/<int:post_id>/like/', views.like_post, name='like_post'),
     path('post/<int:post_id>/bookmark/', views.bookmark_post, name='bookmark_post'),
+    path('contact/success/', views.contact_success, name='contact_success'),
 
 ]
