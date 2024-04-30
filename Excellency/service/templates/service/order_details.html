@@ -66,7 +66,8 @@
                 </div>
                 {% if request.user.role == order.customar.role or request.user.role == order.lawyer.role %}
                     {% if order.status == status_choices.accepted %}
-                        <a href="{% url "service:" %}" class="btn btn-success me-2">قبول العرض</a>
+                        <a href="{% url "service:chat_view" order.id %}"
+                           class="btn btn-success me-2">المحادثة</a>
                     {% endif %}
                 {% endif %}
                 {% if order.status == status_choices.completed %}

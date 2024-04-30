@@ -1,4 +1,3 @@
-
 .chat-message {
     list-style: none;
     margin-bottom: 20px;
@@ -21,23 +20,26 @@
 
 .left .message-content {
     text-align: left;
-    
+
 }
 
 .right .message-content {
     justify-content: start;
     width: auto;
 }
-.chat-sum{
+
+.chat-sum {
     border: 3px solid #ca9e67;
     background-color: #fff;
     border-radius: 20px;
 }
-.input-chat{
+
+.input-chat {
     border: none !important;
     width: 20px !important;
 }
-.ico-chat{
+
+.ico-chat {
     align-items: center;
     border: #fff;
 }
@@ -45,6 +47,8 @@
 .chat-list {
     list-style-type: none;
     padding: 0;
+    overflow-y: scroll;
+    min-height: 60vh
 }
 
 
