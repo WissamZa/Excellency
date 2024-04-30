@@ -26,7 +26,7 @@ def contactus_view(request: HttpRequest):
                                   message=request.POST.get('message'),
                                   )
          msg = "تم ارسال رسالتك بنجاح"
-         return redirect("main:index_view")
+         return redirect("main:contact_success")
    except Exception as e:
       msg = e
    return render(request, "main/contactus.html", {'msg': msg})
@@ -131,3 +131,5 @@ def bookmark_post(request: HttpRequest, post_id):
 
     return redirect("main:post_list")
 
+def contact_success(request):
+     return render(request, 'main/contact_success.html')

@@ -217,11 +217,12 @@ def profile_view(request: HttpRequest, user_id):
 
 def my_post(request, user_id):
     if not request.user.is_authenticated:
-        return redirect("main:login_view")
+        return redirect("account:login_view")
    
     posts = Post.objects.filter(author__id=user_id)
 
     return render(request, "account/my_post.html", {'posts': posts})
+ 
  
 @login_required
 def delete_post(request, post_id):
@@ -230,10 +231,6 @@ def delete_post(request, post_id):
         
         if post.author == request.user:
             post.delete()
-            
-            return redirect('main:my_post')
-        else:
-           
-            pass
     
-    return redirect('main:my_post')
+    
+    return redirect('account:my_post', user_id=request.user.id)

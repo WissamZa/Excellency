@@ -6,7 +6,7 @@
     المحامين
 {% endblock title %}
 {% block content %}
-    <nav class="navbar navbar-expand-lg"
+    <nav class="navbar navbar-expand-lg align-items-center "
          style="background-color: rgba(240, 248, 255, 0)">
         <div class="container">
             <div class="navbar-nav">
@@ -63,17 +63,17 @@
             </div>
         </form>
     </nav>
-    <div class="container-fluid py-5 g-5 mx-1">
-        <div class="d-flex flex-wrap gap-5 justify-content-start align-items-center g-4">
+    <div class="container-fluid py-5 g-5 mx-1 p-3">
+        <div class="d-flex flex-wrap gap-3 justify-content-center align-items-center g-1">
             {% for lawyer in lawyers %}
-                <div class="col-md-3 bg-light rounded-4">
-                    <div class="law-card card-10 shadow-lg p-2">
+                <div class="col-md-4  rounded-4">
+                    <div class="law-card card-10 shadow-lg p-5" style="border-radius: 30% 25% / 10% 40%; background-color: azure;">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 ">
                                 <img src="{{ lawyer.lawyer_profile.image.url }}"
                                      alt="Profile Picture"
-                                     class="img-fluid"
-                                     style="width: 180px">
+                                     class="img-fluid rounded-4 h-75"
+                                     style="width: 200px;">
                             </div>
                             <div class="col-md-8">
                                 <a href="{% url "account:profile_view" lawyer.id %}">

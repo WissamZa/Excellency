@@ -15,5 +15,6 @@ urlpatterns = [
     path("lawyer/<user_id>/profile/",views.profile_view, name="profile_view"),
     path("account_balance/", views.account_balance, name="account_balance"),
     path('posts/<user_id>/', views.my_post, name='my_post'),
-    path('delete_post/<int:post_id>/', views.delete_post, name='delete_post'),
+    path('delete_post/<int:post_id>/', views.delete_post, name='delete_post')
+
 ]
