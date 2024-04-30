@@ -1,27 +1,26 @@
 {% extends "base/base.html" %}
 {% block title %}
-   الرسائل
+    الرسائل
 {% endblock title %}
 {% block content %}
-<h1 class="text-center fw-bold mt-3">الرسائل</h1>
-
-<div class="row justify-content-center">
-    <div class="col d-flex gap-2 py-5 mx-4">
-        {% for message in messages %}
-            <div class="mas border-1 p-5 rounded-3 ">
-                <h4>{{ message.full_name }}</h4>
-                <h4>{{ message.email }}</h4>
-                <p>{{message.subject}}</p>
-                <p>{{ message.created_at }}</p>
-            </div>
-        {% endfor %}
+    <h1 class="text-center fw-bold mt-3">الرسائل</h1>
+    <div class="row justify-content-center">
+        <div class="col d-flex gap-2 py-5 mx-4">
+            {% for message in messages %}
+                <div class="mas border-1 p-5 rounded-3 ">
+                    <h4>{{ message.full_name }}</h4>
+                    <h4>{{ message.email }}</h4>
+                    <p>{{ message.subject }}</p>
+                    <p>{{ message.created_at }}</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
-<style>
-.mas{
-    background-color: rgb(255, 255, 255);
-    width: 400px;
-    
-}
-</style>
+    <style>
+        .mas {
+            background-color: rgb(255, 255, 255);
+            width: 400px;
+
+        }
+    </style>
 {% endblock content %}

@@ -26,7 +26,7 @@ def contactus_view(request: HttpRequest):
                                   )
          msg = "تم ارسال رسالتك بنجاح"
    except Exception as e:
-      pass
+      print(e)
    return render(request, "main/contactus.html", {'msg': msg})
 
 

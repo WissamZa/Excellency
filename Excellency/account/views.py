@@ -181,7 +181,6 @@ def update_profile_view(request: HttpRequest, user_id):
             user.save()
             customar_profile: CustomarProfile = CustomarProfile.objects.get(
                user=user)
-            print(request.FILES.get("image"))
             customar_profile.image = request.FILES.get(
                 "image", customar_profile.image)
             customar_profile.bannar = request.FILES.get(
@@ -205,7 +204,6 @@ def profile_view(request: HttpRequest, user_id):
          user_profile = user.lawyer_profile
       if user.role == "Customar":
          user_profile = user.customar_profile
-         print(user_profile.image.url)
       if request.method == "POST":
          Post.objects.create(author=request.user,
                              title=request.POST.get('title'),
