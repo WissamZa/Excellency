@@ -119,18 +119,20 @@
                       <a href="#!" class="text-muted">جميع المنشورات</a>
                   </p>
               {% elif request.user.role == "Customer" %}
-                  {% if bookmark_clicked %}
-                      <p class="lead fw-normal mb-0">المنشورات المحفوظة</p>
-                      <p class="mb-0">
-                          <a href="#!" class="text-muted">جميع المنشورات المحفوظة</a>
-                      </p>
-                  {% else %}
-                      <p class="lead fw-normal mb-0">المنشورات</p>
-                      <p class="mb-0">
-                          <a href="#!" class="text-muted">جميع المنشورات</a>
-                      </p>
-                  {% endif %}
-              {% endif %}
+                 
+              {% if bookmark_clicked %}
+              <p class="lead fw-normal mb-0">المنشورات المحفوظة</p>
+              <p class="mb-0">
+                  <a href="{% url 'main:bookmarked_posts' %}" class="text-muted">جميع المنشورات المحفوظة</a>
+              </p>
+          {% else %}
+              <p class="lead fw-normal mb-0">المنشورات</p>
+              <p class="mb-0">
+                  <a href="{% url 'main:post_list' %}" class="text-muted">جميع المنشورات</a>
+              </p>
+          {% endif %}
+      {% endif %}
+  </div>
           </div>
           {% for post in posts %}
           <div class="card-post mb-3">

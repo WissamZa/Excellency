@@ -106,11 +106,28 @@ def like_post(request, post_id):
    return redirect(reverse('main:post_list'))
 
 
-def bookmark_post(request, post_id):
-   post = get_object_or_404(Post, pk=post_id)
-   user = request.user
-   if user.is_authenticated:
-      bookmark, created = Bookmark.objects.get_or_create(user=user, post=post)
-      if not created:
-         bookmark.delete()
-   return redirect(reverse('main:post_list'))
+
+def bookmark_post(request: HttpRequest, post_id):
+
+    if not request.user.is_authenticated:
+        return redirect("account:login_view")
+    
+    try:
+        post = Post.objects.get(pk=post_id)
+
+       
+        bookmarked_post = Bookmark.objects.filter(user=request.user, post=post).first()
+
+        if not bookmarked_post:
+            
+            bookmark = Bookmark(user=request.user, post=post)
+            bookmark.save()
+        else:
+            
+            bookmarked_post.delete()
+    
+    except Exception as e:
+        print(e)
+
+    return redirect("main:post_list")
+
