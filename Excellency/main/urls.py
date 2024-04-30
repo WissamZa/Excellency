@@ -11,4 +11,6 @@ urlpatterns = [
     path('lawyer_details/<user_id>', views.lawyer_details_view, name='lawyer_details'),
     path('post/', views.post_list, name='post_list'),
     path("verification/<user_id>/",views.verification,name="verification"),
+    path('post/<int:post_id>/like/', views.like_post, name='like_post'),
+    path('post/<int:post_id>/bookmark/', views.bookmark_post, name='bookmark_post'),
 ]

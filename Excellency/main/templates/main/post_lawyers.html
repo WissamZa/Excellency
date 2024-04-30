@@ -31,11 +31,11 @@
                         <h4>{{ post.title }}</h4>
                         <p>{{ post.content }}</p>
                         <div class="stats align-items-center">
-                            <a href="javascript:void(0);" class="btn btn-default stat-item">
-                                <i class="fa fa-thumbs-up icon"></i> 
+                            <a href="{% url 'main:like_post' post.id %}" class="btn btn-default stat-item">
+                                <i class="fa fa-thumbs-up icon"></i> {{ post.total_likes }}
                             </a>
-                            <a href="javascript:void(0);" class="btn btn-default stat-item">
-                                <i class="fa fa-bookmark" aria-hidden="true"></i> 
+                            <a href="{% url 'main:bookmark_post' post.id %}" class="btn btn-default stat-item">
+                                <i class="fa fa-bookmark" aria-hidden="true"></i> {{ post.total_bookmarks }}
                             </a>
                         </div>            
                     </div>
