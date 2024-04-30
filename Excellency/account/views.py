@@ -119,7 +119,7 @@ def login_view(request: HttpRequest):
 
             return redirect(request.POST.get("next") or "main:index_view")
    except ValidationError:
-      msg = "الهوية الوطنية أو الايميل مستخدم خاطئ. حاول مرة اخرى..."
+      msg = "الايميل مستخدم خاطئ. حاول مرة اخرى..."
 
    return render(request, "account/login.html", {"msg": msg,
                                                  "next": next})
