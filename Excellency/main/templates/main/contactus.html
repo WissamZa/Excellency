@@ -3,8 +3,16 @@
 {% block title %}
   اتصل بنا
 {% endblock title %}
+{% block css %}
+  <style>
+      .input-disabled {
+          cursor: not-allowed;
+          background-color: #EEE;
+          color: #9E9999;
+      }
+  </style>
+{% endblock css %}
 {% block content %}
-
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-md-5">
@@ -14,19 +22,20 @@
           <div class="mb-3">
             <label for="name" class="form-label">الاسم الثلاثي</label>
             <input type="text"
-                   class="form-control"
+                   class="form-control input-disabled"
                    id="name"
+                   aria-disabled="true"
                    name="full_name"
-                   {% if request.user.is_authenticated %}value="{{ request.user.full_name }}" disabled{% endif %}
+                   {% if request.user.is_authenticated %}value="{{ request.user.full_name }}" readonly{% endif %}
                    required>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">البريد الإلكتروني</label>
             <input type="email"
-                   class="form-control"
+                   class="form-control input-disabled"
                    id="email"
                    name="email"
-                   {% if request.user.is_authenticated %}value="{{ request.user.email }}" disabled{% endif %}
+                   {% if request.user.is_authenticated %}value="{{ request.user.email }}" readonly{% endif %}
                    required>
           </div>
           <div class="mb-3">

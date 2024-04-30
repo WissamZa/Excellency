@@ -6,10 +6,11 @@ from account.models import User, Specialty, LawyerProfile
 from django.db.models import Count
 from django.urls import reverse
 
+
 def index_view(request: HttpRequest):
    order_num = Service.objects.all().count()
    lawyers_num = User.objects.filter(role="Lawyer").count()
-   customar_num = User.objects.filter(role="Customer").count()
+   customar_num = User.objects.filter(role="Customar").count()
    return render(request, "main/index.html", {"order_num": order_num,
                                               "lawyers_num": lawyers_num,
                                               "customar_num": customar_num})
@@ -25,8 +26,9 @@ def contactus_view(request: HttpRequest):
                                   message=request.POST.get('message'),
                                   )
          msg = "تم ارسال رسالتك بنجاح"
+         return redirect("main:index_view")
    except Exception as e:
-      print(e)
+      msg = e
    return render(request, "main/contactus.html", {'msg': msg})
 
 
@@ -93,14 +95,17 @@ def post_list(request):
    else:
       return redirect('account:login_view')
 
+
 def like_post(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    user = request.user
-    if user.is_authenticated:
-        like, created = Like.objects.get_or_create(user=user, post=post)
-        if not created:
-            like.delete()
-    return redirect(reverse('main:post_list'))
+   post = get_object_or_404(Post, pk=post_id)
+   user = request.user
+   if user.is_authenticated:
+      like, created = Like.objects.get_or_create(user=user, post=post)
+      if not created:
+         like.delete()
+   return redirect(reverse('main:post_list'))
+
+
 
 def bookmark_post(request: HttpRequest, post_id):
 
@@ -125,3 +130,4 @@ def bookmark_post(request: HttpRequest, post_id):
         print(e)
 
     return redirect("main:post_list")
+
