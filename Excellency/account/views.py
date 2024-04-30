@@ -208,6 +208,8 @@ def profile_view(request: HttpRequest, user_id):
          return redirect('account:profile_view', user_id=user_id)
 
       posts = Post.objects.filter(author=user)
+      
+      
    except User.DoesNotExist:
       return render(request, "404.html")
 
