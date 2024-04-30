@@ -1,45 +1,56 @@
 {% extends "base/base.html" %}
 {% load static %}
 {% block title %}
-تفاصيل المحامي
+    تفاصيل المحامي
 {% endblock title %}
 {% block content %}
-{% include "account/sidebar.html" %}
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <a href="{% url 'main:admin_viwe' %}" class="btn btn-outline-dark mb-3">
-                <i class="fas fa-arrow-right"></i> 
-            </a>
-            <div class="card-det shadow-lg p-4 bg-light">
-                <div class="row align-items-center">
-                    <div class="col-md-8">
-                        <h3 class="mb-3">الاسم : {{ user.full_name }}</h3>
- 
-                        <p class="text-muted mb-2 d-flex">تخصص : 
-                            {% for sp in user.lawyer_profile.specialty.all %}
-                            {{ sp }}
-                            {% if not forloop.last %}
-                             | 
-                            {% endif %}
-                        {% endfor %} 
-                        </p>
-                        <p class="text-muted mb-3">الجنس :{% if  user.lawyer_profile.gender == "male" %} ذكر {% elif  user.lawyer_profile.gender == "female" %}انثى{% endif %}</p>
-                        <p class="text-muted mb-3">رقم الهوية : {{  user.national_id }} </p>
-                        <p class="text-muted mb-3">رقم الهاتف : {{ user.lawyer_profile.phone}}</p>
-                        <p class="text-muted mb-3">البريد الالكتروني : {{  user.email }}</p>
-                        <p class="text-muted mb-3">رخصة المحاماة : <a href="{{ user.lawyer_profile.licence.url }}" target="_blank">مشاهدة الرخصة من هنا</a></p>
-                        <p class="text-muted mb-3">المؤهل العلمي : <a href="{{ user.lawyer_profile.Qualification.url }}" target="_blank">شاهد المؤهل من هنا</a></p>
-                    </div>
-                    <div class="col-12">
-                        <div class="text-center">
-                            <a href="{% url "main:verification" user.id %}" type="submit" class="btn btn-success">توثيق</a>
-                            <!-- <a type="submit" class="btn btn-danger">رفض</a> -->
+    {% include "account/sidebar.html" %}
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <a href="{% url 'main:admin_view' %}" class="btn btn-outline-dark mb-3">
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <div class="card-det shadow-lg p-4 bg-light">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h3 class="mb-3">الاسم : {{ user.full_name }}</h3>
+                            <p class="text-muted mb-2 d-flex">
+                                تخصص :
+                                {% for sp in user.lawyer_profile.specialty.all %}
+                                    {{ sp }}
+                                    {% if not forloop.last %}|{% endif %}
+                                {% endfor %}
+                            </p>
+                            <p class="text-muted mb-3">
+                                الجنس :
+                                {% if  user.lawyer_profile.gender == "male" %}
+                                    ذكر
+                                {% elif  user.lawyer_profile.gender == "female" %}
+                                    انثى
+                                {% endif %}
+                            </p>
+                            <p class="text-muted mb-3">رقم الهوية : {{ user.national_id }}</p>
+                            <p class="text-muted mb-3">رقم الهاتف : {{ user.lawyer_profile.phone }}</p>
+                            <p class="text-muted mb-3">البريد الالكتروني : {{ user.email }}</p>
+                            <p class="text-muted mb-3">
+                                رخصة المحاماة : <a href="{{ user.lawyer_profile.licence.url }}" target="_blank">مشاهدة الرخصة من هنا</a>
+                            </p>
+                            <p class="text-muted mb-3">
+                                المؤهل العلمي : <a href="{{ user.lawyer_profile.Qualification.url }}" target="_blank">شاهد المؤهل من هنا</a>
+                            </p>
+                        </div>
+                        <div class="col-12">
+                            <div class="text-center">
+                                <a href="{% url "main:verification" user.id %}"
+                                   type="submit"
+                                   class="btn btn-success">توثيق</a>
+                                <!-- <a type="submit" class="btn btn-danger">رفض</a> -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
