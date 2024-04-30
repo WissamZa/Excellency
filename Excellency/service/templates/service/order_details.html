@@ -27,7 +27,7 @@
                         <p class="card-text">
                             حالة الخدمة : <span>{{ order.status }}</span>
                         </p>
-                        {% if order.status == status_choices.offer_made %}
+                        {% if order.status == status_choices.pending_accept_offer %}
                             <p class="card-text">
                                 السعر  المعروض : <span>{{ order.price }}</span>
                             </p>
@@ -46,21 +46,29 @@
                             </div>
                         </div>
                         <div class="d-flex mt-5 g-4">
-                            {% if order.status == status_choices.pending %}
+                            {% if request.user.role == "Customar" and order.status == status_choices.pending_accept_offer %}
+                                <a href="{% url "service:payment_view" order.id %}"
+                                   class="btn btn-outline-primary me-2">الدفع</a>
+                            {% endif %}
+                            {% if request.user.role == "Lawyer" and order.status == status_choices.pending %}
                                 <button type="button"
                                         class="btn btn-outline-dark me-2"
                                         data-bs-toggle="modal"
                                         data-bs-target="#offerModal">إضافة عرض</button>
-                                {% if request.user.role == "Lawyer" %}
-                                    <form action="{% url "service:order_details" order.id %}" method="post">
-                                        <input type="hidden" name="status" value="{{ status_choices.rejected }}">
-                                        <button type="submit" name="reject-btn" class="btn btn-danger me-2">غير مهتم</button>
-                                    </form>
-                                {% endif %}
+                                <form action="{% url "service:order_details" order.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="status" value="{{ status_choices.rejected }}">
+                                    <button type="submit" name="reject-btn" class="btn btn-danger me-2">غير مهتم</button>
+                                </form>
                             {% endif %}
                         </div>
                     </div>
                 </div>
+                {% if request.user.role == order.customar.role or request.user.role == order.lawyer.role %}
+                    {% if order.status == status_choices.accepted %}
+                        <a href="{% url "service:" %}" class="btn btn-success me-2">قبول العرض</a>
+                    {% endif %}
+                {% endif %}
                 {% if order.status == status_choices.completed %}
                     {% include "service/rating.html" %}
                 {% endif %}
@@ -92,7 +100,9 @@
                                    class="form-control"
                                    name="price"
                                    aria-label="السعر (to the nearest dollar)">
-                            <input type="hidden" name="status" value="{{ status_choices.offer_made }}">
+                            <input type="hidden"
+                                   name="status"
+                                   value="{{ status_choices.pending_accept_offer }}">
                         </div>
                         <button type="submit" name="make_offer" class="btn btn-outline-dark">تقديم العرض</button>
                     </form>

@@ -29,8 +29,9 @@ def order_form(request: HttpRequest, lawyer_id):
 
 
 @login_required(login_url="/account/login")
-def payment_view(request):
-   return render(request, 'service/payment.html')
+def payment_view(request: HttpRequest, order_id):
+   order = Service.objects.get(id=order_id)
+   return render(request, 'service/payment.html', {"order": order})
 
 
 @login_required(login_url="/account/login")

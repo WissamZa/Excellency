@@ -22,7 +22,8 @@
           <div class="mb-3">
             <label for="name" class="form-label">الاسم الثلاثي</label>
             <input type="text"
-                   class="form-control input-disabled"
+                   class="form-control
+                          {% if request.user.is_authenticated %}input-disabled{% endif %}"
                    id="name"
                    aria-disabled="true"
                    name="full_name"
@@ -32,7 +33,8 @@
           <div class="mb-3">
             <label for="email" class="form-label">البريد الإلكتروني</label>
             <input type="email"
-                   class="form-control input-disabled"
+                   class="form-control
+                          {% if request.user.is_authenticated %}input-disabled{% endif %}"
                    id="email"
                    name="email"
                    {% if request.user.is_authenticated %}value="{{ request.user.email }}" readonly{% endif %}
