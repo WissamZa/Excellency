@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from account.models import LawyerProfile, User
 from django.contrib.auth.decorators import login_required
-from service.models import Comment, Service, Specialty
+from service.models import Comment, Rating, Service, Specialty
 from django.db.models import Q
 # Create your views here.
 
@@ -52,22 +52,29 @@ def chat_view(request: HttpRequest, order_id):
 
          Comment.objects.create(
             service=order, user=request.user, content=content, file=request.FILES.get("file"))
+         return redirect(request.path+"#message-input")
+
 
    except Exception as e:
       print(e)
-   return render(request, 'service/chat.html', {"comments": order_comment.all()})
+   return render(request, 'service/chat.html', {"order":order,"comments": order_comment.all()})
 
 
 @login_required(login_url="/account/login")
 def current_orders(request):
    user = request.user
    orders = Service.objects.filter(Q(lawyer=user) | Q(customar=user))
+   orders = orders.exclude(Q(status=Service.completed)| Q(status=Service.rejected))
+
    return render(request, 'service/Lawyers_orders.html', {"orders": orders})
 
 
 @login_required(login_url="/account/login")
-def previous_orders(request):
-   return render(request, 'service/previous_orders.html')
+def previous_orders(request:HttpRequest):
+   user = request.user
+   orders = Service.objects.filter(Q(lawyer=user) | Q(customar=user))
+   orders =orders.filter(Q(status=Service.completed)|Q(status=Service.rejected))
+   return render(request, 'service/previous_orders.html',{"orders":orders})
 
 
 @login_required(login_url="/account/login")
@@ -82,11 +89,26 @@ def order_details(request: HttpRequest, order_id):
       if "reject-btn" in request.POST:
          order.status = request.POST.get("status", order.status)
          order.save()
+         return redirect("service:order_details",order_id=order.id)
+
       if "make_offer" in request.POST:
          order.price = request.POST.get("price")
          order.status = request.POST.get("status", order.status)
          order.save()
+         return redirect("service:order_details",order_id=order.id)
+      if "completed-btn" in request.POST: 
+         order.status = request.POST.get("status", order.status)
+         order.save()
 
+         return redirect("service:order_details",order_id=order.id)
+      
+      if "rating-submit" in request.POST and request.user.role == "Customar": 
+         comment=request.POST.get('comment')
+         rate=request.POST.get('rating')
+         if rate:
+               review=Rating.objects.create(service=order,user=request.user,comment=comment,rate=rate)
+               review.save()
+               return redirect("service:order_details",order_id=order.id)
    return render(request, 'service/order_details.html', {"order": order,
                                                          "status_choices": dict(Service.STATUS_CHOICES)})
 
@@ -96,4 +118,5 @@ def add_offer(request):
 
 
 def rating_view(request):
+   
    return render(request, 'service/rating.html')

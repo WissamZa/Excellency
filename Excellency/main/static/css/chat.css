@@ -47,9 +47,36 @@
 .chat-list {
     list-style-type: none;
     padding: 0;
-    overflow-y: scroll;
-    min-height: 60vh
+    overflow: auto;
+    height: 60vh;
+    
+    /* Scrollbar styles */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #CA9E67  #113345; /* For Firefox */
+    /* border: #113345 solid 5px; */
+    padding: 10px;
+    /* border-left: none; */
+    border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0.141);
 }
+
+.chat-list::-webkit-scrollbar {
+    width: 12px;
+
+}
+
+.chat-list::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+    border: 2px solid #f0f0f0;
+    scroll-padding:10%;
+
+}
+
 
 
 .chat-message {

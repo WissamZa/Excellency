@@ -9,9 +9,9 @@
     <div class="container mt-3">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <a href="{% url 'main:index_view' %}" class="btn btn-outline-dark"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                <a href="{% url 'service:order_details' order.id %}" class="btn btn-outline-dark"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                 <h2 class="mb-4 text-center">المحادثة</h2>
-                <ul class="list-unstyled chat-list">
+                <ul class="list-unstyled chat-list" id="chat-messages">
                     {% for comment in comments %}
                         <li class="chat-message
                                    {% if comment.user == request.user %}
@@ -34,28 +34,11 @@
                                 <p class="message-text">{{ comment.content }}</p>
                             </div>
                             <div class="d-flex justify-content-end ms-4">
-                                {% if comment.file %}<a cl href="{{ comment.file.url }}">الملف</a>{% endif %}
+                                {% if comment.file %}<a target="_blank" cl href="{{ comment.file.url }}">الملف</a>{% endif %}
                             </div>
                         </li>
                     {% endfor %}
-                    <li class="chat-message left w-50">
-                        <div class="message-content justify-content-start">
-                            <div class="message-header">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
-                                     alt="avatar"
-                                     class="rounded-circle ms-3 shadow"
-                                     width="40">
-                                <div>
-                                    <p class="sender-name">نور</p>
-                                    <p class="message-time">منذ11 دقيقة</p>
-                                </div>
-                            </div>
-                            <p class="message-text">
-                                المعالي هي منصة إلكترونية تعنى بالوساطه لتقديم الاستشارات
-                                والخدمات القانونية من خلال ربط نخبة من المحامين المرخصي
-                            </p>
-                        </div>
-                    </li>
+
                 </ul>
                 <form action="{{ request.path }}"
                       method="post"
@@ -66,7 +49,7 @@
                                   name="content"
                                   class="input-chat form-control rounded-4"
                                   rows="1"
-                                  placeholder="Type your message here..."></textarea>
+                                  placeholder="اكتب رسالتك هنا..."></textarea>
                         <label for="file-upload"
                                class="ico-chat btn btn-outline-dark rounded-4 align-content-center">
                             <i class="fas fa-file-upload"></i>
@@ -86,4 +69,11 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const chatMessages = document.getElementById('chat-messages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+        </script>
+        
 {% endblock content %}

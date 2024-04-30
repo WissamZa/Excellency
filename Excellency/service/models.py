@@ -13,7 +13,7 @@ Specialty_CHOICES = {
 
 
 def service_file_upload_to(instance, filename):
-   return "service/file/{}/{}".format(instance.user.id, filename)
+   return "service/file/{}/{}".format(instance.id, filename)
 
 
 class Service(models.Model):
@@ -71,5 +71,5 @@ class Payment(models.Model):
 class Rating(models.Model):
    user = models.ForeignKey(User, on_delete=models.CASCADE)
    service = models.OneToOneField(Service, on_delete=models.CASCADE)
-   comment = models.TextField(max_length=250, default="")
+   comment = models.TextField(max_length=250, blank=True,null=True)
    rate = models.IntegerField(default=None)
