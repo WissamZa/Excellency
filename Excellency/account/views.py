@@ -98,14 +98,7 @@ def login_view(request: HttpRequest):
          next = request.GET.get("next", "")
 
       if request.method == "POST":
-         # authenticat user
-         user = None
-         # if validate_national_id(request.POST["username"]):
-         #    user = authenticate(
-         #     request,
-         #     national_id=request.POST["username"],
-         #     password=request.POST.get("password")
-         #        )
+
          if validat(email=request.POST["username"]):
             user = authenticate(
                 request,
@@ -118,6 +111,8 @@ def login_view(request: HttpRequest):
             login(request, user)
 
             return redirect(request.POST.get("next") or "main:index_view")
+         else:
+            msg = "البريد الالكتروني او كلمة المرور خاطئة"
    except ValidationError:
       msg = "الايميل مستخدم خاطئ. حاول مرة اخرى..."
 
@@ -209,13 +204,12 @@ def profile_view(request: HttpRequest, user_id):
                              title=request.POST.get('title'),
                              content=request.POST.get('content'),
                              image=request.FILES.get('image'))
-         
+
          return redirect('account:profile_view', user_id=user_id)
-         
-         
+
       posts = Post.objects.filter(author=user)
    except User.DoesNotExist:
       return render(request, "404.html")
 
    return render(request, "account/profile.html", {"user": user,
-                                                   "user_profile": user_profile, "posts": posts })
+                                                   "user_profile": user_profile, "posts": posts})
