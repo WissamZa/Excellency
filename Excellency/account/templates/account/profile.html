@@ -123,17 +123,38 @@
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4">
               {% if request.user.role == "Lawyer" %}
-                <p class="lead fw-normal mb-0">المنشورات</p>
-                <p class="mb-0">
-                  <a href="#!" class="text-muted">جميع المنشورات</a>
-                </p>
-              {% elif request.user.role == "Customar" %}
-                <p class="lead fw-normal mb-0">المنشورات المحفوظة</p>
-                <p class="mb-0">
-                  <a href="#!" class="text-muted">جميع المنشورات المحفوظة</a>
-                </p>
+                  <p class="lead fw-normal mb-0">المنشورات</p>
+                  <p class="mb-0">
+                      <a href="#!" class="text-muted">جميع المنشورات</a>
+                  </p>
+              {% elif request.user.role == "Customer" %}
+                  {% if bookmark_clicked %}
+                      <p class="lead fw-normal mb-0">المنشورات المحفوظة</p>
+                      <p class="mb-0">
+                          <a href="#!" class="text-muted">جميع المنشورات المحفوظة</a>
+                      </p>
+                  {% else %}
+                      <p class="lead fw-normal mb-0">المنشورات</p>
+                      <p class="mb-0">
+                          <a href="#!" class="text-muted">جميع المنشورات</a>
+                      </p>
+                  {% endif %}
               {% endif %}
+          </div>
+          {% for post in posts %}
+          <div class="card-post mb-3">
+            <div class="card-header">{{ post.title }}</div>
+            <div class="card-body-post">
+                <p class="card-text">{{ post.content }}</p>
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" class="card-img-top" alt="Post Image">
+                {% endif %}
             </div>
+            <div class="card-footer">
+                <small class="text-muted">{{ post.timestamp }}</small>
+            </div>
+        </div>
+          {% endfor %}
             <div class="row g-2"></div>
           </div>
           <div class="row g-2"></div>

@@ -1,10 +1,10 @@
 from django.http import HttpRequest
-from django.shortcuts import render, redirect
-from main.models import Contactus, Post
+from django.shortcuts import get_object_or_404, render, redirect
+from main.models import Contactus, Post, Like, Bookmark
 from service.models import Service
 from account.models import User, Specialty, LawyerProfile
 from django.db.models import Count
-
+from django.urls import reverse
 
 def index_view(request: HttpRequest):
    order_num = Service.objects.all().count()
@@ -92,3 +92,21 @@ def post_list(request):
       return render(request, 'main/post_lawyers.html', {'posts': posts})
    else:
       return redirect('account:login_view')
+
+def like_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    user = request.user
+    if user.is_authenticated:
+        like, created = Like.objects.get_or_create(user=user, post=post)
+        if not created:
+            like.delete()
+    return redirect(reverse('main:post_list'))
+
+def bookmark_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    user = request.user
+    if user.is_authenticated:
+        bookmark, created = Bookmark.objects.get_or_create(user=user, post=post)
+        if not created:
+            bookmark.delete()
+    return redirect(reverse('main:post_list'))

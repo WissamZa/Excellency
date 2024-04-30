@@ -58,7 +58,7 @@ def sign_up_view(request: HttpRequest):
                )
             subject = 'نشكرك على تسجيلك في موقع معالي '
             message = f'''مرحبا  {new_user.full_name},\n\
-                نحن سعداء بتواجدك هنا. نتطلع إلى تقديم خدماتنا لك بأفضل شكل ممكن وتلبية احتياجاتك وتطلعاتك. سواء كنت تبحث عن استشارة قانونية، أو ترغب في الوصول إلى معلومات قانونية مفيدة، فإننا هنا لمساعدتك.
+نحن سعداء بتواجدك هنا. نتطلع إلى تقديم خدماتنا لك بأفضل شكل ممكن وتلبية احتياجاتك وتطلعاتك. سواء كنت تبحث عن استشارة قانونية، أو ترغب في الوصول إلى معلومات قانونية مفيدة، فإننا هنا لمساعدتك.
 
 لا تتردد في استكشاف الموارد المتاحة لدينا، ولا تتردد في الاتصال بنا إذا كان لديك أي استفسار أو اقتراح. نحن هنا لخدمتك وتقديم الدعم الذي تحتاجه.
 
@@ -211,8 +211,13 @@ def profile_view(request: HttpRequest, user_id):
                              title=request.POST.get('title'),
                              content=request.POST.get('content'),
                              image=request.FILES.get('image'))
+         
+         return redirect('account:profile_view', user_id=user_id)
+         
+         
+      posts = Post.objects.filter(author=user)
    except User.DoesNotExist:
       return render(request, "404.html")
 
    return render(request, "account/profile.html", {"user": user,
-                                                   "user_profile": user_profile})
+                                                   "user_profile": user_profile, "posts": posts })
