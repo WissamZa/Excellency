@@ -1,8 +1,8 @@
 from django.http import HttpRequest
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from account.models import LawyerProfile, User
 from django.contrib.auth.decorators import login_required
-from service.models import Service, Specialty
+from service.models import Comment, Service, Specialty
 from django.db.models import Q
 # Create your views here.
 
@@ -30,13 +30,32 @@ def order_form(request: HttpRequest, lawyer_id):
 
 @login_required(login_url="/account/login")
 def payment_view(request: HttpRequest, order_id):
-   order = Service.objects.get(id=order_id)
+   order = get_object_or_404(Service, id=order_id)
+   if request.method == "POST":
+      order.status = order.accepted
+      order.save()
+      return redirect("service:order_details", order_id=order.id)
    return render(request, 'service/payment.html', {"order": order})
 
 
 @login_required(login_url="/account/login")
-def chat_view(request):
-   return render(request, 'service/chat.html')
+def chat_view(request: HttpRequest, order_id):
+   order = get_object_or_404(Service, id=order_id)
+   try:
+      lawyer = order.lawyer
+      customar = order.customar
+      if not (request.user == lawyer or request.user == customar):
+         return render(request, "no_permission.html")
+      order_comment: Comment = order.chat
+      if request.method == "POST":
+         content = request.POST["content"]
+
+         Comment.objects.create(
+            service=order, user=request.user, content=content, file=request.FILES.get("file"))
+
+   except Exception as e:
+      print(e)
+   return render(request, 'service/chat.html', {"comments": order_comment.all()})
 
 
 @login_required(login_url="/account/login")

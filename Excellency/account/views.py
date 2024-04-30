@@ -3,7 +3,7 @@ from django.http import HttpRequest
 from account.models import User, LawyerProfile, CustomarProfile
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from main.models import Post
+from main.models import Post, Bookmark
 from account.models import Specialty, Specialty_CHOICES
 from main.validator import validat
 from django.core.exceptions import ValidationError
@@ -207,11 +207,10 @@ def profile_view(request: HttpRequest, user_id):
 
          return redirect('account:profile_view', user_id=user_id)
 
-      posts = Post.objects.filter(author=user)
-      
-      
+      bookmarks = Bookmark.objects.filter(user=user)
+
    except User.DoesNotExist:
       return render(request, "404.html")
 
    return render(request, "account/profile.html", {"user": user,
-                                                   "user_profile": user_profile, "posts": posts})
+                                                   "user_profile": user_profile, "bookmarks": bookmarks})

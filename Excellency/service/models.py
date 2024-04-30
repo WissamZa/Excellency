@@ -45,21 +45,18 @@ class Service(models.Model):
    created_date = models.DateTimeField(auto_now_add=True)
 
 
-class Comment(models.Model):
-   service = models.ForeignKey(Service, on_delete=models.CASCADE)
-   user = models.ForeignKey(User, on_delete=models.CASCADE)
-   content = models.TextField()
-   added_date = models.DateTimeField(auto_now_add=True)
-
-
 def group_based_upload_to(instance, filename):
    return "profiles/file/{}/{}".format(instance.user.id, filename)
 
 
-class Files(models.Model):
-   comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+class Comment(models.Model):
+   service = models.ForeignKey(
+      Service, on_delete=models.CASCADE, related_name="chat")
    user = models.ForeignKey(User, on_delete=models.CASCADE)
-   file = models.FileField(upload_to=group_based_upload_to)
+   content = models.TextField()
+   file = models.FileField(
+      upload_to=group_based_upload_to, blank=True, null=True)
+   added_date = models.DateTimeField(auto_now_add=True)
 
 
 class Payment(models.Model):
