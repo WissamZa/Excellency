@@ -1,0 +1,1326 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2024-05-01T10:27:28.548Z",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "1",
+        "object_repr": "Service object (1)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 4,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 4,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 4,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 4,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 5,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 5,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 5,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 5,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add contactus",
+        "content_type": 6,
+        "codename": "add_contactus"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change contactus",
+        "content_type": 6,
+        "codename": "change_contactus"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete contactus",
+        "content_type": 6,
+        "codename": "delete_contactus"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view contactus",
+        "content_type": 6,
+        "codename": "view_contactus"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add post",
+        "content_type": 7,
+        "codename": "add_post"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change post",
+        "content_type": 7,
+        "codename": "change_post"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete post",
+        "content_type": 7,
+        "codename": "delete_post"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view post",
+        "content_type": 7,
+        "codename": "view_post"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add like",
+        "content_type": 8,
+        "codename": "add_like"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change like",
+        "content_type": 8,
+        "codename": "change_like"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete like",
+        "content_type": 8,
+        "codename": "delete_like"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view like",
+        "content_type": 8,
+        "codename": "view_like"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add bookmark",
+        "content_type": 9,
+        "codename": "add_bookmark"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change bookmark",
+        "content_type": 9,
+        "codename": "change_bookmark"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete bookmark",
+        "content_type": 9,
+        "codename": "delete_bookmark"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view bookmark",
+        "content_type": 9,
+        "codename": "view_bookmark"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add specialty",
+        "content_type": 10,
+        "codename": "add_specialty"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change specialty",
+        "content_type": 10,
+        "codename": "change_specialty"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete specialty",
+        "content_type": 10,
+        "codename": "delete_specialty"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view specialty",
+        "content_type": 10,
+        "codename": "view_specialty"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 11,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 11,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 11,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 11,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can add customar profile",
+        "content_type": 12,
+        "codename": "add_customarprofile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can change customar profile",
+        "content_type": 12,
+        "codename": "change_customarprofile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can delete customar profile",
+        "content_type": 12,
+        "codename": "delete_customarprofile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can view customar profile",
+        "content_type": 12,
+        "codename": "view_customarprofile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+        "name": "Can add lawyer profile",
+        "content_type": 13,
+        "codename": "add_lawyerprofile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+        "name": "Can change lawyer profile",
+        "content_type": 13,
+        "codename": "change_lawyerprofile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+        "name": "Can delete lawyer profile",
+        "content_type": 13,
+        "codename": "delete_lawyerprofile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+        "name": "Can view lawyer profile",
+        "content_type": 13,
+        "codename": "view_lawyerprofile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+        "name": "Can add service",
+        "content_type": 14,
+        "codename": "add_service"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+        "name": "Can change service",
+        "content_type": 14,
+        "codename": "change_service"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+        "name": "Can delete service",
+        "content_type": 14,
+        "codename": "delete_service"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+        "name": "Can view service",
+        "content_type": 14,
+        "codename": "view_service"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+        "name": "Can add rating",
+        "content_type": 15,
+        "codename": "add_rating"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+        "name": "Can change rating",
+        "content_type": 15,
+        "codename": "change_rating"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+        "name": "Can delete rating",
+        "content_type": 15,
+        "codename": "delete_rating"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+        "name": "Can view rating",
+        "content_type": 15,
+        "codename": "view_rating"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+        "name": "Can add payment",
+        "content_type": 16,
+        "codename": "add_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+        "name": "Can change payment",
+        "content_type": 16,
+        "codename": "change_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+        "name": "Can delete payment",
+        "content_type": 16,
+        "codename": "delete_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+        "name": "Can view payment",
+        "content_type": 16,
+        "codename": "view_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+        "name": "Can add comment",
+        "content_type": 17,
+        "codename": "add_comment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+        "name": "Can change comment",
+        "content_type": 17,
+        "codename": "change_comment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+        "name": "Can delete comment",
+        "content_type": 17,
+        "codename": "delete_comment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+        "name": "Can view comment",
+        "content_type": 17,
+        "codename": "view_comment"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "main",
+        "model": "contactus"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "main",
+        "model": "post"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "main",
+        "model": "like"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "main",
+        "model": "bookmark"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "account",
+        "model": "specialty"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "account",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "account",
+        "model": "customarprofile"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+        "app_label": "account",
+        "model": "lawyerprofile"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+        "app_label": "service",
+        "model": "service"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+        "app_label": "service",
+        "model": "rating"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+        "app_label": "service",
+        "model": "payment"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+        "app_label": "service",
+        "model": "comment"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "do22bh2bpbhx7nhr0rwy5dg3vaf0v2qj",
+    "fields": {
+        "session_data": ".eJxVjMsOgjAUBf-la9Nc2lJal-79BnJfWNRAQmFl_HclYaHbMzPnZXrc1tJvVZd-FHM2jTOn35GQHzrtRO443WbL87QuI9ldsQet9jqLPi-H-3dQsJZvDQ44pygxJoZuyI3HiCEgp7aVmIiyE1QIwZMfQB2TdORRRRUGIDTvDwA7OOA:1s277t:TR6LiPyTxoWuQwwca_JELMmHW8WMhoSTHTUWaqwTJjA",
+        "expire_date": "2024-05-15T10:23:49.782Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "fh7cfi75yjbxng6t4ksw1zu7h3l2ffg9",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hCmMIW6dO8ZyAxDpWpoUtqV8e7apAvd_vfef6lI21ri1vISJ1FnBer0uzGlR647kDvV26zTXNdlYr0r-qBNX2fJz8vh_h0UauVbs3RkMbBP7ISQnQkdWMli_cgORgLpLdIAKIKUfDBOgLD3MoAxAdT7A_puN-c:1s2760:5yhi4AbOUPciE8dWOz8eHeb2iZwRDwyMgDSXlKy_2Fw",
+        "expire_date": "2024-05-15T10:21:52.233Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "u7ggzkwud5rkwp1kh7hz6s3ghjtqykmn",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQAP_C2RBYthQ8eu8byLJQqRpISnsy_t006UGvM5N5i0D7VsLe8xqWJK5iFJdfFomfuR4iPajem-RWt3WJ8kjkabucWsqv29n-DQr1cmxH9mAxa3AZCHl0ACZpbXAm7ygqi14Bazeg4oQeDcwwD1YPma3DKD5fuVM2uA:1s276e:yV61MGAyETQF9EFrQ3d7VjlpeDiClS1XjmuYaaRVBLg",
+        "expire_date": "2024-05-15T10:22:32.200Z"
+    }
+},
+{
+    "model": "account.specialty",
+    "pk": 1,
+    "fields": {
+        "name": "استشارات قانونية"
+    }
+},
+{
+    "model": "account.specialty",
+    "pk": 2,
+    "fields": {
+        "name": "صياغة عقود"
+    }
+},
+{
+    "model": "account.specialty",
+    "pk": 3,
+    "fields": {
+        "name": "مذكرات"
+    }
+},
+{
+    "model": "account.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$vWX1Wnke9ELk0LaNG17Eok$gPQXufSl1cPGsfiR1B4DpQ5x8+z7Yh5qCQbOsrAfmzU=",
+        "last_login": "2024-05-01T10:21:52.226Z",
+        "is_superuser": true,
+        "username": "admin@excellency.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-05-01T10:21:42.965Z",
+        "national_id": "",
+        "email": "admin@excellency.com",
+        "full_name": "",
+        "role": "Supervisor",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$1KkICMI6h9hsEalPxKHlRU$wlcajXQY04AcF39IF7NE4ip1RqAu57DcUVX+s7E+6Ls=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "john.doe@example.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-01T10:21:43.228Z",
+        "national_id": "1119596217",
+        "email": "john.doe@example.com",
+        "full_name": "سامر محمد البلوي",
+        "role": "Lawyer",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$MCTmy5ANscSGFoctTLSNsQ$WZW4B0WmtU1lulTr35AfFDHXjOyrggcSRaQ8KCWzUOE=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "sarah.ali@example.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-01T10:21:43.518Z",
+        "national_id": "1118476316",
+        "email": "sarah.ali@example.com",
+        "full_name": "عمار ياسر الخطيب",
+        "role": "Lawyer",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$amTJLaHOzU7NoEwKAP80yD$uD/zU7raFRH0sJ2scTmi8qnZRSaO3g24i6ceegqCkTk=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "ahmed.khan@example.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-01T10:21:43.801Z",
+        "national_id": "1119897361",
+        "email": "ahmed.khan@example.com",
+        "full_name": "خالد سلطان المطيري",
+        "role": "Lawyer",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$R7TOAUQt6G13TeWnJntY85$PGG8V/XRKU59yHBWQIFoCKfhFYPiNBo6V4a18Ud/Rwo=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "maria.gomez@example.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-01T10:21:44.088Z",
+        "national_id": "1118462614",
+        "email": "maria.gomez@example.com",
+        "full_name": "أسامة علي القرني",
+        "role": "Lawyer",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$SOTK8PUMienBJK2OiJaVFc$R9EHS5ARUBYB3lObHxNDqZFzYEmhEIhNdn/D6PULo7c=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "li.jun@example.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-01T10:21:44.373Z",
+        "national_id": "1118462615",
+        "email": "li.jun@example.com",
+        "full_name": "فهد نواف العتيبي",
+        "role": "Customar",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$KcCHIlt5DeH5K9TyiXuuN8$fNvqpYLrPf1jZjL4/Uh7PchRS14Moa4YX+o/NlcmsR0=",
+        "last_login": "2024-05-01T10:22:32.195Z",
+        "is_superuser": false,
+        "username": "olivia.smith@example.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-01T10:21:44.630Z",
+        "national_id": "1118462616",
+        "email": "olivia.smith@example.com",
+        "full_name": "عبد العزيز طارق الأحمد",
+        "role": "Customar",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$BFgMn44BhGA3S4mtfGRQs9$cNMIN5qChK/MGVSxH+JqfUKPAnL4DF4HWHdyIjeD5P0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "mohammad.saleh@example.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-01T10:21:44.890Z",
+        "national_id": "1118462617",
+        "email": "mohammad.saleh@example.com",
+        "full_name": "طلال مازن السعيد",
+        "role": "Customar",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$M9xyhh3JZ501FMVosSBtkA$VUhRuVRPactVtVYMsWNOMk0fJSKLl3O8qpBMCRtG4po=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "linda.brown@example.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-01T10:21:45.157Z",
+        "national_id": "1118462618",
+        "email": "linda.brown@example.com",
+        "full_name": "جابر عبد الرحمن الغامدي",
+        "role": "Customar",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$ceUstUIDSnPZfBzESxxJSY$xBBPnwWm9fF3+h86vc+PDsEDV+qmtSHSMeY4fijQDcQ=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "alex.jones@example.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-01T10:21:45.415Z",
+        "national_id": "1118462619",
+        "email": "alex.jones@example.com",
+        "full_name": "صالح حسن الملحم",
+        "role": "Customar",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 11,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$VaWw8uW7mf2O2Mu3bsEqz6$Hcli50go+uVNmZKYKkIeMDuX/jn2q1beX4WKBe5Vl5M=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "emma.white@example.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-01T10:21:45.671Z",
+        "national_id": "1118462610",
+        "email": "emma.white@example.com",
+        "full_name": "ناصر ماجد الشهري",
+        "role": "Customar",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.user",
+    "pk": 12,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$e6IjZwe9DFFIYqQNJHdZYh$UIVsW/RYD16p5wphvd4YhUR/mtsJKkEVL1IPsdTNRS0=",
+        "last_login": "2024-05-01T10:23:49.777Z",
+        "is_superuser": false,
+        "username": "bargsaudi@hotmail.com",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-01T10:23:41.810Z",
+        "national_id": "1000000002",
+        "email": "bargsaudi@hotmail.com",
+        "full_name": "وسام حسن الزايدي",
+        "role": "Lawyer",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.customarprofile",
+    "pk": 1,
+    "fields": {
+        "user": 6,
+        "phone": "0555678901",
+        "image": "profiles/6/images/dummy/images/4.jpg",
+        "bannar": "/profiles/images/banner.jpg",
+        "gender": "male"
+    }
+},
+{
+    "model": "account.customarprofile",
+    "pk": 2,
+    "fields": {
+        "user": 7,
+        "phone": "0566789012",
+        "image": "profiles/7/images/dummy/images/5.jpg",
+        "bannar": "/profiles/images/banner.jpg",
+        "gender": "male"
+    }
+},
+{
+    "model": "account.customarprofile",
+    "pk": 3,
+    "fields": {
+        "user": 8,
+        "phone": "0577890123",
+        "image": "profiles/8/images/dummy/images/6.jpg",
+        "bannar": "/profiles/images/banner.jpg",
+        "gender": "male"
+    }
+},
+{
+    "model": "account.customarprofile",
+    "pk": 4,
+    "fields": {
+        "user": 9,
+        "phone": "0588901234",
+        "image": "profiles/9/images/dummy/images/7.jpg",
+        "bannar": "/profiles/images/banner.jpg",
+        "gender": "male"
+    }
+},
+{
+    "model": "account.customarprofile",
+    "pk": 5,
+    "fields": {
+        "user": 10,
+        "phone": "0599012345",
+        "image": "profiles/10/images/dummy/images/8.jpg",
+        "bannar": "/profiles/images/banner.jpg",
+        "gender": "male"
+    }
+},
+{
+    "model": "account.customarprofile",
+    "pk": 6,
+    "fields": {
+        "user": 11,
+        "phone": "0599012344",
+        "image": "profiles/11/images/dummy/images/9.jpg",
+        "bannar": "/profiles/images/banner.jpg",
+        "gender": "male"
+    }
+},
+{
+    "model": "account.lawyerprofile",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "phone": "0501234567",
+        "about": "",
+        "image": "profiles/2/images/dummy/images/1_FMCOkPS.jpg",
+        "bannar": "profiles/images/banner.jpg",
+        "gender": "male",
+        "certified": true,
+        "licence": "profiles/2/licence/dummy/lawyer-card_eN3JXlY.jpg",
+        "Qualification": "profiles/2/qualification/dummy/qualification_GZgTzTs.jpg",
+        "specialty": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "account.lawyerprofile",
+    "pk": 2,
+    "fields": {
+        "user": 3,
+        "phone": "0512345678",
+        "about": "",
+        "image": "profiles/3/images/dummy/images/10_ar0PA3G.jpg",
+        "bannar": "profiles/images/banner.jpg",
+        "gender": "male",
+        "certified": false,
+        "licence": "profiles/3/licence/dummy/lawyer-card_ih9R6t4.jpg",
+        "Qualification": "profiles/3/qualification/dummy/qualification_ZLed5ql.jpg",
+        "specialty": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "account.lawyerprofile",
+    "pk": 3,
+    "fields": {
+        "user": 4,
+        "phone": "0533456789",
+        "about": "",
+        "image": "profiles/4/images/dummy/images/2_5y5SmM7.jpg",
+        "bannar": "profiles/images/banner.jpg",
+        "gender": "male",
+        "certified": false,
+        "licence": "profiles/4/licence/dummy/lawyer-card_5elhrMW.jpg",
+        "Qualification": "profiles/4/qualification/dummy/qualification_1ISw5px.jpg",
+        "specialty": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "account.lawyerprofile",
+    "pk": 4,
+    "fields": {
+        "user": 5,
+        "phone": "0544567890",
+        "about": "",
+        "image": "profiles/5/images/dummy/images/3_EPIPuP0.jpg",
+        "bannar": "profiles/images/banner.jpg",
+        "gender": "male",
+        "certified": false,
+        "licence": "profiles/5/licence/dummy/lawyer-card_mc2lynZ.jpg",
+        "Qualification": "profiles/5/qualification/dummy/qualification_MpsyAxH.jpg",
+        "specialty": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "account.lawyerprofile",
+    "pk": 5,
+    "fields": {
+        "user": 12,
+        "phone": "0505050505",
+        "about": "",
+        "image": "profiles/12/images/8.jpg",
+        "bannar": "profiles/images/banner.jpg",
+        "gender": "male",
+        "certified": true,
+        "licence": "profiles/12/licence/lawyer-card_Pl2OEtn.jpg",
+        "Qualification": "profiles/12/qualification/qualification_3OECYV5.jpg",
+        "specialty": [
+            1,
+            3
+        ]
+    }
+},
+{
+    "model": "service.service",
+    "pk": 2,
+    "fields": {
+        "lawyer": 12,
+        "customar": 7,
+        "order_type": 1,
+        "subject": "استشارة فتح محل",
+        "content": "فتح محل",
+        "file": "service/file/None/Screenshot_2023-09-04_190052_2m3C8hC.png",
+        "price": 40.0,
+        "status": "مكتمل",
+        "created_date": "2024-05-01T10:28:02.193Z"
+    }
+},
+{
+    "model": "service.service",
+    "pk": 3,
+    "fields": {
+        "lawyer": 12,
+        "customar": 7,
+        "order_type": 1,
+        "subject": "استشارة توظيف عامل ",
+        "content": "توظيف",
+        "file": "",
+        "price": 20.0,
+        "status": "مكتمل",
+        "created_date": "2024-05-01T10:30:49.249Z"
+    }
+},
+{
+    "model": "service.comment",
+    "pk": 1,
+    "fields": {
+        "service": 2,
+        "user": 7,
+        "content": "السلام عليكم",
+        "file": "",
+        "added_date": "2024-05-01T10:29:05.262Z"
+    }
+},
+{
+    "model": "service.comment",
+    "pk": 2,
+    "fields": {
+        "service": 2,
+        "user": 12,
+        "content": "وعليكم السلام",
+        "file": "",
+        "added_date": "2024-05-01T10:29:14.930Z"
+    }
+},
+{
+    "model": "service.comment",
+    "pk": 3,
+    "fields": {
+        "service": 2,
+        "user": 12,
+        "content": "",
+        "file": "profiles/file/12/Screenshot_2023-09-04_190052.png",
+        "added_date": "2024-05-01T10:29:29.056Z"
+    }
+},
+{
+    "model": "service.comment",
+    "pk": 4,
+    "fields": {
+        "service": 3,
+        "user": 7,
+        "content": "هلا",
+        "file": "",
+        "added_date": "2024-05-01T10:31:43.478Z"
+    }
+},
+{
+    "model": "service.comment",
+    "pk": 5,
+    "fields": {
+        "service": 3,
+        "user": 12,
+        "content": "مرحبا",
+        "file": "",
+        "added_date": "2024-05-01T10:31:51.297Z"
+    }
+},
+{
+    "model": "service.rating",
+    "pk": 1,
+    "fields": {
+        "user": 7,
+        "service": 2,
+        "comment": "",
+        "rate": 5
+    }
+},
+{
+    "model": "service.rating",
+    "pk": 2,
+    "fields": {
+        "user": 7,
+        "service": 3,
+        "comment": "",
+        "rate": 3
+    }
+}
+]

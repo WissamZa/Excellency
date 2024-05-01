@@ -1,0 +1,23 @@
+[
+    {
+        "model": "account.specialty",
+        "pk": 1,
+        "fields": {
+            "name": "استشارات قانونية"
+        }
+    },
+    {
+        "model": "account.specialty",
+        "pk": 2,
+        "fields": {
+            "name": "صياغة عقود"
+        }
+    },
+    {
+        "model": "account.specialty",
+        "pk": 3,
+        "fields": {
+            "name": "مذكرات"
+        }
+    }
+]
