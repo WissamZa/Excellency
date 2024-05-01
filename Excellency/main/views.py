@@ -60,9 +60,10 @@ def lawyers_view(request: HttpRequest):
             elif request.GET.get("sort") == "user_name_z-a":
                 lawyers = lawyers.order_by("-full_name")
             elif request.GET.get("sort") == "rating_top":
-                print("kkkkkccc")
                 lawyers = lawyers.annotate(total=Sum("lawyer__rating__rate")).order_by("-total")
-
+        if "clear" in request.GET:
+            print(request.path)
+            return redirect(request.path)
     except Exception as e:
         print(e)
     return render(request, "main/lawyers.html", {"lawyers": lawyers, "specialities": spcialities})
@@ -126,6 +127,11 @@ def verification(request: HttpRequest, user_id):
 def post_list(request: HttpRequest):
     posts = Post.objects.all()
     return render(request, 'main/post_lawyers.html', {'posts': posts})
+
+
+def post_view(request: HttpRequest, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    return render(request, 'main/post.html', {'post': post})
 
 
 def like_post(request: HttpRequest, post_id):

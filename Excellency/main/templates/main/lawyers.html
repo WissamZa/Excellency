@@ -49,13 +49,17 @@
                             </ul>
                         </li>
                         <li>
-                            <div class="d-flex gap-2">
+                            <div class="d-flex h-100 gap-2">
                                 <select name="sort" class="form-select" style="width: 8rem;">
-                                    <option value="user_name_a_z" selected>أ - ي</option>
-                                    <option value="user_name_z-a" selected>ي - أ</option>
-                                    <option value="rating_top">ًالأعلى تقييما</option>
+                                    <option value="user_name_a_z"
+                                            {% if "user_name_a_z" in request.GET.sort %}selected{% endif %}>أ - ي</option>
+                                    <option value="user_name_z-a"
+                                            {% if "user_name_z-a" in request.GET.sort %}selected{% endif %}>ي - أ</option>
+                                    <option value="rating_top"
+                                            {% if "rating_top" in request.GET.sort %}selected{% endif %}>ًالأعلى تقييما</option>
                                 </select>
-                                <button class="btn btn-outline-dark" type="submit">بحث</button>
+                                <button class="btn btn-outline-dark" name="search" type="submit">بحث</button>
+                                <button class="btn btn-outline-dark" name="clear" type="submit">مسح</button>
                             </div>
                         </li>
                     </ul>

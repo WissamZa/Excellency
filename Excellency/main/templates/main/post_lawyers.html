@@ -32,7 +32,9 @@
                                     <br>
                                 {% endif %}
                                 <div class="post-description mt-3">
-                                    <h5>العنوان : {{ post.title }}</h5>
+                                    <a href="{% url "main:post_view" post.id %}">
+                                        <h5>العنوان : {{ post.title }}</h5>
+                                    </a>
                                     <p class="me-4 mb-4 border-1">
                                         <br>
                                         {{ post.content }}
