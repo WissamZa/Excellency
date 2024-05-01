@@ -93,8 +93,12 @@ def verification(request: HttpRequest, user_id):
     if not (request.user.is_staff or request.user.is_superuser):
         return render(request, "no_permission.html")
     user = User.objects.get(id=user_id)
-    user.lawyer_profile.certified = True
-    user.lawyer_profile.save()
+    if "accept" in request.POST:
+        user.lawyer_profile.certified = True
+        user.lawyer_profile.save()
+    if "reject" in request.POST:
+        user.lawyer_profile.certified = False
+        user.lawyer_profile.save()
     return redirect("main:admin_view")
 
 

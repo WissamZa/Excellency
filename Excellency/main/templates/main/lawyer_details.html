@@ -1,3 +1,4 @@
+<!--djlint:off H021 H006-->
 {% extends "base/base.html" %}
 {% load static %}
 {% block title %}
@@ -24,9 +25,9 @@
                             </p>
                             <p class="text-muted mb-3">
                                 الجنس :
-                                {% if  user.lawyer_profile.gender == "male" %}
+                                {% if user.lawyer_profile.gender == "male" %}
                                     ذكر
-                                {% elif  user.lawyer_profile.gender == "female" %}
+                                {% elif user.lawyer_profile.gender == "female" %}
                                     انثى
                                 {% endif %}
                             </p>
@@ -42,9 +43,20 @@
                         </div>
                         <div class="col-12">
                             <div class="text-center">
-                                <a href="{% url "main:verification" user.id %}"
-                                   type="submit"
-                                   class="btn btn-success">توثيق</a>
+                                <form action="{% url "main:verification" user.id %}" method="post">
+                                    {% csrf_token %}
+                                    {% if user.lawyer_profile.certified %}
+                                        <button href="{% url "main:verification" user.id %}"
+                                                name="reject"
+                                                type="submit"
+                                                class="btn btn-danger">الغاء التوثيق</button>
+                                    {% else %}
+                                        <button href="{% url "main:verification" user.id %}"
+                                                name="accept"
+                                                type="submit"
+                                                class="btn btn-success">توثيق</button>
+                                    {% endif %}
+                                </form>
                                 <!-- <a type="submit" class="btn btn-danger">رفض</a> -->
                             </div>
                         </div>
@@ -53,4 +65,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock content %}
