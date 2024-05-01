@@ -13,6 +13,7 @@ from django.db import transaction, IntegrityError
 from django.conf import global_settings as settings
 from django.core.mail import send_mail
 
+email_from = settings.EMAIL_HOST_USER
 
 def sign_up_view(request: HttpRequest):
     try:
@@ -66,7 +67,6 @@ def sign_up_view(request: HttpRequest):
 
     تحياتنا،
     فريق المعالي للمحاماة .'''
-                email_from = settings.EMAIL_HOST_USER
                 recipient_list = [new_user.email, ]
                 send_mail(subject, message, email_from, recipient_list)
             return redirect("account:login_view")
@@ -124,16 +124,6 @@ def logout_view(request: HttpRequest):
     if request.user.is_authenticated:
         logout(request)
     return redirect('main:index_view')
-
-
-# def user_profile_view(request: HttpRequest, user_name):
-#    try:
-#       msg = None
-#       user = User.objects.get(username=user_name)
-#    except User.DoesNotExist:
-#       msg = "User Not Found"
-#       return render(request, "account/user_profile.html", {"msg": msg})
-#    return render(request, "account/user_profile.html", {"user": user})
 
 
 @login_required(login_url="/account/login")
@@ -219,7 +209,6 @@ def profile_view(request: HttpRequest, user_id):
 @login_required(login_url="/account/login")
 def my_post(request: HttpRequest, user_id):
     posts = Post.objects.filter(author__id=user_id)
-    
 
     return render(request, "account/my_post.html", {'posts': posts})
 

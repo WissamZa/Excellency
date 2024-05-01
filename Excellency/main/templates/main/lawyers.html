@@ -39,11 +39,11 @@
                                 {% for specialty in specialities %}
                                     <li class="dropdown-item px-2 text-end">
                                         <input type="checkbox"
-                                               id="spcialties"
+                                               id="spcialties_{{ specialty.id }}"
                                                name="spcialties"
                                                {% if specialty.id|slugify  in request.GET|getlist:"spcialties" %}checked{% endif %}
                                                value="{{ specialty.id }}">
-                                        <label class="custom-checkbox" for="spcialties">{{ specialty.name }}</label>
+                                        <label class="custom-checkbox" for="spcialties_{{ specialty.id }}">{{ specialty.name }}</label>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -68,8 +68,7 @@
             {% for lawyer in lawyers %}
                 <div class="col-md-4  rounded-4">
                     <div class="law-card card-10 shadow-lg p-5"
-                         style="
-                                background-color: white">
+                         style="background-color: white">
                         <div class="row">
                             <div class="col-md-4 ">
                                 <img src="{{ lawyer.lawyer_profile.image.url }}"
@@ -93,7 +92,13 @@
                                     <div>
                                         <p class="mb-1 text-muted">
                                             التقييم :
-                                            <span class="mb-0">{% if lawyer|rate_average %} {{ lawyer |rate_average }} {% else %} لم يقيم بعد {% endif %} </span>
+                                            <span class="mb-0">
+                                                {% if lawyer|rate_average %}
+                                                    {{ lawyer |rate_average }}
+                                                {% else %}
+                                                    لم يقيم بعد
+                                                {% endif %}
+                                            </span>
                                         </p>
                                         <p class="mb-1 text-muted">
                                             رقم المحامي :

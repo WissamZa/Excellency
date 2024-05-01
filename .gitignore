@@ -162,6 +162,7 @@ cython_debug/
 create_superuser.bat
 .djlintrc
 **/media/post/*
-**/media/profiles/*
+**/media/profiles/**/
+**/media/service/**
 dummy/
 dummy_data.py

@@ -3,9 +3,14 @@ from django.shortcuts import get_object_or_404, render, redirect
 from main.models import Contactus, Post, Like, Bookmark
 from service.models import Service
 from account.models import User, Specialty, LawyerProfile
-from django.db.models import Count
+from django.db.models import Count, Sum
+from django.db.models import F
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.conf import global_settings as settings
+from django.core.mail import send_mail
+
+email_from = settings.EMAIL_HOST_USER
 
 
 def index_view(request: HttpRequest):
@@ -33,17 +38,13 @@ def contactus_view(request: HttpRequest):
     return render(request, "main/contactus.html", {'msg': msg})
 
 
-# def check_lawyer_has_specialty(lawyer: User, specialty):
-#     if specialty in lawyer.lawyer_profile.specialty.all():
-#         return True
-#     return False
-
-
 def lawyers_view(request: HttpRequest):
     try:
         lawyers = User.objects.filter(
-            role="Lawyer", lawyer_profile__certified=True).order_by("id")
+            role="Lawyer", lawyer_profile__certified=True)
         spcialities = Specialty.objects.all()
+        if "sort" not in request.GET:
+            lawyers.order_by("id")
 
         if "lawyer_name" in request.GET:
             lawyers = lawyers.filter(
@@ -56,10 +57,11 @@ def lawyers_view(request: HttpRequest):
         if "sort" in request.GET:
             if request.GET.get("sort") == "user_name_a_z":
                 lawyers = lawyers.order_by("full_name")
-            if request.GET.get("sort") == "user_name_z-a":
+            elif request.GET.get("sort") == "user_name_z-a":
                 lawyers = lawyers.order_by("-full_name")
-            if request.GET.get("sort") == "rating_top":
-                lawyers = lawyers.order_by("-lawyer__rating").annotate(Count("id"))
+            elif request.GET.get("sort") == "rating_top":
+                print("kkkkkccc")
+                lawyers = lawyers.annotate(total=Sum("lawyer__rating__rate")).order_by("-total")
 
     except Exception as e:
         print(e)
@@ -76,14 +78,14 @@ def contact_messages(request: HttpRequest):
 
 
 @login_required(login_url='/account/login')
-def admin_view(request):
+def admin_view(request: HttpRequest):
     if not (request.user.is_staff or request.user.is_superuser):
         return render(request, "no_permission.html")
     lawyer_profiles = LawyerProfile.objects.all()
     return render(request, 'main/admin.html', {'lawyer_profiles': lawyer_profiles})
 
 
-def lawyer_details_view(request, user_id):
+def lawyer_details_view(request: HttpRequest, user_id):
     user = User.objects.get(id=user_id)
     return render(request, 'main/lawyer_details.html', {"user": user})
 
@@ -93,24 +95,40 @@ def verification(request: HttpRequest, user_id):
     if not (request.user.is_staff or request.user.is_superuser):
         return render(request, "no_permission.html")
     user = User.objects.get(id=user_id)
+
+    recipient_list = [user.email, ]
     if "accept" in request.POST:
         user.lawyer_profile.certified = True
         user.lawyer_profile.save()
+        # send mail
+        subject = 'تم توثيق حسابك في موقع المعالي للمحاماة'
+        message = f'''مرحبا  {user.full_name},
+        تم توثيق حسابك
+        {request.build_absolute_uri("/")}
+        '''
+        send_mail(subject, message, email_from, recipient_list)
+
     if "reject" in request.POST:
         user.lawyer_profile.certified = False
         user.lawyer_profile.save()
+        # send mail
+        subject = 'تم الغاء توثيق حسابك في موقع المعالي للمحاماة'
+        message = f'''مرحبا  {user.full_name},
+         نأسف لاخبارك انه تم الغاء توثيق حسابك لانتهاكك قوانين الموقع
+        {request.build_absolute_uri("/")}
+        '''
+        send_mail(subject, message, email_from, recipient_list)
+
     return redirect("main:admin_view")
 
 
-def post_list(request):
-    if request.user.is_authenticated:
-        posts = Post.objects.all()
-        return render(request, 'main/post_lawyers.html', {'posts': posts})
-    else:
-        return redirect('account:login_view')
+@login_required(login_url='/account/login')
+def post_list(request: HttpRequest):
+    posts = Post.objects.all()
+    return render(request, 'main/post_lawyers.html', {'posts': posts})
 
 
-def like_post(request, post_id):
+def like_post(request: HttpRequest, post_id):
     post = get_object_or_404(Post, pk=post_id)
     user = request.user
     if user.is_authenticated:
@@ -121,11 +139,9 @@ def like_post(request, post_id):
 
 
 def bookmark_post(request: HttpRequest, post_id):
-
-    if not request.user.is_authenticated:
-        return redirect("account:login_view")
-
     try:
+        if not request.user.is_authenticated:
+            return redirect("account:login_view")
         post = Post.objects.get(pk=post_id)
 
         bookmarked_post = Bookmark.objects.filter(user=request.user, post=post).first()
