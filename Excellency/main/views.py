@@ -59,7 +59,8 @@ def lawyers_view(request: HttpRequest):
             if request.GET.get("sort") == "user_name_z-a":
                 lawyers = lawyers.order_by("-full_name")
             if request.GET.get("sort") == "rating_top":
-                pass
+                lawyers = lawyers.order_by("-lawyer__rating").annotate(Count("id"))
+
     except Exception as e:
         print(e)
     return render(request, "main/lawyers.html", {"lawyers": lawyers, "specialities": spcialities})
