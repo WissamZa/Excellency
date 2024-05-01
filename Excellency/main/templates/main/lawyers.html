@@ -53,7 +53,7 @@
                                 <select name="sort" class="form-select" style="width: 8rem;">
                                     <option value="user_name_a_z" selected>أ - ي</option>
                                     <option value="user_name_z-a" selected>ي - أ</option>
-                                    <option value="rating_top">ًالأعلى تقيما</option>
+                                    <option value="rating_top">ًالأعلى تقييما</option>
                                 </select>
                                 <button class="btn btn-outline-dark" type="submit">بحث</button>
                             </div>
@@ -68,8 +68,8 @@
             {% for lawyer in lawyers %}
                 <div class="col-md-4  rounded-4">
                     <div class="law-card card-10 shadow-lg p-5"
-                         style="border-radius: 30% 25% / 10% 40%;
-                                background-color: azure">
+                         style="
+                                background-color: white">
                         <div class="row">
                             <div class="col-md-4 ">
                                 <img src="{{ lawyer.lawyer_profile.image.url }}"
@@ -93,7 +93,7 @@
                                     <div>
                                         <p class="mb-1 text-muted">
                                             التقييم :
-                                            <span class="mb-0">{{ lawyer |rate_average }}</span>
+                                            <span class="mb-0">{% if lawyer|rate_average %} {{ lawyer |rate_average }} {% else %} لم يقيم بعد {% endif %} </span>
                                         </p>
                                         <p class="mb-1 text-muted">
                                             رقم المحامي :

@@ -19,7 +19,6 @@
                                 <a href="{% url "account:profile_view" post.author.id %}"><b>{{ post.author.full_name }}</b></a> 
                             </div>
                             <hr>
-                           
                         </div>
                     </div>
                     {% if post.image %}
@@ -32,14 +31,13 @@
                         <p>{{ post.content }}</p>
                         <h6 class="text-muted time">{{ post.timestamp }}</h6>   
                         <div class="stats align-items-center">
-                            <a href="{% url 'main:like_post' post.id %}" class="btn btn-default stat-item">
+                            <a href="{% url 'main:like_post' post.id %}"  class="btn btn-default stat-item">
                                 <i class="fa fa-thumbs-up icon"></i> {{ post.total_likes }}
                             </a>
-                            <a href="{% url 'main:bookmark_post' post.id %}" class="btn btn-default stat-item">
+                            <a href="{% url 'main:bookmark_post' post.id %}"  class="btn btn-default stat-item">
                                 <i class="fa fa-bookmark" aria-hidden="true"></i> {{ post.total_bookmarks }}
                             </a>
-                        </div> 
-                                
+                        </div>       
                     </div>
                 </div>
             </div>
@@ -114,4 +112,5 @@
 }
 
 </style>
+
 {% endblock content %}
