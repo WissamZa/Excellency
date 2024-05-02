@@ -44,6 +44,9 @@ class Service(models.Model):
         max_length=18, default=pending)
     created_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.subject
+
 
 def group_based_upload_to(instance, filename):
     return "profiles/file/{}/{}".format(instance.user.id, filename)
