@@ -1043,7 +1043,7 @@
         "password": "pbkdf2_sha256$720000$e6IjZwe9DFFIYqQNJHdZYh$UIVsW/RYD16p5wphvd4YhUR/mtsJKkEVL1IPsdTNRS0=",
         "last_login": "2024-05-01T10:23:49.777Z",
         "is_superuser": false,
-        "username": "bargsaudi@hotmail.com",
+        "username": "example@hotmail.com",
         "first_name": "",
         "last_name": "",
         "is_staff": false,
